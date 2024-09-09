@@ -1,3 +1,3 @@
 export const environment = {
-  articleRootUrl: '',
+  articleRootUrl: 'https://magurouhiru.github.io/mysite/articles/',
 };
