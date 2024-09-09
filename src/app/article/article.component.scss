@@ -1,0 +1,9 @@
+@layer default {
+  * {
+    padding: 0;
+    margin: 0;
+  }
+}
+:host ::ng-deep img {
+  max-width: 100%;
+}
