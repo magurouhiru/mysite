@@ -1,8 +1,8 @@
-import { inject, Injectable } from '@angular/core';
-import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, of, tap } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { inject, Injectable } from '@angular/core';
+import { map } from 'rxjs';
+
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
