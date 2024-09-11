@@ -32,20 +32,24 @@
   </header>
   <div class="p-3">
     @if (articles$ | async; as articles) {
-      @if (param) {
+      @if (articles.length === 1) {
         <div class="bg-white p-3 rounded-lg">
           <div markdown [data]="articles[0].article"></div>
         </div>
       } @else {
         @for (article of articles; track article) {
-          <div class="bg-white p-3 rounded-lg mb-3">
-            <a class="no-underline" href="#/article/{{ article.name }}">
+          <div class="mb-3">
+            <a class="no-underline" href="#/article/{{ article.meta.name }}">
               <div>
-                <div
-                  markdown
-                  [data]="article.article.slice(0, 100) + '<br>...'"
-                ></div></div
-            ></a>
+                <p-card [header]="article.meta.title"
+                  >書いた人：{{ article.meta.author }}<br />書いた日：{{
+                    article.meta.rawDate
+                  }}<br />タグ：{{ article.meta.tags }}<br />新着フラグ：{{
+                    article.meta.newFlag
+                  }}</p-card
+                >
+              </div></a
+            >
           </div>
         }
       }
