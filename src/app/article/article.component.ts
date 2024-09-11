@@ -2,8 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, map, switchMap } from 'rxjs';
-import { CardModule } from 'primeng/card';
 
+import { CardModule } from 'primeng/card';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { ArticleService } from '../article.service';
