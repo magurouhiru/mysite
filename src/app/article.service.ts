@@ -33,7 +33,7 @@ export class ArticleService {
 
   getArticle(articleName: string) {
     return this.#http.get(
-      `${this.#articleRootUrl}${articleName}/${articleName}.md`,
+      `${this.#articleRootUrl}${articleName}.md`,
       {
         headers: this.#headers,
         responseType: 'text',
