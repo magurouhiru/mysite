@@ -15,6 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with: recursive
+      - name: Update submodules
+        id: update
+        run: git submodule update --remote --recursive
       - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
