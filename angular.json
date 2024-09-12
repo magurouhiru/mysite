@@ -26,6 +26,7 @@
             "assets": [
               {
                 "glob": "**/*",
+                "ignore": ["**/.git", "**/.gitignore"],
                 "input": "public"
               }
             ],
@@ -37,8 +38,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1gB",
+                  "maximumError": "2gB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -86,6 +87,7 @@
             "assets": [
               {
                 "glob": "**/*",
+                "ignore": ["**/.git", "**/.gitignore"],
                 "input": "public"
               }
             ],

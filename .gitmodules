@@ -1,0 +1,3 @@
+[submodule "public/article"]
+	path = public/article
+	url = https://github.com/magurouhiru/article.git
