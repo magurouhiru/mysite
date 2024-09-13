@@ -31,8 +31,8 @@ export class ArticleService {
       );
   }
 
-  getArticle(articleName: string) {
-    return this.#http.get(`${this.#articleRootUrl}${articleName}.md`, {
+  getArticle(articleId: string) {
+    return this.#http.get(`${this.#articleRootUrl}${articleId}.md`, {
       headers: this.#headers,
       responseType: 'text',
     });

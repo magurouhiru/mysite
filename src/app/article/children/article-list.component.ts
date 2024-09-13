@@ -4,31 +4,28 @@ import { ActivatedRoute } from '@angular/router';
 import { combineLatest, map, switchMap } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
-import { MarkdownComponent } from 'ngx-markdown';
 
-import { ArticleService } from '../article.service';
+import { ArticleService } from '../../article.service';
 
 import { differenceInCalendarDays, parse } from 'date-fns';
 
 @Component({
-  selector: 'app-article',
+  selector: 'app-article-list',
   standalone: true,
-  imports: [AsyncPipe, MarkdownComponent, CardModule],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.scss',
+  imports: [CardModule, AsyncPipe],
+  templateUrl: './article-list.component.html',
+  styleUrl: './article-list.component.scss',
 })
-export class ArticleComponent {
+export class ArticleListComponent {
   readonly #activatedRoute = inject(ActivatedRoute);
   readonly param =
-    this.#activatedRoute.snapshot.paramMap.get('articleName') ?? '';
+    this.#activatedRoute.snapshot.paramMap.get('articleId') ?? '';
   readonly #articleService = inject(ArticleService);
   readonly articleIndex$ = this.#articleService.getArticleNameList();
   readonly #now = Date.now();
 
   readonly articles$ = this.articleIndex$.pipe(
-    map((index) =>
-      index.includes(this.param) ? [this.param] : index.slice(-6).reverse(),
-    ),
+    map((index) => index.slice(-10).reverse()),
     switchMap((index) =>
       combineLatest(
         index.map((articleName) =>
