@@ -1,1 +1,18 @@
 <router-outlet />
+<footer class="h-20 w-full bg-gray-600 no-underline decoration-white">
+  <div class="text-white">
+    <div>
+      <a [routerLink]="'/'"><div class="pi pi-home">home</div></a>
+    </div>
+    <div>
+      <a [routerLink]="'/article'"
+        ><div class="pi pi-pen-to-square">article</div></a
+      >
+    </div>
+    <div>
+      <a [routerLink]="'/study'"
+        ><div class="pi pi-graduation-cap">study</div></a
+      >
+    </div>
+  </div>
+</footer>

@@ -5,10 +5,10 @@
     <div class="p-3">
       <nav class="flex flex-row">
         <div class="h-10 w-32">
-          <a class="no-underline" href="">
+          <a class="no-underline" [routerLink]="'/article'">
             <div class="h-full w-hull bg-violet-400 rounded-lg text-white">
               <div class="h-full w-hull grid place-items-center">
-                <span class="pi pi-pen-to-square text-2xl">mysite</span>
+                <span class="pi pi-pen-to-square text-2xl">article</span>
               </div>
             </div></a
           >
@@ -31,28 +31,6 @@
     </div>
   </header>
   <div class="p-3">
-    @if (articles$ | async; as articles) {
-      @if (articles.length === 1) {
-        <div class="bg-white p-3 rounded-lg">
-          <div markdown [data]="articles[0].article"></div>
-        </div>
-      } @else {
-        @for (article of articles; track article) {
-          <div class="mb-3">
-            <a class="no-underline" href="#/article/{{ article.meta.name }}">
-              <div>
-                <p-card [header]="article.meta.title"
-                  >書いた人：{{ article.meta.author }}<br />書いた日：{{
-                    article.meta.rawDate
-                  }}<br />タグ：{{ article.meta.tags }}<br />新着フラグ：{{
-                    article.meta.newFlag
-                  }}</p-card
-                >
-              </div></a
-            >
-          </div>
-        }
-      }
-    }
+    <router-outlet />
   </div>
 </div>

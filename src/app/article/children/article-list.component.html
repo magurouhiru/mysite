@@ -1,0 +1,17 @@
+@if (articles$ | async; as articles) {
+  @for (article of articles; track article) {
+    <div class="mb-3">
+      <a class="no-underline" href="#/article/{{ article.meta.name }}">
+        <div>
+          <p-card [header]="article.meta.title"
+            >書いた人：{{ article.meta.author }}<br />書いた日：{{
+              article.meta.rawDate
+            }}<br />タグ：{{ article.meta.tags }}<br />新着フラグ：{{
+              article.meta.newFlag
+            }}</p-card
+          >
+        </div></a
+      >
+    </div>
+  }
+}
