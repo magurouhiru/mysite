@@ -26,8 +26,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "ignore": ["**/.git", "**/.gitignore"],
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "ignore": ["**/.git", "**/.vscode"],
+                "input": "article"
               }
             ],
             "styles": ["src/styles.scss"],
@@ -87,8 +91,12 @@
             "assets": [
               {
                 "glob": "**/*",
-                "ignore": ["**/.git", "**/.gitignore"],
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "ignore": ["**/.git", "**/.vscode"],
+                "input": "article"
               }
             ],
             "styles": ["src/styles.scss"],
