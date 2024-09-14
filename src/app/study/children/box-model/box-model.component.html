@@ -1,5 +1,17 @@
 <h1>ボックス　モデル</h1>
+<pre>
+  要素の種類の認識。
+  タグごとにデフォルトの値がある。
+  CSS のdisplay プロパティで変更可能。
+</pre>
 <h2>インライン</h2>
+<pre>
+  いわゆるテキストの認識。
+  追加したらどんどん横に広がる。
+  横方向の位置は比較的簡単にできる。
+  親要素のモデルによっては縦方向の位置も調整できる。
+</pre>
+<h3>デモ</h3>
 HTML
 <pre class="playfield playfield--m"
   >{{ htmlInLine }}
@@ -16,62 +28,171 @@ HTML
   [class.inline__overflow_wrap__normal]="inline__overflow_wrap__normal"
   [class.inline__overflow_wrap__anywhere]="inline__overflow_wrap__anywhere"
   [class.inline__overflow_wrap__break_word]="inline__overflow_wrap__break_word"
+  [class.inline__display__inline]="inline__display__inline"
+  [class.inline__display__block]="inline__display__block"
+  [class.inline__display__inline_block]="inline__display__inline_block"
+  [class.inline__display__table_cell]="inline__display__table_cell"
+  [class.inline__display__flex]="inline__display__flex"
+  [class.inline__vertical_align__baseline]="inline__vertical_align__baseline"
+  [class.inline__vertical_align__top]="inline__vertical_align__top"
+  [class.inline__vertical_align__middle]="inline__vertical_align__middle"
+  [class.inline__vertical_align__bottom]="inline__vertical_align__bottom"
+  [class.inline__vertical_align__sub]="inline__vertical_align__sub"
+  [class.inline__vertical_align__text_top]="inline__vertical_align__text_top"
   [innerHTML]="htmlInLine"
 ></div>
-<p-button (onClick)="addFugafuga()">{{ buttonLabel }}</p-button>
-
+html ついか
+<div class="buttons">
+  <p-button (onClick)="addHogehoge()">{{ buttonLabelHogehoge }}</p-button>
+  <p-button (onClick)="addFugafuga()">{{ buttonLabelFugafuga }}</p-button>
+</div>
 <p>枠に適用するプロパティ</p>
 <div class="buttons">
+  横方向と折り返しのプロパティ
   <div class="buttons">
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__left"
-      onLabel="text-align: left;"
-      offLabel="text-align: left;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__right"
-      onLabel="text-align: right;"
-      offLabel="text-align: right;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__center"
-      onLabel="text-align: center;"
-      offLabel="text-align: center;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__end"
-      onLabel="text-align: end;"
-      offLabel="text-align: end;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__justify"
-      onLabel="text-align: justify;"
-      offLabel="text-align: justify;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__text_align__justify_all"
-      onLabel="text-align: justify-all;"
-      offLabel="text-align: justify-all;"
-    />
+    <div class="buttons">
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__left"
+        onLabel="text-align: left;"
+        offLabel="text-align: left;"
+        pTooltip="左詰め"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__right"
+        onLabel="text-align: right;"
+        offLabel="text-align: right;"
+        pTooltip="右詰め"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__center"
+        onLabel="text-align: center;"
+        offLabel="text-align: center;"
+        pTooltip="中央寄せ"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__end"
+        onLabel="text-align: end;"
+        offLabel="text-align: end;"
+        pTooltip="right と同じ？"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__justify"
+        onLabel="text-align: justify;"
+        offLabel="text-align: justify;"
+        pTooltip="横に広がる。"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__text_align__justify_all"
+        onLabel="text-align: justify-all;"
+        offLabel="text-align: justify-all;"
+        pTooltip="justify と同じ？"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        [(ngModel)]="inline__overflow_wrap__normal"
+        onLabel="overflow-wrap: normal;"
+        offLabel="overflow-wrap: normal;"
+        pTooltip="空白があったら改行する。なかったらしない。"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__overflow_wrap__anywhere"
+        onLabel="overflow-wrap: anywhere;"
+        offLabel="overflow-wrap: anywhere;"
+        pTooltip="空白がなくても改行する。"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__overflow_wrap__break_word"
+        onLabel="overflow-wrap: break-word;"
+        offLabel="overflow-wrap: break-word;"
+        pTooltip="anywhere と同じ？。"
+      />
+    </div>
   </div>
 
+  縦方向関連のプロパティ
   <div class="buttons">
-    <p-toggleButton
-      [(ngModel)]="inline__overflow_wrap__normal"
-      onLabel="overflow-wrap: normal;"
-      offLabel="overflow-wrap: normal;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__overflow_wrap__anywhere"
-      onLabel="overflow-wrap: anywhere;"
-      offLabel="overflow-wrap: anywhere;"
-    />
-    <p-toggleButton
-      [(ngModel)]="inline__overflow_wrap__break_word"
-      onLabel="overflow-wrap: break-word;"
-      offLabel="overflow-wrap: break-word;"
-    />
+    <div class="buttons">
+      <p-toggleButton
+        [(ngModel)]="inline__display__inline"
+        onLabel="display: inline;"
+        offLabel="display: inline;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__display__block"
+        onLabel="display: block;"
+        offLabel="display: block;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__display__inline_block"
+        onLabel="display: inline-block;"
+        offLabel="display: inline-block;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__display__table_cell"
+        onLabel="display: table-cell;"
+        offLabel="display: table-cell;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__display__flex"
+        onLabel="display: flex;"
+        offLabel="display: flex;"
+      />
+    </div>
+
+    <div class="buttons" pTooltip="display プロパティ触らないと変化ないかも。">
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__baseline"
+        onLabel="vertical-align: baseline;"
+        offLabel="vertical-align: baseline;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__top"
+        onLabel="vertical-align: top;"
+        offLabel="vertical-align: top;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__middle"
+        onLabel="vertical-align: middle;"
+        offLabel="vertical-align: middle;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__bottom"
+        onLabel="vertical-align: bottom;"
+        offLabel="vertical-align: bottom;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__sub"
+        onLabel="vertical-align: sub;"
+        offLabel="vertical-align: sub;"
+      />
+      <p-toggleButton
+        [(ngModel)]="inline__vertical_align__text_top"
+        onLabel="vertical-align: text-top;"
+        offLabel="vertical-align: text-top;"
+      />
+    </div>
   </div>
 </div>
 
 <h2>ブロック</h2>
+<pre>
+  箱の認識。
+  追加したらどんどん下に広がる。
+</pre>
+<h3>デモ</h3>
+HTML
+<pre class="playfield playfield--m">{{ blockHtml }}</pre>
+CSS
+<pre class="playfield playfield--m">{{ blockCss }}</pre>
+実行結果
+<div class="playfield playfield--m">
+  <div class="playBox playBox--1">hogehoge</div>
+  <div class="playBox playBox--2">fugafuga</div>
+  <div class="playBox playBox--1">
+    hogehoge
+    <div class="playBox playBox--2">fugafuga</div>
+  </div>
+</div>
+<p-toggleButton (onChange)="f($event)"></p-toggleButton>

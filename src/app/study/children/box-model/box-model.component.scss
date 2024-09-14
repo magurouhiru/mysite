@@ -50,4 +50,39 @@
       vertical-align: text-top;
     }
   }
+  &__display {
+    &__inline {
+      display: inline;
+    }
+    &__block {
+      display: block;
+    }
+    &__inline_block {
+      display: inline-block;
+    }
+    &__table_cell {
+      display: table-cell;
+    }
+    &__flex {
+      display: flex;
+    }
+  }
+}
+
+.hoge1 {
+  background-color: #2dd4bf; /* 緑 */
+}
+.fuga1 {
+  background-color: #a78bfa; /* 紫 */
+}
+
+:host ::ng-deep .hoge2 {
+  background-color: #2dd4bf; /* 緑 */
+}
+::ng-deep .fuga2 {
+  background-color: #a78bfa; /* 紫 */
+}
+
+:host ::ng-deep [accesskey] {
+  background-color: #2dd4bf; /* 緑 */
 }

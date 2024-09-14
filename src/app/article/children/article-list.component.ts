@@ -25,7 +25,7 @@ export class ArticleListComponent {
   readonly #now = Date.now();
 
   readonly articles$ = this.articleIndex$.pipe(
-    map((index) => index.slice(-10).reverse()),
+    map((index) => index.slice(-16).reverse()),
     switchMap((index) =>
       combineLatest(
         index.map((articleName) =>
