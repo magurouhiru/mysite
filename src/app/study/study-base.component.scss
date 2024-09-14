@@ -14,7 +14,7 @@
   border-style: solid;
   z-index: 10;
   padding: 12px;
-  &--article {
+  &--study {
     border-color: #2dd4bf;
   }
 }
@@ -36,7 +36,7 @@
   display: table-cell;
   border-radius: 8px;
   font-size: 1.5rem;
-  &--article {
+  &--study {
     background-color: #2dd4bf;
   }
 }
@@ -54,7 +54,7 @@
   &--home {
     padding-right: 3px;
   }
-  &--article {
+  &--study {
     color: #2dd4bf;
   }
 }
