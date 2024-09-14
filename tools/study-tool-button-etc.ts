@@ -1,15 +1,20 @@
 const str = `
 .inline {
-  &__vertical-align{
-  &__overflow_wrap {
-    &__normal {
-      overflow-wrap: normal;
+  &__display {
+    &__inline {
+      display: inline;
     }
-    &__anywhere {
-      overflow-wrap: anywhere;
+    &__block {
+      display: block;
     }
-    &__break_word {
-      overflow-wrap: break-word;
+    &__inline-block {
+      display: inline-block;
+    }
+    &__table-cell {
+      display: table-cell;
+    }
+    &__flex {
+      display: flex;
     }
   }
   }

@@ -21,7 +21,8 @@
   }
 }
 :host ::ng-deep .buttons {
-  margin: 3px 0 3px 0;
+  margin: 3px 1px;
+  padding: 2px;
   border: 2px;
   border-style: solid;
   border-color: #2dd4bf;
