@@ -5,7 +5,7 @@ import { combineLatest, map, switchMap } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
 
-import { ArticleService } from '../../article.service';
+import { ArticleService } from '../article.service';
 
 import { differenceInCalendarDays, parse } from 'date-fns';
 

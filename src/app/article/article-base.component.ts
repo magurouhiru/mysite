@@ -2,10 +2,9 @@ import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
+import { ArticleService } from './article.service';
 import { CardModule } from 'primeng/card';
 import { MarkdownComponent } from 'ngx-markdown';
-
-import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-article-base',

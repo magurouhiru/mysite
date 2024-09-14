@@ -1,34 +1,23 @@
-<div class="w-full h-full bg-violet-50">
-  <header
-    class="h-16 bg-white border-t-0 border-x-0 border-b border-solid border-violet-900 z-10"
-  >
-    <div class="p-3">
-      <nav class="flex flex-row">
-        <div class="h-10 w-32">
-          <a class="no-underline" [routerLink]="'/article'">
-            <div class="h-full w-hull bg-violet-400 rounded-lg text-white">
-              <div class="h-full w-hull grid place-items-center">
-                <span class="pi pi-pen-to-square text-2xl">article</span>
-              </div>
-            </div></a
-          >
+<div class="bg">
+  <header class="header header--article">
+    <nav class="header__nav">
+      <a class="header__a" [routerLink]="'/article'">
+        <div class="header__home header__home--article">
+          <span
+            class="pi pi-pen-to-square header__icon header__icon--home"
+          ></span>
+          <span>article</span>
         </div>
-        <div class="ml-auto grid place-items-end">
-          <ul class="list-none flex flex-row gap-x-3">
-            <li>
-              <a href="https://github.com/magurouhiru/mysite"
-                ><span class="pi pi-github text-2xl text-violet-400"></span
-              ></a>
-            </li>
-            <li>
-              <a href="https://twitter.com/magurouhiru7"
-                ><span class="pi pi-twitter text-2xl text-violet-400"></span
-              ></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+      </a>
+      <div class="header__icons">
+        <a href="https://github.com/magurouhiru/mysite">
+          <div class="pi pi-github header__icon header__icon--article"></div>
+        </a>
+        <a href="https://twitter.com/magurouhiru7">
+          <div class="pi pi-twitter header__icon header__icon--article"></div>
+        </a>
+      </div>
+    </nav>
   </header>
   <div class="p-3">
     <router-outlet />

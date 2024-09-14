@@ -1,18 +1,32 @@
-<div class="h-10 w-32">
-  <a class="no-underline" [routerLink]="'/article'">
-    <div class="h-full w-hull bg-violet-400 rounded-lg text-white">
-      <div class="h-full w-hull grid place-items-center">
-        <span class="pi pi-pen-to-square text-2xl">article</span>
-      </div>
-    </div></a
-  >
-</div>
-<div class="h-10 w-32">
-  <a class="no-underline" [routerLink]="'/study'">
-    <div class="h-full w-hull bg-teal-400 rounded-lg text-white">
-      <div class="h-full w-hull grid place-items-center">
-        <span class="pi pi-graduation-cap text-2xl">study</span>
-      </div>
-    </div></a
-  >
+<div class="bg-gray-100 min-h-full min-w-full">
+  <div class="flex justify-around">
+    <div class="m-3">
+      <a class="no-underline" [routerLink]="'/article'">
+        <p-card styleClass="pt-3">
+          <ng-template pTemplate="header">
+            <div class="ml-3 h-10 w-32 bg-violet-400 rounded-lg text-white">
+              <div class="h-full w-hull grid place-items-center">
+                <span class="pi pi-pen-to-square text-2xl">article</span>
+              </div>
+            </div>
+          </ng-template>
+          私がこれまでに書いた記事が掲載されています。
+        </p-card>
+      </a>
+    </div>
+    <div class="m-3">
+      <a class="no-underline" [routerLink]="'/study'">
+        <p-card styleClass="pt-3">
+          <ng-template pTemplate="header">
+            <div class="ml-3 h-10 w-32 bg-teal-400 rounded-lg text-white">
+              <div class="h-full w-hull grid place-items-center">
+                <span class="pi pi-graduation-cap text-2xl">study</span>
+              </div>
+            </div>
+          </ng-template>
+          枠を作っただけ。まだコンテンツはありません。
+        </p-card>
+      </a>
+    </div>
+  </div>
 </div>
