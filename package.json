@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "lint_fix": "ng lint --fix",
     "prettier": "prettier -c src/",
-    "prettier_fix": "prettier --write src/"
+    "prettier_fix": "prettier --write src/",
+    "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts"
   },
   "private": true,
   "dependencies": {
@@ -55,6 +56,7 @@
     "postcss": "^8.4.45",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.10",
+    "tsx": "^4.19.1",
     "typescript": "~5.5.2",
     "typescript-eslint": "8.1.0"
   }

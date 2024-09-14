@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+import { BoxModelComponent } from './children/box-model/box-model.component';
 import { StudyDetailComponent } from './children/study-detail.component';
 import { StudyListComponent } from './children/study-list.component';
 import { StudyBaseComponent } from './study-base.component';
@@ -13,6 +14,10 @@ export const studyRoutes: Route = {
     {
       path: '',
       component: StudyListComponent,
+    },
+    {
+      path: 'BoxModel',
+      component: BoxModelComponent,
     },
     {
       path: ':studyId',

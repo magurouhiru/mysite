@@ -1,0 +1,53 @@
+.inline {
+  &__text_align {
+    &__left {
+      text-align: left;
+    }
+    &__right {
+      text-align: right;
+    }
+    &__center {
+      text-align: center;
+    }
+    &__end {
+      text-align: end;
+    }
+    &__justify {
+      text-align: justify;
+    }
+    &__justify_all {
+      text-align: justify-all;
+    }
+  }
+  &__overflow_wrap {
+    &__normal {
+      overflow-wrap: normal;
+    }
+    &__anywhere {
+      overflow-wrap: anywhere;
+    }
+    &__break_word {
+      overflow-wrap: break-word;
+    }
+  }
+  &__vertical_align {
+    &__baseline {
+      vertical-align: baseline;
+    }
+    &__top {
+      vertical-align: top;
+    }
+    &__middle {
+      vertical-align: middle;
+    }
+    &__bottom {
+      vertical-align: bottom;
+    }
+    &__sub {
+      vertical-align: sub;
+    }
+    &__text-top {
+      vertical-align: text-top;
+    }
+  }
+}

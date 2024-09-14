@@ -7,6 +7,51 @@
 :host ::ng-deep img {
   max-width: 100%;
 }
+:host ::ng-deep .playfield {
+  border: 2px;
+  border-style: solid;
+  border-color: #2dd4bf;
+  margin: 0 0 6px 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1rem;
+  &--m {
+    width: 400px;
+    height: 200px;
+  }
+}
+:host ::ng-deep .buttons {
+  margin: 3px 0 3px 0;
+  border: 2px;
+  border-style: solid;
+  border-color: #2dd4bf;
+}
+:host ::ng-deep .p-highlight {
+  background: #2dd4bf;
+  border-color: #2dd4bf;
+}
+:host ::ng-deep .p-button:focus {
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px #2dd4bf,
+    0 1px 2px 0 black;
+}
+@layer aaa {
+  :host ::ng-deep .p-button {
+    background: #2dd4bf;
+    border-color: #2dd4bf;
+  }
+  :host ::ng-deep .p-togglebutton.p-button {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+}
 .header {
   height: 64px;
   background-color: white;
