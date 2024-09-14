@@ -2,11 +2,15 @@
   <div class="flex justify-around">
     <div class="m-3">
       <a class="no-underline" [routerLink]="'/article'">
-        <p-card styleClass="pt-3">
+        <p-card styleClass="pt-3 basis-1/2">
           <ng-template pTemplate="header">
-            <div class="ml-3 h-10 w-32 bg-violet-400 rounded-lg text-white">
-              <div class="h-full w-hull grid place-items-center">
-                <span class="pi pi-pen-to-square text-2xl">article</span>
+            <div class="header__home--home">
+              <div class="header__home header__home--article">
+                <span
+                  class="pi pi-pen-to-square header__icon header__icon--home"
+                >
+                </span>
+                <span>article</span>
               </div>
             </div>
           </ng-template>
@@ -18,13 +22,17 @@
       <a class="no-underline" [routerLink]="'/study'">
         <p-card styleClass="pt-3">
           <ng-template pTemplate="header">
-            <div class="ml-3 h-10 w-32 bg-teal-400 rounded-lg text-white">
-              <div class="h-full w-hull grid place-items-center">
-                <span class="pi pi-graduation-cap text-2xl">study</span>
+            <div class="header__home--home">
+              <div class="header__home header__home--study">
+                <span
+                  class="pi pi-graduation-cap header__icon header__icon--home"
+                >
+                </span>
+                <span>study</span>
               </div>
             </div>
           </ng-template>
-          枠を作っただけ。まだコンテンツはありません。
+          私がこれまで作成したHTML, CSS の動作デモが掲載されています。
         </p-card>
       </a>
     </div>

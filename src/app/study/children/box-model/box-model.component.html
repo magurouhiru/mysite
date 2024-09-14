@@ -1,0 +1,77 @@
+<h1>ボックス　モデル</h1>
+<h2>インライン</h2>
+HTML
+<pre class="playfield playfield--m"
+  >{{ htmlInLine }}
+</pre>
+実行結果
+<div
+  class="playfield playfield--m"
+  [class.inline__text_align__left]="inline__text_align__left"
+  [class.inline__text_align__right]="inline__text_align__right"
+  [class.inline__text_align__center]="inline__text_align__center"
+  [class.inline__text_align__end]="inline__text_align__end"
+  [class.inline__text_align__justify]="inline__text_align__justify"
+  [class.inline__text_align__justify_all]="inline__text_align__justify_all"
+  [class.inline__overflow_wrap__normal]="inline__overflow_wrap__normal"
+  [class.inline__overflow_wrap__anywhere]="inline__overflow_wrap__anywhere"
+  [class.inline__overflow_wrap__break_word]="inline__overflow_wrap__break_word"
+  [innerHTML]="htmlInLine"
+></div>
+<p-button (onClick)="addFugafuga()">{{ buttonLabel }}</p-button>
+
+<p>枠に適用するプロパティ</p>
+<div class="buttons">
+  <div class="buttons">
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__left"
+      onLabel="text-align: left;"
+      offLabel="text-align: left;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__right"
+      onLabel="text-align: right;"
+      offLabel="text-align: right;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__center"
+      onLabel="text-align: center;"
+      offLabel="text-align: center;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__end"
+      onLabel="text-align: end;"
+      offLabel="text-align: end;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__justify"
+      onLabel="text-align: justify;"
+      offLabel="text-align: justify;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__text_align__justify_all"
+      onLabel="text-align: justify-all;"
+      offLabel="text-align: justify-all;"
+    />
+  </div>
+
+  <div class="buttons">
+    <p-toggleButton
+      [(ngModel)]="inline__overflow_wrap__normal"
+      onLabel="overflow-wrap: normal;"
+      offLabel="overflow-wrap: normal;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__overflow_wrap__anywhere"
+      onLabel="overflow-wrap: anywhere;"
+      offLabel="overflow-wrap: anywhere;"
+    />
+    <p-toggleButton
+      [(ngModel)]="inline__overflow_wrap__break_word"
+      onLabel="overflow-wrap: break-word;"
+      offLabel="overflow-wrap: break-word;"
+    />
+  </div>
+</div>
+
+<h2>ブロック</h2>
