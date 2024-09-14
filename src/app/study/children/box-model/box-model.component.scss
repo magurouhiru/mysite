@@ -50,4 +50,21 @@
       vertical-align: text-top;
     }
   }
+  &__display {
+    &__inline {
+      display: inline;
+    }
+    &__block {
+      display: block;
+    }
+    &__inline_block {
+      display: inline-block;
+    }
+    &__table_cell {
+      display: table-cell;
+    }
+    &__flex {
+      display: flex;
+    }
+  }
 }
