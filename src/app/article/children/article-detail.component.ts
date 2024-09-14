@@ -6,7 +6,7 @@ import { map, tap } from 'rxjs';
 import { CardModule } from 'primeng/card';
 import { MarkdownComponent } from 'ngx-markdown';
 
-import { ArticleService } from '../../article.service';
+import { ArticleService } from '../article.service';
 
 import { parse } from 'date-fns';
 
