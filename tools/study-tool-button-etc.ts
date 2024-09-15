@@ -1,29 +1,22 @@
 const str = `
-.inline {
-  &__display {
-    &__inline {
-      display: inline;
-    }
-    &__block {
-      display: block;
-    }
-    &__inline-block {
-      display: inline-block;
-    }
-    &__table-cell {
-      display: table-cell;
-    }
-    &__flex {
-      display: flex;
+
+.block {
+  &__width {
+    &__auto {
+      width: auto;
     }
   }
+  &__height {
+    &__auto {
+      height: auto;
+    }
   }
 }
 
 `
 
-execute(str)
-function execute(str:string){
+execute2(str)
+function execute2(str:string){
   const l = str.split(/\r\n|\n|\r/);
 
   let block = "";

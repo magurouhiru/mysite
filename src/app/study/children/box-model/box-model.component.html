@@ -13,7 +13,7 @@
 </pre>
 <h3>デモ</h3>
 HTML
-<pre class="playfield playfield--m"
+<pre class="playfield playfield--dhisplay-m"
   >{{ htmlInLine }}
 </pre>
 実行結果
@@ -46,7 +46,7 @@ html ついか
   <p-button (onClick)="addHogehoge()">{{ buttonLabelHogehoge }}</p-button>
   <p-button (onClick)="addFugafuga()">{{ buttonLabelFugafuga }}</p-button>
 </div>
-<p>枠に適用するプロパティ</p>
+<p>親要素に適用するプロパティ</p>
 <div class="buttons">
   横方向と折り返しのプロパティ
   <div class="buttons">
@@ -179,12 +179,143 @@ html ついか
 <h2>ブロック</h2>
 <pre>
   箱の認識。
-  ただ、中の箱がはみ出したりするからややこしい。
+  追加したらどんどん下に広がる。
+  高さも幅も自由自在。
+    px  だと絶対その長さにしてくれる。はみ出すこともある。
+    %   だと親の幅に応じて長さを変えてくれる。親の長さがautoだときかないことも。
 </pre>
 <h3>デモ</h3>
+CSS
+<pre class="playfield playfield--dhisplay-m">{{ blockCss }}</pre>
 HTML
-<pre class="playfield playfield--m"
-  >{{ block }}
-</pre>
+<pre class="playfield playfield--dhisplay-m">{{ blockHtml }}</pre>
 実行結果
-<div class="playfield playfield--m" [innerHTML]="block"></div>
+<div
+  class="playfield playfield--m"
+  [class.block__width__auto]="block__width__auto"
+  [class.block__height__auto]="block__height__auto"
+  [innerHTML]="blockHtml"
+></div>
+
+<p>親要素に適用するプロパティ</p>
+<div class="buttons">
+  <p-toggleButton
+    [(ngModel)]="block__width__auto"
+    onLabel="width: auto;"
+    offLabel="width: auto;"
+  />
+  <p-toggleButton
+    [(ngModel)]="block__height__auto"
+    onLabel="height: auto;"
+    offLabel="height: auto;"
+  />
+</div>
+<p-tabView>
+  <p-tabPanel header="hogehoge">
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'width--auto')"
+      onLabel="width: auto;"
+      offLabel="width: auto;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'width--50percent')"
+      onLabel="width: 50%;"
+      offLabel="width: 50%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'width--100percent')"
+      onLabel="width: 100%;"
+      offLabel="width: 100%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'width--100px')"
+      onLabel="width: 100px;"
+      offLabel="width: 100px;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'width--200px')"
+      onLabel="width: 200px;"
+      offLabel="width: 200px;"
+    />
+
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'height--auto')"
+      onLabel="height: auto;"
+      offLabel="height: auto;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'height--50percent')"
+      onLabel="height: 50%;"
+      offLabel="height: 50%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'height--100percent')"
+      onLabel="height: 100%;"
+      offLabel="height: 100%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'height--50px')"
+      onLabel="height: 50px;"
+      offLabel="height: 50px;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--1', 'height--100px')"
+      onLabel="height: 100px;"
+      offLabel="height: 100px;"
+    />
+  </p-tabPanel>
+
+  <p-tabPanel header="fugafuga">
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'width--auto')"
+      onLabel="width: auto;"
+      offLabel="width: auto;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'width--50percent')"
+      onLabel="width: 50%;"
+      offLabel="width: 50%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'width--100percent')"
+      onLabel="width: 100%;"
+      offLabel="width: 100%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'width--100px')"
+      onLabel="width: 100px;"
+      offLabel="width: 100px;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'width--200px')"
+      onLabel="width: 200px;"
+      offLabel="width: 200px;"
+    />
+
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'height--auto')"
+      onLabel="height: auto;"
+      offLabel="height: auto;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'height--50percent')"
+      onLabel="height: 50%;"
+      offLabel="height: 50%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'height--100percent')"
+      onLabel="height: 100%;"
+      offLabel="height: 100%;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'height--50px')"
+      onLabel="height: 50px;"
+      offLabel="height: 50px;"
+    />
+    <p-toggleButton
+      (onChange)="changeCssClass($event, 'playBox--2', 'height--100px')"
+      onLabel="height: 100px;"
+      offLabel="height: 100px;"
+    />
+  </p-tabPanel>
+</p-tabView>

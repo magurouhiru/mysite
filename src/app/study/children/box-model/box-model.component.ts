@@ -2,13 +2,25 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Button } from 'primeng/button';
-import { ToggleButtonModule } from 'primeng/togglebutton';
+import { TabViewModule } from 'primeng/tabview';
+import {
+  ToggleButtonChangeEvent,
+  ToggleButtonModule,
+} from 'primeng/togglebutton';
 import { TooltipModule } from 'primeng/tooltip';
+
+import { changeClass } from '../../tools/change-class';
 
 @Component({
   selector: 'app-box-model',
   standalone: true,
-  imports: [ToggleButtonModule, FormsModule, Button, TooltipModule],
+  imports: [
+    ToggleButtonModule,
+    FormsModule,
+    Button,
+    TooltipModule,
+    TabViewModule,
+  ],
   templateUrl: './box-model.component.html',
   styleUrl: './box-model.component.scss',
 })
@@ -56,5 +68,45 @@ export class BoxModelComponent {
   inline__display__table_cell = false;
   inline__display__flex = false;
 
-  block = `<div>hogehoge<div>hugahuga</div></div>`;
+  blockHtml = `<div class="playBox playBox--1">hogehoge</div>
+<div class="playBox playBox--2">fugafuga</div>
+<div class="playBox playBox--1">
+  hogehoge
+  <div class="playBox playBox--2">fugafuga</div>
+</div>`;
+  blockCss = `:host ::ng-deep .playBox {
+  border: 2px;
+  border-style: solid;
+  border-color: #115e59; /* すごく濃い緑 */
+  margin: 2px;
+  padding: 2px;
+  font-size: 1rem;
+  line-height: 1rem;
+  &--1 {
+    background-color: #99f6e4; /* 薄い緑 */
+  }
+  &--2 {
+    background-color: #2dd4bf; /* 緑 */
+  }
+  &--3 {
+    color: white;
+    background-color: #0d9488; /* 濃い緑 */
+  }
+}
+`;
+  block__width__auto = false;
+  block__height__auto = false;
+
+  changeCssClass(
+    e: ToggleButtonChangeEvent,
+    targetClassName: string,
+    changeClassName: string,
+  ) {
+    this.blockHtml = changeClass(
+      e,
+      this.blockHtml,
+      targetClassName,
+      changeClassName,
+    );
+  }
 }

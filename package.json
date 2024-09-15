@@ -12,7 +12,8 @@
     "lint_fix": "ng lint --fix",
     "prettier": "prettier -c src/",
     "prettier_fix": "prettier --write src/",
-    "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts"
+    "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts",
+    "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts"
   },
   "private": true,
   "dependencies": {
