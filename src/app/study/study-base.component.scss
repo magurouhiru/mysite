@@ -17,6 +17,10 @@
   line-height: 1rem;
   &--m {
     width: 400px;
+    height: 200px;
+  }
+  &--dhisplay-m {
+    width: 400px;
     min-height: 200px;
   }
 }
@@ -48,9 +52,9 @@
   border-color: #2dd4bf;
 }
 :host ::ng-deep .p-highlight {
-  background: #2dd4bf;
-  border-color: #2dd4bf;
   color: #ffffff;
+  border-color: #2dd4bf;
+  background: #2dd4bf;
 }
 :host ::ng-deep .p-button:focus {
   box-shadow:
@@ -72,6 +76,12 @@
       border-color 0.2s,
       box-shadow 0.2s;
   }
+}
+:host ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: #2dd4bf;
+  border-color: #2dd4bf;
+  background: white;
+  border-radius: unset;
 }
 
 .header {

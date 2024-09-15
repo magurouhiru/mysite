@@ -2,16 +2,25 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Button } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
 import {
   ToggleButtonChangeEvent,
   ToggleButtonModule,
 } from 'primeng/togglebutton';
 import { TooltipModule } from 'primeng/tooltip';
 
+import { changeClass } from '../../tools/change-class';
+
 @Component({
   selector: 'app-box-model',
   standalone: true,
-  imports: [ToggleButtonModule, FormsModule, Button, TooltipModule],
+  imports: [
+    ToggleButtonModule,
+    FormsModule,
+    Button,
+    TooltipModule,
+    TabViewModule,
+  ],
   templateUrl: './box-model.component.html',
   styleUrl: './box-model.component.scss',
 })
@@ -64,13 +73,7 @@ export class BoxModelComponent {
 <div class="playBox playBox--1">
   hogehoge
   <div class="playBox playBox--2">fugafuga</div>
-</div>
 </div>`;
-  f(e: ToggleButtonChangeEvent) {
-    if (e.checked) {
-      this.blockHtml = this.blockHtml.replaceAll('accesskey', '');
-    }
-  }
   blockCss = `:host ::ng-deep .playBox {
   border: 2px;
   border-style: solid;
@@ -91,4 +94,19 @@ export class BoxModelComponent {
   }
 }
 `;
+  block__width__auto = false;
+  block__height__auto = false;
+
+  changeCssClass(
+    e: ToggleButtonChangeEvent,
+    targetClassName: string,
+    changeClassName: string,
+  ) {
+    this.blockHtml = changeClass(
+      e,
+      this.blockHtml,
+      targetClassName,
+      changeClassName,
+    );
+  }
 }

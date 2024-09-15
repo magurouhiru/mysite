@@ -69,20 +69,51 @@
   }
 }
 
-.hoge1 {
-  background-color: #2dd4bf; /* 緑 */
-}
-.fuga1 {
-  background-color: #a78bfa; /* 紫 */
+.block {
+  &__width {
+    &__auto {
+      width: auto;
+    }
+  }
+  &__height {
+    &__auto {
+      height: auto;
+    }
+  }
 }
 
-:host ::ng-deep .hoge2 {
-  background-color: #2dd4bf; /* 緑 */
-}
-::ng-deep .fuga2 {
-  background-color: #a78bfa; /* 紫 */
+:host ::ng-deep .width {
+  &--auto {
+    width: auto;
+  }
+  &--50percent {
+    width: 50%;
+  }
+  &--100percent {
+    width: 100%;
+  }
+  &--100px {
+    width: 100px;
+  }
+  &--200px {
+    width: 200px;
+  }
 }
 
-:host ::ng-deep [accesskey] {
-  background-color: #2dd4bf; /* 緑 */
+:host ::ng-deep .height {
+  &--auto {
+    height: auto;
+  }
+  &--50percent {
+    height: 50%;
+  }
+  &--100percent {
+    height: 100%;
+  }
+  &--50px {
+    height: 50px;
+  }
+  &--100px {
+    height: 100px;
+  }
 }
