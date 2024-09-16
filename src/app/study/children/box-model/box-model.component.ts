@@ -88,16 +88,12 @@ export class BoxModelComponent {
   &--2 {
     background-color: #2dd4bf; /* 緑 */
   }
-  &--3 {
-    color: white;
-    background-color: #0d9488; /* 濃い緑 */
-  }
 }
 `;
   block__width__auto = false;
   block__height__auto = false;
 
-  changeCssClass(
+  changeBlockCssClass(
     e: ToggleButtonChangeEvent,
     targetClassName: string,
     changeClassName: string,
@@ -105,6 +101,45 @@ export class BoxModelComponent {
     this.blockHtml = changeClass(
       e,
       this.blockHtml,
+      targetClassName,
+      changeClassName,
+    );
+  }
+
+  inlineBlockHtml = `<div class="playBox playBox--inlin-block playBox--1">hogehoge</div>
+<div class="playBox playBox--inlin-block playBox--2">fugafuga</div>
+<div class="playBox playBox--inlin-block playBox--1">
+  hogehoge
+  <div class="playBox playBox--inlin-block playBox--2">fugafuga</div>
+</div>`;
+  inlineBlockCss = `:host ::ng-deep .playBox {
+  border: 2px;
+  border-style: solid;
+  border-color: #115e59; /* すごく濃い緑 */
+  margin: 2px;
+  padding: 2px;
+  font-size: 1rem;
+  line-height: 1rem;
+  &--1 {
+    background-color: #99f6e4; /* 薄い緑 */
+  }
+  &--2 {
+    background-color: #2dd4bf; /* 緑 */
+  }
+  &--inlin-block {
+    display: inline-block;
+  }
+}
+`;
+
+  changeInlineBlockCssClass(
+    e: ToggleButtonChangeEvent,
+    targetClassName: string,
+    changeClassName: string,
+  ) {
+    this.inlineBlockHtml = changeClass(
+      e,
+      this.inlineBlockHtml,
       targetClassName,
       changeClassName,
     );

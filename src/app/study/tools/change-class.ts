@@ -20,6 +20,5 @@ export function changeClass(
       h.setAttribute('class', classNames.join(' '));
     }
   }
-  rawHtml = doc.body.innerHTML;
   return doc.body.innerHTML;
 }

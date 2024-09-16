@@ -1,30 +1,25 @@
 const str2 = `
 
-:host ::ng-deep .height {
-  &--auto {
-    height: auto;
+:host ::ng-deep .order {
+  &--1 {
+    order: 1;
   }
-  &--50percent {
-    height: 50%;
+  &--2 {
+    order: 2;
   }
-  &--100percent {
-    height: 100%;
-  }
-  &--50px {
-    height: 50px;
-  }
-  &--100px {
-    height: 100px;
+  &---1 {
+    order: -1;
   }
 }
+
 `
-const targets = ["playBox--1","playBox--2","playBox--3"]
+const targets = ["playBox--1","playBox--2","playBox--3","hoge","fuga","piyo"]
 targets.forEach(t=>execute(str2,t))
 function execute(str:string, target:string){
   const l = str.split(/\r\n|\n|\r/);
 
   let block = "";
-  let element = "";
+  const modifierClass: string[] = [];
   const modifier: string[] = [];
   let f = false;
   l.forEach((s) => {
@@ -33,9 +28,8 @@ function execute(str:string, target:string){
       f = true;
       return;
     }
-    if (f) {
-      element = s.trim().replaceAll("&", "").replaceAll("{", "").trim();
-      f = false;
+    if (s.includes("&")) {
+      modifierClass.push(s.trim().trim().replaceAll("&", "").replaceAll("{", "").trim());
       return;
     }
     if (s.includes(";")) {
@@ -44,8 +38,8 @@ function execute(str:string, target:string){
     }
   });
 
-  const obj = modifier.map((m) => {
-    return {m: m, p: m.replaceAll(";", "").replaceAll(" ", "").replaceAll(":", "--").replaceAll("%", "percent")}
+  const obj = modifier.map((m,i) => {
+    return {m: m, p: block+modifierClass[i]}
   });
 
   obj.forEach((o) => {
