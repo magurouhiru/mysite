@@ -1,8 +1,8 @@
-<div class="bg-gray-100 min-h-full min-w-full">
+<div class="bg-gray-100 min-h-full min-w-full p-3">
   <h1>mysite へようこそ</h1>
   <h2>コンテンツはこちら</h2>
-  <div class="flex justify-around">
-    <div class="m-3 flex-1">
+  <div class="flex justify-around gap-6">
+    <div class="flex-1">
       <a class="no-underline" [routerLink]="'/article'">
         <p-card styleClass="pt-3 basis-1/2">
           <ng-template pTemplate="header">
@@ -20,7 +20,7 @@
         </p-card>
       </a>
     </div>
-    <div class="m-3 flex-1">
+    <div class="flex-1">
       <a class="no-underline" [routerLink]="'/study'">
         <p-card styleClass="pt-3">
           <ng-template pTemplate="header">
@@ -34,7 +34,7 @@
               </div>
             </div>
           </ng-template>
-          私がこれまで作成したHTML, CSS の動作デモが掲載されています。
+          私がこれまで作成したHTML, CSS のデモとメモが掲載されています。
         </p-card>
       </a>
     </div>

@@ -1,0 +1,423 @@
+<h1>グリッド</h1>
+<pre>
+  要素の種類の認識。
+  CSS のdisplay: flex で使用可能。
+  複数の子要素を並べたいときに便利。
+  フレックスボックスと似ているが、フレックスボックスは1次元、グリッドは2次元でタイルを敷き詰めるイメージ。
+</pre>
+
+<h3>デモ</h3>
+CSS
+<pre class="playfield playfield--dhisplay-m">{{ gridsCss }}</pre>
+HTML
+<pre class="playfield playfield--dhisplay-m">{{ gridsHtml }}</pre>
+実行結果
+<div class="playfield playfield--l" [innerHTML]="gridsHtml"></div>
+
+<p-tabView>
+  <p-tabPanel header="flex box">
+    <div class="buttons">
+      <p-button (onClick)="addElement('hoge')">add hogehoge</p-button>
+      <p-button (onClick)="addElement('fuga')">add fugafuga</p-button>
+      <p-button (onClick)="addElement('piyo')">add piyopiyo...</p-button>
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--auto')"
+        onLabel="width: auto;"
+        offLabel="width: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--600px')"
+        onLabel="width: 600px;"
+        offLabel="width: 600px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--400px')"
+        onLabel="width: 400px;"
+        offLabel="width: 400px;"
+      />
+
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--auto')"
+        onLabel="height: auto;"
+        offLabel="height: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--300px')"
+        onLabel="height: 300px;"
+        offLabel="height: 300px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--200px')"
+        onLabel="height: 200px;"
+        offLabel="height: 200px;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--100px-100px-100px'
+          )
+        "
+        onLabel="grid-template-columns: 100px 100px 100px;"
+        offLabel="grid-template-columns: 100px 100px 100px;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--200px-200px-200px'
+          )
+        "
+        onLabel="grid-template-columns: 200px 200px 200px;"
+        offLabel="grid-template-columns: 200px 200px 200px;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--1fr-1fr-1fr'
+          )
+        "
+        onLabel="grid-template-columns: 1fr 1fr 1fr;"
+        offLabel="grid-template-columns: 1fr 1fr 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--2fr-1fr-1fr'
+          )
+        "
+        onLabel="grid-template-columns: 2fr 1fr 1fr;"
+        offLabel="grid-template-columns: 2fr 1fr 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--1fr-2fr-1fr'
+          )
+        "
+        onLabel="grid-template-columns: 1fr 2fr 1fr;"
+        offLabel="grid-template-columns: 1fr 2fr 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--1fr-1fr-2fr'
+          )
+        "
+        onLabel="grid-template-columns: 1fr 1fr 2fr;"
+        offLabel="grid-template-columns: 1fr 1fr 2fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--repeat_auto-fit_minmax_50px_1fr'
+          )
+        "
+        onLabel="grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));"
+        offLabel="grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--repeat_auto-fit_minmax_100px_1fr'
+          )
+        "
+        onLabel="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));"
+        offLabel="grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-columns--repeat_auto-fit_minmax_200px_1fr'
+          )
+        "
+        onLabel="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));"
+        offLabel="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-columns--100px')
+        "
+        onLabel="grid-auto-columns: 100px;"
+        offLabel="grid-auto-columns: 100px;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-columns--200px')
+        "
+        onLabel="grid-auto-columns: 200px;"
+        offLabel="grid-auto-columns: 200px;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-columns--1fr')
+        "
+        onLabel="grid-auto-columns: 1fr;"
+        offLabel="grid-auto-columns: 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-columns--2fr')
+        "
+        onLabel="grid-auto-columns: 2fr;"
+        offLabel="grid-auto-columns: 2fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-auto-columns--minmax_100px_auto'
+          )
+        "
+        onLabel="grid-auto-columns: minmax(100px, auto);"
+        offLabel="grid-auto-columns: minmax(100px, auto);"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-auto-columns--minmax_200px_auto'
+          )
+        "
+        onLabel="grid-auto-columns: minmax(200px, auto);"
+        offLabel="grid-auto-columns: minmax(200px, auto);"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--repeat_3_50px'
+          )
+        "
+        onLabel="grid-template-rows: repeat(3, 50px);"
+        offLabel="grid-template-rows: repeat(3, 50px);"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--repeat_3_100px'
+          )
+        "
+        onLabel="grid-template-rows: repeat(3, 100px);"
+        offLabel="grid-template-rows: repeat(3, 100px);"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--repeat_3_1fr'
+          )
+        "
+        onLabel="grid-template-rows: repeat(3, 1fr);"
+        offLabel="grid-template-rows: repeat(3, 1fr);"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--2fr-1fr-1fr'
+          )
+        "
+        onLabel="grid-template-rows: 2fr 1fr 1fr;"
+        offLabel="grid-template-rows: 2fr 1fr 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--1fr-2fr-1fr'
+          )
+        "
+        onLabel="grid-template-rows: 1fr 2fr 1fr;"
+        offLabel="grid-template-rows: 1fr 2fr 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-template-rows--1fr-1fr-2fr'
+          )
+        "
+        onLabel="grid-template-rows: 1fr 1fr 2fr;"
+        offLabel="grid-template-rows: 1fr 1fr 2fr;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-rows--50px')
+        "
+        onLabel="grid-auto-rows: 50px;"
+        offLabel="grid-auto-rows: 50px;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'grid-auto-rows--100px')
+        "
+        onLabel="grid-auto-rows: 100px;"
+        offLabel="grid-auto-rows: 100px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'grid-auto-rows--1fr')"
+        onLabel="grid-auto-rows: 1fr;"
+        offLabel="grid-auto-rows: 1fr;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'grid-auto-rows--2fr')"
+        onLabel="grid-auto-rows: 2fr;"
+        offLabel="grid-auto-rows: 2fr;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-auto-rows--minmax_50px_auto'
+          )
+        "
+        onLabel="grid-auto-rows: minmax(50px, auto);"
+        offLabel="grid-auto-rows: minmax(50px, auto);"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass(
+            $event,
+            'playBox--1',
+            'grid-auto-rows--minmax_100px_auto'
+          )
+        "
+        onLabel="grid-auto-rows: minmax(100px, auto);"
+        offLabel="grid-auto-rows: minmax(100px, auto);"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--10px')"
+        onLabel="gap: 10px;"
+        offLabel="gap: 10px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--20px')"
+        onLabel="gap: 20px;"
+        offLabel="gap: 20px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--10px-10px')"
+        onLabel="gap: 10px 10px;"
+        offLabel="gap: 10px 10px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--20px-10px')"
+        onLabel="gap: 20px 10px;"
+        offLabel="gap: 20px 10px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--10px-20px')"
+        onLabel="gap: 10px 20px;"
+        offLabel="gap: 10px 20px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--20px-20px')"
+        onLabel="gap: 20px 20px;"
+        offLabel="gap: 20px 20px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--10percent')"
+        onLabel="gap: 10%;"
+        offLabel="gap: 10%;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'gap--20percent')"
+        onLabel="gap: 20%;"
+        offLabel="gap: 20%;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'gap--10percent-10percent')
+        "
+        onLabel="gap: 10% 10%;"
+        offLabel="gap: 10% 10%;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'gap--20percent-10percent')
+        "
+        onLabel="gap: 20% 10%;"
+        offLabel="gap: 20% 10%;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'gap--10percent-20percent')
+        "
+        onLabel="gap: 10% 20%;"
+        offLabel="gap: 10% 20%;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'gap--20percent-20percent')
+        "
+        onLabel="gap: 20% 20%;"
+        offLabel="gap: 20% 20%;"
+      />
+    </div>
+  </p-tabPanel>
+</p-tabView>
+
+<pre>
+  位置の指定も可能。数字を指定したり、名前を付けてそれと紐づけることも可能。
+</pre>
+
+<h3>デモ</h3>
+CSS
+<pre class="playfield playfield--dhisplay-m">{{ gridsCss2 }}</pre>
+HTML
+<pre class="playfield playfield--dhisplay-m">{{ gridsHtml2 }}</pre>
+実行結果
+<div class="playfield playfield--m" [innerHTML]="gridsHtml2"></div>
+
+<h3>デモ</h3>
+CSS
+<pre class="playfield playfield--dhisplay-m">{{ gridsCss3 }}</pre>
+HTML
+<pre class="playfield playfield--dhisplay-m">{{ gridsHtml3 }}</pre>
+実行結果
+<div class="playfield playfield--m" [innerHTML]="gridsHtml3"></div>

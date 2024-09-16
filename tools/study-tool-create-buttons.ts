@@ -1,17 +1,34 @@
 const str2 = `
 
-:host ::ng-deep .order {
-  &--1 {
-    order: 1;
+:host ::ng-deep .grid-template-columns {
+  &--100px-100px-100px {
+    grid-template-columns: 100px 100px 100px;
   }
-  &--2 {
-    order: 2;
+  &--200px-200px-200px {
+    grid-template-columns: 200px 200px 200px;
   }
-  &---1 {
-    order: -1;
+  &--1fr-1fr-1fr {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  &--2fr-1fr-1fr {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  &--1fr-2fr-1fr {
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+  &--1fr-1fr-2fr {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+  &--repeat_auto-fit_minmax_50px_1fr {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+  &--repeat_auto-fit_minmax_100px_1fr {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  &--repeat_auto-fit_minmax_200px_1fr {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
-
 `
 const targets = ["playBox--1","playBox--2","playBox--3","hoge","fuga","piyo"]
 targets.forEach(t=>execute(str2,t))
