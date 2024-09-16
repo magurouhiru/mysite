@@ -1,14 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { mergeMap } from 'rxjs';
 
 import { CardModule } from 'primeng/card';
 import { MarkdownComponent } from 'ngx-markdown';
 
 import { ArticleService } from '../article.service';
-
-import { parse } from 'date-fns';
 
 @Component({
   selector: 'app-article-detail',
@@ -19,26 +17,9 @@ import { parse } from 'date-fns';
 })
 export class ArticleDetailComponent {
   readonly #activatedRoute = inject(ActivatedRoute);
-  readonly param =
-    this.#activatedRoute.snapshot.paramMap.get('articleId') ?? '';
+  readonly #params = this.#activatedRoute.params;
   readonly #articleService = inject(ArticleService);
-  readonly article$ = this.#articleService.getArticle(this.param).pipe(
-    tap((x) => console.log(x)),
-    tap((x) => console.log(this.param)),
-    map((article) => {
-      const raws = article.split(/\r?\n/);
-      const meta = JSON.parse(raws.shift() ?? '');
-      const date = parse(meta.date, 'yyyy/MM/dd', new Date());
-      return {
-        meta: {
-          author: meta.author,
-          title: raws[0].slice(1).trim(),
-          rawDate: meta.date,
-          date: date,
-          tags: meta.tags,
-        },
-        article: raws.join('\n'),
-      };
-    }),
+  readonly article$ = this.#params.pipe(
+    mergeMap((p) => this.#articleService.getArticle(p['articleId'])),
   );
 }

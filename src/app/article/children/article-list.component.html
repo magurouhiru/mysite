@@ -1,16 +1,15 @@
 @if (articles$ | async; as articles) {
   @for (article of articles; track article) {
     <div class="mb-3">
-      <a class="item__a" href="#/article/{{ article.meta.name }}">
+      <a class="item__a" [routerLink]="'/article/' + article.meta.id">
         <div>
-          <p-card [header]="article.meta.title">
+          <p-card [header]="article.title">
             書いた人：{{ article.meta.author }}<br />
-            書いた日：{{ article.meta.rawDate }}<br />
+            書いた日：{{ article.meta.dateString }}<br />
             タグ：{{ article.meta.tags }}<br />
-            新着フラグ：{{ article.meta.newFlag }}
           </p-card>
-        </div></a
-      >
+        </div>
+      </a>
     </div>
   }
 }

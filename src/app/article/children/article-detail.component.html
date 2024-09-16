@@ -1,10 +1,12 @@
 @if (article$ | async; as article) {
   <div>
-    <p-card [header]="article.meta.title">
-      書いた人：{{ article.meta.author }}<br />
-      書いた日：{{ article.meta.rawDate }}<br />
-      タグ：{{ article.meta.tags }}<br />
-      <div markdown [data]="article.article"></div>
+    <p-card [header]="article.title">
+      <div class="body__meta">
+        書いた人：{{ article.meta.author }}<br />
+        書いた日：{{ article.meta.dateString }}<br />
+        タグ：{{ article.meta.tags }}<br />
+      </div>
+      <div markdown [data]="article.body"></div>
     </p-card>
   </div>
 }
