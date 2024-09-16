@@ -2,7 +2,7 @@
   <h1>mysite へようこそ</h1>
   <h2>コンテンツはこちら</h2>
   <div class="flex justify-around">
-    <div class="m-3">
+    <div class="m-3 flex-1">
       <a class="no-underline" [routerLink]="'/article'">
         <p-card styleClass="pt-3 basis-1/2">
           <ng-template pTemplate="header">
@@ -20,7 +20,7 @@
         </p-card>
       </a>
     </div>
-    <div class="m-3">
+    <div class="m-3 flex-1">
       <a class="no-underline" [routerLink]="'/study'">
         <p-card styleClass="pt-3">
           <ng-template pTemplate="header">

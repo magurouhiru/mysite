@@ -1,0 +1,491 @@
+<h1>フレックスボックス</h1>
+<pre>
+  要素の種類の認識。
+  CSS のdisplay: flex で使用可能。
+  複数の子要素を並べたいときに便利。
+  主軸を設定することで、子要素を縦とか横とか好きな方向に並べることができる。
+  また、主軸と交差軸(主軸と垂直方向)の子要素の長さはデフォルトで統一される。
+
+  tips:flex-direction: column;を使うことで縦方向にも枠を使える範囲でフルに使える。あとは横の長さをscreen とかすればいい感じになることも。
+  実際このサイトでも使用している。
+
+  ※注意flex 属性は同時にいくつか設定できるが、設定する数と単位によって振る舞いが変わる。
+  詳細は<a href="https://developer.mozilla.org/ja/docs/Web/CSS/flex" >mdn 先生</a>に聞いてね。
+</pre>
+
+<h3>デモ</h3>
+CSS
+<pre class="playfield playfield--dhisplay-m">{{ flexBoxCss }}</pre>
+HTML
+<pre class="playfield playfield--dhisplay-m">{{ flexBoxHtml }}</pre>
+実行結果
+<div class="playfield playfield--l" [innerHTML]="flexBoxHtml"></div>
+
+<p-tabView>
+  <p-tabPanel header="flex box">
+    <div class="buttons">
+      <p-button (onClick)="addElement('hoge')">add hogehoge</p-button>
+      <p-button (onClick)="addElement('fuga')">add fugafuga</p-button>
+      <p-button (onClick)="addElement('piyo')">add piyopiyo...</p-button>
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--auto')"
+        onLabel="width: auto;"
+        offLabel="width: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--600px')"
+        onLabel="width: 600px;"
+        offLabel="width: 600px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'width--400px')"
+        onLabel="width: 400px;"
+        offLabel="width: 400px;"
+      />
+
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--auto')"
+        onLabel="height: auto;"
+        offLabel="height: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--300px')"
+        onLabel="height: 300px;"
+        offLabel="height: 300px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'height--200px')"
+        onLabel="height: 200px;"
+        offLabel="height: 200px;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'flex-direction--column')
+        "
+        onLabel="flex-direction: column;"
+        offLabel="flex-direction: column;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'flex-direction--column-reverse')
+        "
+        onLabel="flex-direction: column-reverse;"
+        offLabel="flex-direction: column-reverse;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'flex-direction--row')"
+        onLabel="flex-direction: row;"
+        offLabel="flex-direction: row;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'flex-direction--row-reverse')
+        "
+        onLabel="flex-direction: row-reverse;"
+        offLabel="flex-direction: row-reverse;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'flex-wrap--wrap')"
+        onLabel="flex-wrap: wrap;"
+        offLabel="flex-wrap: wrap;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'flex-wrap--nowrap')"
+        onLabel="flex-wrap: nowrap;"
+        offLabel="flex-wrap: nowrap;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'flex-wrap--wrap-reverse')
+        "
+        onLabel="flex-wrap: wrap-reverse;"
+        offLabel="flex-wrap: wrap-reverse;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'flex-wrap--revert')"
+        onLabel="flex-wrap: revert;"
+        offLabel="flex-wrap: revert;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'align-items--normal')"
+        onLabel="align-items: normal;"
+        offLabel="align-items: normal;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'align-items--flex-start')
+        "
+        onLabel="align-items: flex-start;"
+        offLabel="align-items: flex-start;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'align-items--flex-end')
+        "
+        onLabel="align-items: flex-end;"
+        offLabel="align-items: flex-end;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'align-items--center')"
+        onLabel="align-items: center;"
+        offLabel="align-items: center;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'align-items--start')"
+        onLabel="align-items: start;"
+        offLabel="align-items: start;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'playBox--1', 'align-items--end')"
+        onLabel="align-items: end;"
+        offLabel="align-items: end;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--start')
+        "
+        onLabel="justify-content: start;"
+        offLabel="justify-content: start;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--end')
+        "
+        onLabel="justify-content: end;"
+        offLabel="justify-content: end;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--flex-start')
+        "
+        onLabel="justify-content: flex-start;"
+        offLabel="justify-content: flex-start;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--flex-end')
+        "
+        onLabel="justify-content: flex-end;"
+        offLabel="justify-content: flex-end;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--center')
+        "
+        onLabel="justify-content: center;"
+        offLabel="justify-content: center;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--left')
+        "
+        onLabel="justify-content: left;"
+        offLabel="justify-content: left;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--right')
+        "
+        onLabel="justify-content: right;"
+        offLabel="justify-content: right;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--normal')
+        "
+        onLabel="justify-content: normal;"
+        offLabel="justify-content: normal;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--space-between')
+        "
+        onLabel="justify-content: space-between;"
+        offLabel="justify-content: space-between;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--space-around')
+        "
+        onLabel="justify-content: space-around;"
+        offLabel="justify-content: space-around;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--space-evenly')
+        "
+        onLabel="justify-content: space-evenly;"
+        offLabel="justify-content: space-evenly;"
+      />
+      <p-toggleButton
+        (onChange)="
+          changeCssClass($event, 'playBox--1', 'justify-content--stretch')
+        "
+        onLabel="justify-content: stretch;"
+        offLabel="justify-content: stretch;"
+      />
+    </div>
+  </p-tabPanel>
+
+  <p-tabPanel header="hogehoge">
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--auto')"
+        onLabel="flex: auto;"
+        offLabel="flex: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--200px')"
+        onLabel="flex: 200px;"
+        offLabel="flex: 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--400px')"
+        onLabel="flex: 400px;"
+        offLabel="flex: 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--1')"
+        onLabel="flex: 1;"
+        offLabel="flex: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--2')"
+        onLabel="flex: 2;"
+        offLabel="flex: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--3')"
+        onLabel="flex: 3;"
+        offLabel="flex: 3;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--1-200px')"
+        onLabel="flex: 1 200px;"
+        offLabel="flex: 1 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--2-200px')"
+        onLabel="flex: 2 200px;"
+        offLabel="flex: 2 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--3-200px')"
+        onLabel="flex: 3 200px;"
+        offLabel="flex: 3 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--1-400px')"
+        onLabel="flex: 1 400px;"
+        offLabel="flex: 1 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--2-400px')"
+        onLabel="flex: 2 400px;"
+        offLabel="flex: 2 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'flex--3-400px')"
+        onLabel="flex: 3 400px;"
+        offLabel="flex: 3 400px;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'order--1')"
+        onLabel="order: 1;"
+        offLabel="order: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'order--2')"
+        onLabel="order: 2;"
+        offLabel="order: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'hoge', 'order---1')"
+        onLabel="order: -1;"
+        offLabel="order: -1;"
+      />
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="fugafuga">
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--auto')"
+        onLabel="flex: auto;"
+        offLabel="flex: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--200px')"
+        onLabel="flex: 200px;"
+        offLabel="flex: 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--400px')"
+        onLabel="flex: 400px;"
+        offLabel="flex: 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--1')"
+        onLabel="flex: 1;"
+        offLabel="flex: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--2')"
+        onLabel="flex: 2;"
+        offLabel="flex: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--3')"
+        onLabel="flex: 3;"
+        offLabel="flex: 3;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--1-200px')"
+        onLabel="flex: 1 200px;"
+        offLabel="flex: 1 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--2-200px')"
+        onLabel="flex: 2 200px;"
+        offLabel="flex: 2 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--3-200px')"
+        onLabel="flex: 3 200px;"
+        offLabel="flex: 3 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--1-400px')"
+        onLabel="flex: 1 400px;"
+        offLabel="flex: 1 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--2-400px')"
+        onLabel="flex: 2 400px;"
+        offLabel="flex: 2 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'flex--3-400px')"
+        onLabel="flex: 3 400px;"
+        offLabel="flex: 3 400px;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'order--1')"
+        onLabel="order: 1;"
+        offLabel="order: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'order--2')"
+        onLabel="order: 2;"
+        offLabel="order: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'fuga', 'order---1')"
+        onLabel="order: -1;"
+        offLabel="order: -1;"
+      />
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="piyopiyo...">
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--auto')"
+        onLabel="flex: auto;"
+        offLabel="flex: auto;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--200px')"
+        onLabel="flex: 200px;"
+        offLabel="flex: 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--400px')"
+        onLabel="flex: 400px;"
+        offLabel="flex: 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--1')"
+        onLabel="flex: 1;"
+        offLabel="flex: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--2')"
+        onLabel="flex: 2;"
+        offLabel="flex: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--3')"
+        onLabel="flex: 3;"
+        offLabel="flex: 3;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--1-200px')"
+        onLabel="flex: 1 200px;"
+        offLabel="flex: 1 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--2-200px')"
+        onLabel="flex: 2 200px;"
+        offLabel="flex: 2 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--3-200px')"
+        onLabel="flex: 3 200px;"
+        offLabel="flex: 3 200px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--1-400px')"
+        onLabel="flex: 1 400px;"
+        offLabel="flex: 1 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--2-400px')"
+        onLabel="flex: 2 400px;"
+        offLabel="flex: 2 400px;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'flex--3-400px')"
+        onLabel="flex: 3 400px;"
+        offLabel="flex: 3 400px;"
+      />
+    </div>
+
+    <div class="buttons">
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'order--1')"
+        onLabel="order: 1;"
+        offLabel="order: 1;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'order--2')"
+        onLabel="order: 2;"
+        offLabel="order: 2;"
+      />
+      <p-toggleButton
+        (onChange)="changeCssClass($event, 'piyo', 'order---1')"
+        onLabel="order: -1;"
+        offLabel="order: -1;"
+      />
+    </div>
+  </p-tabPanel>
+</p-tabView>
