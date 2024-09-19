@@ -9,6 +9,12 @@
           <span>article</span>
         </div>
       </a>
+      <p-button styleClass="header__search" (onClick)="showDialog()">
+        <div class="header__search-text-wrap">
+          <span class="pi pi-search header__search-text"></span>
+          <span>検索</span>
+        </div>
+      </p-button>
       <div class="header__icons">
         <a href="https://github.com/magurouhiru/mysite">
           <div class="pi pi-github header__icon header__icon--article"></div>
@@ -19,7 +25,43 @@
       </div>
     </nav>
   </header>
-  <div class="p-3">
-    <router-outlet />
+  <div class="content">
+    <div class="content__body">
+      <router-outlet />
+    </div>
   </div>
 </div>
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50rem' }"
+  [dismissableMask]="true"
+  [closable]="true"
+  [position]="'top'"
+>
+  <ng-template pTemplate="headless">
+    <div pAutoFocus [autofocus]="true" class="searchBox">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          [(ngModel)]="target"
+          (ngModelChange)="search()"
+          pInputText
+          placeholder="Search"
+          class="search-text"
+        />
+      </span>
+      @if (res$ | async; as res) {
+        @for (r of res; track r) {
+          <a routerLink (click)="junp(r.meta.id)" class="searchBox__a">
+            <div class="searchBox__inner">
+              <h2 [innerHTML]="r.main"></h2>
+              <h4 [innerHTML]="r.sub"></h4>
+            </div>
+          </a>
+        }
+      }
+    </div>
+  </ng-template>
+</p-dialog>

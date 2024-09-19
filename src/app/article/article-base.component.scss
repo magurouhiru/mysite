@@ -1,9 +1,3 @@
-@layer default {
-  * {
-    padding: 0;
-    margin: 0;
-  }
-}
 :host ::ng-deep img {
   max-width: 100%;
 }
@@ -13,7 +7,7 @@
   border-width: 0 0 1px 0;
   border-style: solid;
   z-index: 10;
-  padding: 12px;
+  width: 100%;
   &--article {
     border-color: #a78bfa;
   }
@@ -22,6 +16,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1000px;
+  padding: 12px;
+  margin: 0 auto;
 }
 .header__a {
   text-decoration-line: none;
@@ -63,4 +60,74 @@
   width: 100%;
   height: 100%;
   background-color: #f5f3ff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__body {
+    max-width: 1000px;
+    padding: 12px;
+    margin: 0 auto;
+  }
+}
+
+:host ::ng-deep .header__search {
+  height: 40px;
+  color: #a78bfa;
+  background: white;
+  border-color: #a78bfa;
+  --primary-color: #a78bfa;
+}
+.header__search-text-wrap {
+  display: table-cell;
+  padding-top: 3px;
+}
+:host ::ng-deep .p-button:focus {
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px #a78bfa,
+    0 1px 2px 0 black;
+}
+
+:host ::ng-deep .p-inputtext:focus {
+  border-color: #a78bfa;
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px #a78bfa,
+    0 1px 2px 0 black;
+}
+
+:host ::ng-deep .p-input-icon-left {
+  width: 100%;
+}
+
+:host ::ng-deep .search-text {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.searchBox {
+  background-color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  max-height: 80%;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  text-decoration-line: none;
+
+  &__inner {
+    border-top: 1px solid #a78bfa;
+  }
+
+  &__a {
+    text-decoration-line: none;
+  }
+}
+
+:host ::ng-deep mark {
+  color: #ec4899;
+  background-color: white;
 }
