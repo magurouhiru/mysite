@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { BoxModelComponent } from './children/box-model/box-model.component';
 import { StudyDetailComponent } from './children/detail/study-detail.component';
+import { DirectivesComponent } from './children/directives/directives.component';
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
 import { GridsComponent } from './children/grids/grids.component';
 import { StudyListComponent } from './children/list/study-list.component';
@@ -28,6 +29,10 @@ export const studyRoutes: Route = {
     {
       path: 'Grids',
       component: GridsComponent,
+    },
+    {
+      path: 'Directives',
+      component: DirectivesComponent,
     },
     {
       path: ':studyId',
