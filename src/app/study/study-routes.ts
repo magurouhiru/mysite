@@ -6,6 +6,7 @@ import { DirectivesComponent } from './children/directives/directives.component'
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
 import { GridsComponent } from './children/grids/grids.component';
 import { StudyListComponent } from './children/list/study-list.component';
+import { RxjsXxxMapComponent } from './children/rxjs-xxx-map/rxjs-xxx-map.component';
 import { StudyBaseComponent } from './study-base.component';
 import { StudyConfig } from './study-config';
 
@@ -33,6 +34,10 @@ export const studyRoutes: Route = {
     {
       path: 'Directives',
       component: DirectivesComponent,
+    },
+    {
+      path: 'RxjsXxxMap',
+      component: RxjsXxxMapComponent,
     },
     {
       path: ':studyId',
