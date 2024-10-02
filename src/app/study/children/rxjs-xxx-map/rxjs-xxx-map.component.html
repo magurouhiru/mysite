@@ -1,0 +1,70 @@
+<h1>RxJS xxxMap</h1>
+<pre>
+  お品書き
+    mergeMap
+    switchMap
+    concatMap
+    exhaustMap
+  注意：console.log()で出力するので開発者モードで見てください。
+</pre>
+
+ひな形(この関数の引数に各種関数を渡して実行する)
+<pre class="playfield playfield--dhisplay-l">
+  {{ executeXxxMap.toString() }}
+</pre>
+
+<h2>mergeMap</h2>
+<pre>
+  上流から流れてきた値について、素直に実行して下流に結果を流す。
+  処理の時間によっては順番が前後することもある。
+  みんな平等に対応するいい人。マルチタスク。
+</pre>
+<button pButton (click)="executeXxxMap(mergeMap, true)">
+  executeXxxMap(mergeMap, true)
+</button>
+<button pButton (click)="executeXxxMap(mergeMap, false)">
+  executeXxxMap(mergeMap, false)
+</button>
+
+<h2>switchMap</h2>
+<pre>
+  上流から流れてきた値について、
+  前の値に対する処理が終わっていればそのまま処理する。
+  まだ処理が終わってなければ中断し、新しい値に対する処理を開始する。
+  色んなこといっぺんに言うと最後に言ったことだけ覚えてる人。シングルタスク。
+</pre>
+<button pButton (click)="executeXxxMap(switchMap, true)">
+  executeXxxMap(switchMap, true)
+</button>
+<button pButton (click)="executeXxxMap(switchMap, false)">
+  executeXxxMap(switchMap, false)
+</button>
+
+<h2>concatMap</h2>
+<pre>
+  上流から流れてきた値について、
+  前の値に対する処理が終わっていればそのまま処理する。
+  まだ処理が終わってなければ待機し、終わってから新しい値に対する処理を開始する。
+  順番通りに対応する行儀のいい人。シングルタスク。
+</pre>
+<button pButton (click)="executeXxxMap(concatMap, true)">
+  executeXxxMap(concatMap, true)
+</button>
+<button pButton (click)="executeXxxMap(concatMap, false)">
+  executeXxxMap(concatMap, false)
+</button>
+
+<h2>exhaustMap</h2>
+<pre>
+  上流から流れてきた値について、
+  前の値に対する処理が終わっていればそのまま処理する。
+  まだ処理が終わってなければ新しい値は破棄する。
+  switchMapの逆。
+  作業中に話しかけると無視する人。シングルタスク。
+</pre>
+<button pButton (click)="executeXxxMap(exhaustMap, true)">
+  executeXxxMap(exhaustMap, true)
+</button>
+<button pButton (click)="executeXxxMap(exhaustMap, false)">
+  executeXxxMap(exhaustMap, false)
+</button>
