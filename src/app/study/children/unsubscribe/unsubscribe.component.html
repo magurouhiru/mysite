@@ -1,0 +1,105 @@
+<h1>unsubscribe</h1>
+<pre>
+  購読が終了される条件は下記2つ
+  ・上流(ストリーム配信側)でcomplete される。
+  ・下流(ストリーム受取側)でunsubscribe される。
+  もし購読が終了されなければ、オブジェクトが残り続ける。
+  したがって、想定外の挙動をしたり、場合によってはメモリーリークの原因となる。
+
+  当ページでは下流(ストリーム受取側)に焦点を当ててunsubscribe の挙動を確認する。
+
+  補足：unsubscribe された場合、cold observable ではストリーム自体も破棄される。
+  しかし、hot observable ではストリームは破棄されない。
+  当ページは下流(ストリーム受取側)に焦点を当てているため補足に留める。
+  もしストリームの挙動も知りたい場合は…作成中なのでちょっと待ってね！
+
+  注意：console.log()で出力するので開発者モードで見てください。
+  注意：オブジェクトの有無を確認する場合は開発者モードのMemory のHeap snapshot で断面を比較してください。
+</pre>
+
+準備
+<pre class="playfield playfield--dhisplay-m">
+  {{ ObValue }}
+  cnt: {{ cnt }}
+  {{ getId }}
+  coldObservable: {{ coldObservable_str }}
+  {{ getColdObservable }}
+  {{ toPrint }}
+</pre>
+
+<h2>単純なunsubscribe</h2>
+<pre>
+  subscribe() の戻り値に対してunsubscribe() を実行する方法。
+  単純だが、1個にしか対応できない。
+
+  確認ポイント
+  ・unsubscribe せずに別ページへ移動してもconsole.log が止まらないこと。
+  ・unsubscribe したらそれっぽいオブジェクトがメモリから消えていること。
+  ・1個しかunsubscribe できていないこと。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  simpleSubscription: {{ simpleSubscription }}
+  {{ doSubscribe }}
+  {{ doSimpleUnsubscribe }}
+</pre>
+<button pButton (click)="simpleSubscription = doSubscribe()">
+  simpleSubscription = doSubscribe()
+</button>
+<button pButton (click)="doSimpleUnsubscribe()">doSimpleUnsubscribe()</button>
+
+<h2>Subscription.add()を使用したunsubscribe</h2>
+<pre>
+  subscribe() の戻り値を
+  Subscription インスタンスにadd() で登録しまとめてunsubscribe() する方法。
+
+  確認ポイント
+  ・unsubscribe せずに別ページへ移動してもconsole.log が止まらないこと。
+  ・unsubscribe したらそれっぽいオブジェクトがメモリから消えていること。
+  ・すべてunsubscribe できていること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  subscription: {{ subscription }}
+  {{ newSubscription }}
+  {{ doSubscriptionAdd }}
+  {{ doSubscriptionUnsubscribe }}
+</pre>
+<button pButton (click)="newSubscription()">newSubscription()</button>
+<button pButton (click)="doSubscriptionAdd()">doSubscriptionAdd()</button>
+<button pButton (click)="doSubscriptionUnsubscribe()">
+  doSubscriptionUnsubscribe()
+</button>
+
+<h2>AsyncPipe(Angular)を使用した(un)subscribe</h2>
+<pre>
+  Observable をAsyncPipe に渡す方法。
+  (un)subscribe をAsyncPipe に委任するので、購読開始(終了)を特に意識する必要がない。
+  {{ i }} または{{ l }} と合わせてで使用するケースが多い印象。
+  注意：AsyncPipe はAngular で提供されている機能の1つでありRxJS 単体では使用できません。
+
+  確認ポイント
+  ・setObservable() を複数回したら前回のconsole.log が止まること。
+  ・別ページへ移動したらconsole.log が止まること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  observable: {{ observable }}
+  {{ setObservable }}
+  {{ oa }}: {{ observable | async }}
+</pre>
+<button pButton (click)="setObservable()">setObservable()</button>
+
+<h2>補足</h2>
+<h2>takeUntilDestroyed(Angular)を使用したcomplete</h2>
+<pre>
+  pipe をtakeUntilDestroyed() に渡す方法。
+  takeUntilDestroyed() コンポーネント破棄時にcomplete するので、購読終了を特に意識する必要がない。
+  注意：takeUntilDestroyed() はAngular で提供されている機能の1つでありRxJS 単体では使用できません。
+
+  確認ポイント
+  ・doTakeUntilDestroyed() を複数回したらconsole.log が増えること。
+  ・別ページへ移動したらcomplete しconsole.log が止まること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  takeUntilDestroyed = {{ takeUntilDestroyed_str }}
+  {{ doTakeUntilDestroyed }}
+</pre>
+<button pButton (click)="doTakeUntilDestroyed()">doTakeUntilDestroyed()</button>
