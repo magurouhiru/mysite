@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { BoxModelComponent } from './children/box-model/box-model.component';
+import { ColdHotObservableComponent } from './children/cold-hot-observable/cold-hot-observable.component';
 import { StudyDetailComponent } from './children/detail/study-detail.component';
 import { DirectivesComponent } from './children/directives/directives.component';
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
@@ -43,6 +44,10 @@ export const studyRoutes: Route = {
     {
       path: 'unsubscribe',
       component: UnsubscribeComponent,
+    },
+    {
+      path: 'cold-hot-observable',
+      component: ColdHotObservableComponent,
     },
     {
       path: ':studyId',
