@@ -1,0 +1,152 @@
+<h1>cold/hot observable</h1>
+<pre>
+  observable にはcold とhot の2種類がある。
+  当ページでは両者の違いについて動作確認する。
+
+  注意：console.log()で出力するので開発者モードで見てください。
+</pre>
+
+準備
+<pre class="playfield playfield--dhisplay-m">
+  {{ ObValue }}
+  {{ ObInfo }}
+  cnt_stream: {{ cnt_stream }}
+  {{ getIdStream }}
+  cnt_subscription: {{ cnt_subscription }}
+  {{ getIdSubscription }}
+  {{ addInfo }}
+  {{ toPrint }}
+  subscriptionMap: {{ subscriptionMap }}
+  {{ doSubscribe }}
+  {{ doUnsubscribe }}
+  {{ doUnsubscribeAll }}
+</pre>
+
+<h2>cold</h2>
+<pre>
+  Subscription とストリームが1対1の関係。
+  そのため、Observable を都度生成しても使いまわしてもSubscriber の挙動は同じ。
+  ストリームがcomplete または、Subscription がunsubscribe すると両者破棄される。
+
+  確認ポイント
+  ・complete またはunsubscribe するまでconsole.log が出力されること。
+  ・complete またはunsubscribe したらconsole.log が出力されなくなること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  cold: {{ cold }}
+  {{ getCold }}
+</pre>
+<button pButton (click)="doSubscribe(getCold(true))">
+  doSubscribe(getCold(true))
+</button>
+<button pButton (click)="doSubscribe(getCold(false))">
+  doSubscribe(getCold(false))
+</button>
+<button pButton (click)="doUnsubscribeAll()">doUnsubscribeAll()</button>
+
+<h2>hot</h2>
+<pre>
+  Subscription とストリームが多対1となりうる関係。
+  そのため、Observable を
+    都度生成すると、1対1となるため複数のSubscriber が異なる挙動をする。(cold と同じ)
+    使いまわすと、多対1となるため複数のSubscriber が同じ挙動をする。
+  また、ストリームがcomplete すると、ストリームとそれに紐づくSubscription の両者破棄される。(cold と同じ)
+  しかし、あるストリームに紐づくSubscription すべてがunsubscribe すると、ストリームも破棄される場合(hot_1)とされない場合がある(hot_2)
+
+  確認ポイント
+  ・同じObservable に対してsubscribe すると同じcnt がconsole.log に出力されること。
+  ・complete したらconsole.log が出力されなくなること。
+  ・hot_1 について、すべてunsubscribe したらconsole.log が出力されなくなること。
+  ・hot_2 について、すべてunsubscribe してもconsole.log が出力されること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  hot_1: {{ hot_1 }}
+  {{ getHot_1 }}
+  hot_2: {{ hot_2 }}
+  {{ getHot_2 }}
+</pre>
+<button pButton (click)="doSubscribe(getHot_1(true))">
+  doSubscribe(getHot_1(true))
+</button>
+<button pButton (click)="doSubscribe(getHot_1(false))">
+  doSubscribe(getHot_1(false))
+</button>
+<button pButton (click)="doSubscribe(getHot_2(true))">
+  doSubscribe(getHot_2(true))
+</button>
+<button pButton (click)="doSubscribe(getHot_2(false))">
+  doSubscribe(getHot_2(false))
+</button>
+<button pButton (click)="doUnsubscribeAll()">doUnsubscribeAll()</button>
+
+<p-table [value]="toValue()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id_stream</th>
+      <th>id_subscription</th>
+      <th>unsubscribe</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-v>
+    <tr>
+      <td>{{ v.id_stream }}</td>
+      <td>{{ v.id_subscription }}</td>
+      <td>
+        <p-button
+          icon="pi pi-trash"
+          (click)="doUnsubscribe(v.id_stream, v.id_subscription)"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<h2>補足(Angular での使用方法)</h2>
+<pre>
+  shareReplay は重い処理(API 叩くとか)を複数回使いまわしたい時に使うことが多いと思う。
+  ただし、hot_2 で確認した通り、そのまま使用してもcomplete するまでストリームが破棄されない。
+  Angular での使用を考えると、ページ遷移時に破棄したいことがほとんどだと思う。
+  Async Pipe とtakeUntilDestroyed を使用を考えると下記のやり方が考えられる。
+
+  Async Pipe
+  自動で(un)subscribe するためhot_1 と同じ挙動になればOK。
+  そして、shareReplay にrefCount: true を設定すれば、hot_1 と同じ挙動となる。
+  また、shareReplay の使用場面としては、直前の値を1個取れれば十分なことが多いと思う。
+  なので、下記を使えば大体大丈夫かも？(hot_1_2)
+  {{ "shareReplay({ bufferSize: 1, refCount: true })" }}
+  比較対象として、下記も用意してます。(hot_2_2)
+  {{ "shareReplay(1)" }}
+  確認ポイント
+  ・hot_1_2 はページ遷移したらconsole.log が出力されなくなること。
+  ・hot_2_2 はページ遷移してもconsole.log が出力されること。
+
+  takeUntilDestroyed
+  自動でcomplete するためshareReplay 前に設定すればOK。(hot_2_3)
+  逆にshareReplay 後に設定すると、ストリームが破棄されない。(hot_2_4)
+  確認ポイント
+  ・hot_2_3 はページ遷移したらconsole.log が出力されなくなること。
+  ・hot_2_4 はページ遷移してもconsole.log が出力されること。
+</pre>
+<pre class="playfield playfield--dhisplay-m">
+  hot_1_2: {{ hot_1_2 }}
+  {{ getHot_1_2 }}
+  hot_2_2: {{ hot_2_2 }}
+  {{ getHot_2_2 }}
+  hots: {{ hots }}
+  @for (obj of hots; track obj.cnt_stream){
+    pushed: cnt_stream: {{obj.cnt_stream}} {{obj.observable | async}}
+  }
+  {{ pushHots }}
+  hot_2_3: {{ hot_2_3_str }}
+  hot_2_4: {{ hot_2_4_str }}
+  {{ addSimpleInfo }}
+  {{ doSimpleSubscribe }}
+</pre>
+<button pButton (click)="pushHots(getHot_1_2())">pushHots(getHot_1_2())</button>
+<button pButton (click)="pushHots(getHot_2_2())">pushHots(getHot_2_2())</button>
+<button pButton (click)="doSimpleSubscribe(hot_2_3)">
+  doSimpleSubscribe(hot_2_3)
+</button>
+<button pButton (click)="doSimpleSubscribe(hot_2_4)">
+  doSimpleSubscribe(hot_2_4)
+</button>
