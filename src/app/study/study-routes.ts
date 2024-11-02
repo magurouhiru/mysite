@@ -7,6 +7,7 @@ import { DirectivesComponent } from './children/directives/directives.component'
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
 import { GridsComponent } from './children/grids/grids.component';
 import { StudyListComponent } from './children/list/study-list.component';
+import { ObservableNTo1Component } from './children/observable-n-to-1/observable-n-to-1.component';
 import { RxjsXxxMapComponent } from './children/rxjs-xxx-map/rxjs-xxx-map.component';
 import { UnsubscribeComponent } from './children/unsubscribe/unsubscribe.component';
 import { StudyBaseComponent } from './study-base.component';
@@ -48,6 +49,10 @@ export const studyRoutes: Route = {
     {
       path: 'cold-hot-observable',
       component: ColdHotObservableComponent,
+    },
+    {
+      path: 'observable-n-to-1',
+      component: ObservableNTo1Component,
     },
     {
       path: ':studyId',

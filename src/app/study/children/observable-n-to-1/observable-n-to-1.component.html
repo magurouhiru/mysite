@@ -1,0 +1,150 @@
+<h1>Observable n to 1</h1>
+<pre>
+  お品書き
+    race
+    forkJoin
+    merge
+    combineLatest
+    zip
+    concat
+
+  注意：console.log()で出力するので開発者モードで見てください。
+</pre>
+
+ソース
+<pre class="playfield playfield--dhisplay-l">
+  {{ getSub }}
+  sub1: {{ sub1 }}
+  sub1Cnt: {{ sub1Cnt }}
+  {{ nextSub1 }}
+  {{ completeSub1 }}
+  {{ errorSub1 }}
+  {{ resetSub1 }}
+  sub2: {{ sub2 }}
+  sub2Cnt: {{ sub2Cnt }}
+  {{ nextSub2 }}
+  {{ completeSub2 }}
+  {{ errorSub2 }}
+  {{ resetSub2 }}
+  {{ executeSubscribe }}
+</pre>
+
+<h2>race</h2>
+<pre>
+  最初に値が流れてきた方だけを使用する。
+  それ以外は無視する。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(race)">executeSubscribe(race)</p-button>
+
+<h2>forkJoin</h2>
+<pre>
+  値を流す前にcomplete したObservable があった場合、complete する。
+  すべてのObservable が値を流した後にcomplete した場合、最後の値だけを配列にまとめて流したのちcomplete する。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(forkJoin)"
+  >executeSubscribe(forkJoin)</p-button
+>
+
+<h2>merge</h2>
+<pre>
+  値が流れてきたらそのまま流す。
+  すべてcomplete したらcomplete する。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(merge)">executeSubscribe(merge)</p-button>
+
+<h2>combineLatest</h2>
+<pre>
+  すべてのObservable から値が流れてきた場合、最後の値だけを配列にまとめて流す。
+  すべてのObservable がcomplete した場合、complete する。
+  注意：値を流す前にcomplete したObservable があった場合、値は流さない。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(combineLatest)"
+  >executeSubscribe(combineLatest)</p-button
+>
+
+<h2>zip</h2>
+<pre>
+  すべてのObservable から値が流れてきた場合、順番通りに値を配列にまとめて流す。
+  1つでもObservable がcomplete した場合、complete する。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(zip)">executeSubscribe(zip)</p-button>
+
+<h2>concat</h2>
+<pre>
+  順番にObservable を処理していく。
+  処理しているObservable がcomplete した場合、次のObservable の処理に移る。
+  すべてのObservable がcomplete した場合、complete する。
+</pre>
+<div class="buttons">
+  <p-button (click)="nextSub1()">nextSub1()</p-button>
+  <p-button (click)="completeSub1()">completeSub1()</p-button>
+  <p-button (click)="errorSub1()">errorSub1()</p-button>
+  <p-button (click)="resetSub1()">resetSub1()</p-button>
+</div>
+<div class="buttons">
+  <p-button (click)="nextSub2()">nextSub2()</p-button>
+  <p-button (click)="completeSub2()">completeSub2()</p-button>
+  <p-button (click)="errorSub2()">errorSub2()</p-button>
+  <p-button (click)="resetSub2()">resetSub2()</p-button>
+</div>
+<p-button (click)="executeSubscribe(concat)">executeSubscribe(concat)</p-button>
