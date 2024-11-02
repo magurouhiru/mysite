@@ -11,6 +11,7 @@ import { RxjsXxxMapComponent } from './children/rxjs-xxx-map/rxjs-xxx-map.compon
 import { UnsubscribeComponent } from './children/unsubscribe/unsubscribe.component';
 import { StudyBaseComponent } from './study-base.component';
 import { StudyConfig } from './study-config';
+import {ObservableNTo1Component} from "./children/observable-n-to-1/observable-n-to-1.component";
 
 export const studyRoutes: Route = {
   path: 'study',
@@ -48,6 +49,10 @@ export const studyRoutes: Route = {
     {
       path: 'cold-hot-observable',
       component: ColdHotObservableComponent,
+    },
+    {
+      path: 'observable-n-to-1',
+      component: ObservableNTo1Component,
     },
     {
       path: ':studyId',
