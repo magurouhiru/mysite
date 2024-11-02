@@ -4,21 +4,25 @@ import {
   delay,
   exhaustMap,
   interval,
+  map,
   mergeMap,
   of,
+  Subject,
   switchMap,
   take,
   tap,
 } from 'rxjs';
 
-import { ButtonDirective } from 'primeng/button';
+import { Button, ButtonDirective } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
 
 import { format } from 'date-fns';
 
 @Component({
   selector: 'app-rxjs-xxx-map',
   standalone: true,
-  imports: [ButtonDirective],
+  imports: [ButtonDirective, TabViewModule, TableModule, Button],
   templateUrl: './rxjs-xxx-map.component.html',
   styleUrl: './rxjs-xxx-map.component.scss',
 })
@@ -79,4 +83,89 @@ export class RxjsXxxMapComponent {
   protected readonly switchMap = switchMap;
   protected readonly exhaustMap = exhaustMap;
   protected readonly concatMap = concatMap;
+
+  // 追記分
+  sub1 = new Subject<ObValue>();
+  sub1_cnt = 0;
+  createSub1() {
+    this.sub1 = new Subject<ObValue>();
+  }
+  nextSub1() {
+    this.sub1_cnt++;
+    this.sub1.next({ sub1: this.sub1_cnt });
+  }
+  errorSub1() {
+    this.sub1.error('error: sub1');
+  }
+  completeSub1() {
+    this.sub1.complete();
+  }
+  sub2s: Sub2[] = [];
+  sub2_id = 0;
+  sub2_cnt = 0;
+  createSub2() {
+    this.sub2_id++;
+    const sub2 = {
+      id: this.sub2_id,
+      sub: new Subject<ObValue>(),
+    } satisfies Sub2;
+    this.sub2s.push(sub2);
+    return sub2.sub;
+  }
+  nextSub2(sub2: Sub2) {
+    this.sub2_cnt++;
+    sub2.sub.next({
+      sub2: {
+        id: sub2.id,
+        cnt: this.sub2_cnt,
+      },
+    });
+  }
+  errorSub2(sub2: Sub2) {
+    sub2.sub.error(`error: sub2: id: ${sub2.id}`);
+  }
+  completeSub2(sub2: Sub2) {
+    sub2.sub.complete();
+    this.sub2s = this.sub2s.filter((s) => s.id !== sub2.id);
+  }
+  // eslint-disable-next-line
+  executeXxxMap2(xxxMap: any) {
+    console.log(xxxMap);
+    this.sub1
+      .pipe(
+        tap((v) => console.log(`tap: sub1: id: ${v.sub1}`)),
+        xxxMap((v: ObValue) => {
+          return this.createSub2().pipe(
+            tap((v) =>
+              console.log(`tap: sub2: id: ${v.sub2?.id}, cnt: ${v.sub2?.cnt}`),
+            ),
+            map((vv) => {
+              return { ...v, ...vv };
+            }),
+          );
+        }),
+      )
+      .subscribe({
+        // eslint-disable-next-line
+        next: (v: any) =>
+          console.log(
+            `next: sub1: ${v.sub1}, sub2: id: ${v.sub2?.id}, cnt: ${v.sub2?.cnt}`,
+          ),
+        error: console.error,
+        complete: () => console.log('complete'),
+      });
+  }
+}
+
+interface ObValue {
+  sub1?: number;
+  sub2?: {
+    id: number;
+    cnt: number;
+  };
+}
+
+interface Sub2 {
+  id: number;
+  sub: Subject<ObValue>;
 }
