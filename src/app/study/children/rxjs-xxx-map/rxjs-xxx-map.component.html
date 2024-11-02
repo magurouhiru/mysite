@@ -68,3 +68,73 @@
 <button pButton (click)="executeXxxMap(exhaustMap, false)">
   executeXxxMap(exhaustMap, false)
 </button>
+
+<h2>追記</h2>
+<pre>
+  xxxMap 内で生成するObservable がすぐにcomplete しない場合を検証がこちら。
+  上で個別調べた結果から想定できる内容ではある。
+</pre>
+
+ソース
+<pre class="playfield playfield--dhisplay-l">
+  sub1: {{ sub1 }}
+  sub1_cnt: {{ sub1_cnt }}
+  {{ createSub1 }}
+  {{ nextSub1 }}
+  {{ errorSub1 }}
+  {{ completeSub1 }}
+  sub2s: {{ sub2s }}
+  sub2_cnt: {{ sub2_cnt }}
+  {{ createSub2 }}
+  {{ nextSub2 }}
+  {{ errorSub2 }}
+  {{ completeSub2 }}
+  {{ executeXxxMap2 }}
+</pre>
+<div class="buttons">
+  <button pButton (click)="nextSub1()">nextSub1()</button>
+  <button pButton (click)="errorSub1()">errorSub1()</button>
+  <button pButton (click)="completeSub1()">completeSub1()</button>
+  <button pButton (click)="createSub1()">createSub1()</button>
+</div>
+
+<div class="buttons">
+  <button pButton (click)="executeXxxMap2(mergeMap)">
+    executeXxxMap2(mergeMap)
+  </button>
+  <button pButton (click)="executeXxxMap2(switchMap)">
+    executeXxxMap2(switchMap)
+  </button>
+  <button pButton (click)="executeXxxMap2(exhaustMap)">
+    executeXxxMap2(exhaustMap)
+  </button>
+  <button pButton (click)="executeXxxMap2(concatMap)">
+    executeXxxMap2(concatMap)
+  </button>
+</div>
+
+<p-table [value]="sub2s">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>sub2.id</th>
+      <th>next</th>
+      <th>complete</th>
+      <th>error</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-v>
+    <tr>
+      <td>{{ v.id }}</td>
+      <td>
+        <p-button (click)="nextSub2(v)" icon="pi pi-caret-right"></p-button>
+      </td>
+      <td><p-button (click)="completeSub2(v)" icon="pi pi-stop"></p-button></td>
+      <td>
+        <p-button
+          (click)="errorSub2(v)"
+          icon="pi pi-exclamation-triangle"
+        ></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
