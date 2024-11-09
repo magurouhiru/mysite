@@ -113,7 +113,7 @@
 <h2>zip</h2>
 <pre>
   すべてのObservable から値が流れてきた場合、順番通りに値を配列にまとめて流す。
-  1つでもObservable がcomplete した場合、complete する。
+  1つでもObservable がcomplete し後続に値を流せなくなった場合、complete する。
 </pre>
 <div class="buttons">
   <p-button (click)="nextSub1()">nextSub1()</p-button>
