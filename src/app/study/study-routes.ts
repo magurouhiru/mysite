@@ -5,6 +5,8 @@ import { ColdHotObservableComponent } from './children/cold-hot-observable/cold-
 import { StudyDetailComponent } from './children/detail/study-detail.component';
 import { DirectivesComponent } from './children/directives/directives.component';
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
+import { CssRangeSliderExamplesComponent } from './children/frontend-planet-examples/css-range-slider-examples/css-range-slider-examples.component';
+import { FrontendPlanetExamplesComponent } from './children/frontend-planet-examples/frontend-planet-examples.component';
 import { GridsComponent } from './children/grids/grids.component';
 import { StudyListComponent } from './children/list/study-list.component';
 import { ObservableNTo1Component } from './children/observable-n-to-1/observable-n-to-1.component';
@@ -53,6 +55,19 @@ export const studyRoutes: Route = {
     {
       path: 'observable-n-to-1',
       component: ObservableNTo1Component,
+    },
+    {
+      path: 'frontend-planet-examples',
+      children: [
+        {
+          path: '',
+          component: FrontendPlanetExamplesComponent,
+        },
+        {
+          path: 'css-range-slider-examples',
+          component: CssRangeSliderExamplesComponent,
+        },
+      ],
     },
     {
       path: ':studyId',
