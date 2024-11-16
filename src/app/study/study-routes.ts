@@ -6,6 +6,7 @@ import { StudyDetailComponent } from './children/detail/study-detail.component';
 import { DirectivesComponent } from './children/directives/directives.component';
 import { FlexBoxComponent } from './children/flex-box/flex-box.component';
 import { CssRangeSliderExamplesComponent } from './children/frontend-planet-examples/css-range-slider-examples/css-range-slider-examples.component';
+import { NeumorphicPureCssRangeSliderDesignComponent } from './children/frontend-planet-examples/css-range-slider-examples/neumorphic-pure-css-range-slider-design/neumorphic-pure-css-range-slider-design.component';
 import { FrontendPlanetExamplesComponent } from './children/frontend-planet-examples/frontend-planet-examples.component';
 import { GridsComponent } from './children/grids/grids.component';
 import { StudyListComponent } from './children/list/study-list.component';
@@ -66,6 +67,10 @@ export const studyRoutes: Route = {
         {
           path: 'css-range-slider-examples',
           component: CssRangeSliderExamplesComponent,
+        },
+        {
+          path: 'neumorphic-pure-css-range-slider-design',
+          component: NeumorphicPureCssRangeSliderDesignComponent,
         },
       ],
     },

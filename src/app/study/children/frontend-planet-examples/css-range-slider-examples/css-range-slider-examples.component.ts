@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 
+import { NeumorphicPureCssRangeSliderDesignComponent } from './neumorphic-pure-css-range-slider-design/neumorphic-pure-css-range-slider-design.component';
 import { RangeSliderEqualizerComponent } from './range-slider-equalizer/range-slider-equalizer.component';
 
 @Component({
   selector: 'app-css-range-slider-examples',
   standalone: true,
-  imports: [RangeSliderEqualizerComponent],
+  imports: [
+    RangeSliderEqualizerComponent,
+    NeumorphicPureCssRangeSliderDesignComponent,
+  ],
   templateUrl: './css-range-slider-examples.component.html',
   styleUrl: './css-range-slider-examples.component.scss',
 })
