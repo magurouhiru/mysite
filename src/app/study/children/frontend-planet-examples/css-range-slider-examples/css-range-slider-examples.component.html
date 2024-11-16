@@ -85,7 +85,12 @@
 <h2>Dynamic grid background through range slider</h2>
 <pre>
   メモ
-  HTML：特になし。
+  詰まったとこ：JSを動かすのが大変だった。{{
+    "import {DOCUMENT} from '@angular/common';"
+  }}をngAfterViewInit()内で使うことで、ほぼほぼそのまま使えた。
+  HTML：
+    aタグ：target="_new"属性で新しいタブでリンクを開く。"_blank"と似ているが、こちらは2回目以降新しいタブが開くことはない。
+    outputタグ：計算結果等の表示に使う。for,form属性で他のタグとの紐づけを行う。name属性で名前を付ける。form.elementsで使用できる。
   CSS：
 </pre>
 <div class="playfield playfield--dhisplay-l-cmp">
