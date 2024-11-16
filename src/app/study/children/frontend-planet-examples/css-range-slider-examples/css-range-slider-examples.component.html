@@ -2,11 +2,53 @@
 <pre>
   CSS Range Slider の例が乗ってるよ。
   <a href="https://www.frontendplanet.com/css-range-slider-examples/">https://www.frontendplanet.com/css-range-slider-examples/</a>
-  メインの目的はCSS の勉強なので全部やってるわけじゃないよ。
+  メインの目的はCSS, HTMLの勉強なので全部やってるわけじゃないよ。
 </pre>
 
 <h2>Range slider equalizer</h2>
-<pre></pre>
+<pre>
+  メモ
+  詰まったとこ：
+    最初うまく表示できなかった。
+    具体的にはグレーの背景が緑の枠線より下に飛び出てた。
+    あと、縦のバーの表示も□が小さかったり歪だったりしてた。
+    前者について、margin-block-start(end)がブラウザのデフォルト設定にあってこれかと思った。
+    けど、pタブだけ？で今回はpreタブなので違った。
+    結局、緑の枠線にpreタブ使ってたのが原因だった。divタブに変えたら直った。
+    後者について、原因はbox-sizingがborder-boxだったことであった。
+    content-boxに変えたら直った。
+  HTML
+    fieldsetタグ：formタグみたいなやつ。フォームをまとめることができる。
+    legendタグ：fieldsetタグ内で使用し、キャプション(タイトル？題名？ラベル？)を書く。
+    labelタグ：
+      orient, type属性：独自の属性。inputタグと合わせたのかな？
+      for属性：inputタグのidと同じにすることで両者を紐づけることができる。
+      before, after属性：独自の属性。疑似クラスで表示させるのに使ってる。
+    inputタグ：
+      orient属性：Firefox でのみ使用可能な属性らしい。回転させるときに使うっぽい。
+  CSS
+    fieldset：transitionでhover時にじんわり枠線が変わるようになってる。
+    legend：text-shadowでおしゃれな感じにしてる。
+    label[type="range"]：
+      軸線：
+        線はborderで描いてる。回転に対応できるように、不要な箇所の色にはtransparent(透明)を使っている。
+        目盛りは背景色で書いている。background-positionを変えて回転に対応している。
+        linear-gradientはこれじゃなきゃbackground-imageに使えなかっただけだと思う。
+      目盛りの値：
+        0はHTMLべた書きの値。疑似クラス:first-letterを使ってサイズを設定している。
+        それ以外はbefore, after属性の値。疑似クラス::before,::afterを使ってサイズ指定と位置指定をしている。
+        また、値はcontentで設定している。
+    input[type="range"]：
+      回転の仕方：transform: rotate(270deg);で実現している。
+      配置：
+        回転しても中心の位置は変わらないので、横にスカスカになる。
+        そのため、マイナスのmarginで横幅を詰めている。
+      外枠：transitionでじんわり外枠が出るようになっている。
+      目盛り：
+        疑似クラス::-webkit-slider-thumbとかの非標準機能を使っている。
+        box-shadowで上下にグラデーションの□を作り、overflow: hidden;で隠している。
+      cursor:cursorプロパティで操作時のカーソルの形を変えている。
+</pre>
 <div class="playfield playfield--dhisplay-l-cmp">
   <app-range-slider-equalizer></app-range-slider-equalizer>
 </div>
