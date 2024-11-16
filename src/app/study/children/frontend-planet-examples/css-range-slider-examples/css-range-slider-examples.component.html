@@ -17,7 +17,7 @@
     結局、緑の枠線にpreタブ使ってたのが原因だった。divタブに変えたら直った。
     後者について、原因はbox-sizingがborder-boxだったことであった。
     content-boxに変えたら直った。
-  HTML
+  HTML：
     fieldsetタグ：formタグみたいなやつ。フォームをまとめることができる。
     legendタグ：fieldsetタグ内で使用し、キャプション(タイトル？題名？ラベル？)を書く。
     labelタグ：
@@ -26,7 +26,7 @@
       before, after属性：独自の属性。疑似クラスで表示させるのに使ってる。
     inputタグ：
       orient属性：Firefox でのみ使用可能な属性らしい。回転させるときに使うっぽい。
-  CSS
+  CSS：
     fieldset：transitionでhover時にじんわり枠線が変わるようになってる。
     legend：text-shadowでおしゃれな感じにしてる。
     label[type="range"]：
@@ -54,7 +54,20 @@
 </div>
 
 <h2>Neumorphic pure CSS range slider design</h2>
-<pre></pre>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：
+    url("data:image/png;base64,xxx"):base64形式でエンコードしたpng画像を読み込む。xxxが画像データになる。通信が発生しないから高速とか。
+    input[type="range"]：
+      box-shadowで影と光沢を付けることで立体感を出している。
+      疑似クラス::beforeで目盛りを表示している。
+      outline: 0;だから表示されないが、値を設定すれば外枠が表示される。
+      borderと似てるが、いくつか違いがある。
+        ①outlineは、上下左右を個別に設定できない。
+        ②outlineは、boxサイズが変わることはない。
+    こちらも、疑似クラス::-webkit-slider-thumb,::-webkit-slider-runnable-trackを使って見た目を変えている。
+</pre>
 <div class="playfield playfield--dhisplay-l-cmp">
   <app-neumorphic-pure-css-range-slider-design></app-neumorphic-pure-css-range-slider-design>
 </div>
