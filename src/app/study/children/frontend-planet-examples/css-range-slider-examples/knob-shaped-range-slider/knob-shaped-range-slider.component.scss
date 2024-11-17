@@ -383,7 +383,7 @@ box-shadow:0 56px 70px 8px #{rgb-color(map-get($colors, "shadow-dark"))},\
 // === knob-main.scss ===
 // ======================
 @mixin knob(
-  $size: 300,
+  $size: 250,
   $unit: 0.152vmin,
   $ticks: 100,
   $steps: 10,
@@ -393,7 +393,7 @@ box-shadow:0 56px 70px 8px #{rgb-color(map-get($colors, "shadow-dark"))},\
     negative-step: -0.6,
   ),
   $geometry: (
-    knob-size: 150,
+    knob-size: 100,
     knob-pseudo-size: 50,
     knob-tip-size: 9%,
     knob-border-width: 1.6%,
