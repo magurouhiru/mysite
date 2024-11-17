@@ -23,9 +23,6 @@ export class CssSliderIndicatorComponent implements OnInit {
       return sliderValue !== null;
     }
 
-    console.log(slider);
-    console.log(sliderValue);
-    console.log(isSlider(slider));
     if (isSlider(slider)) {
       slider.oninput = () => {
         showValue();
@@ -33,7 +30,6 @@ export class CssSliderIndicatorComponent implements OnInit {
     }
 
     function showValue() {
-      console.log('called');
       if (isSlider(slider) && isSliderValue(sliderValue)) {
         sliderValue.innerHTML = String(slider.value);
         const sliderPosition = slider.value / slider.max;
