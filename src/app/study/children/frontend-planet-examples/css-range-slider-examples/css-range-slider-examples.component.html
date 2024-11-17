@@ -107,7 +107,23 @@
 </div>
 
 <h2>CSS slider indicator</h2>
-<pre></pre>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：
+    .slider：
+      transition：
+        プロパティ名を省略したらすべての変化に適用される。
+        ease-in-outはイメージング関数。最初早く最後遅くなる。
+      :active：
+        2つのセレクターを結合する次兄弟結合子を使用している。
+        これで#slider-valueのプロパティを変更し、操作時のみ値が表示される。
+    #slider-value：
+      元の状態はtransform: scale(0, 0)でサイズを0、opacity: 0;で徹底的に隠されている。
+      位置の調整はtranslateX(-50%);とposition: relative;で行っている。
+      translateX(-50%);でsliderと重なるようにしている。
+      そして、sliderの値がleftプロパティに入り、それによって左右に移動する。
+</pre>
 <div class="playfield playfield--dhisplay-l-cmp">
   <app-css-slider-indicator></app-css-slider-indicator>
 </div>
