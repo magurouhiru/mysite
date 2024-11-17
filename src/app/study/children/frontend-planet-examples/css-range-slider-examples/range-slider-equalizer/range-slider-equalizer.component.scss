@@ -1,15 +1,19 @@
 //html {
 //  font-size: 1em;
 //}
-// body→#rse
-#rse {
+// body→#rse-body
+#rse-body {
   color: #bbb;
   background-color: #444;
   text-align: center;
   width: 100%; // add
   height: 100%; // add
-  padding: 15px; // add
   line-height: 2em; // add
+  display: flex; // add
+}
+// add
+#rse-main {
+  margin: auto;
 }
 fieldset {
   border: #999 solid 0.2em;
