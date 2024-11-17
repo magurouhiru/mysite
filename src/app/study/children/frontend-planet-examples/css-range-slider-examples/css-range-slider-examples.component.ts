@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { CssSliderIndicatorComponent } from './css-slider-indicator/css-slider-indicator.component';
 import { CustomizedRangeSliderComponent } from './customized-range-slider/customized-range-slider.component';
 import { DynamicGridBackgroundThroughRangeSliderComponent } from './dynamic-grid-background-through-range-slider/dynamic-grid-background-through-range-slider.component';
 import { NeumorphicPureCssRangeSliderDesignComponent } from './neumorphic-pure-css-range-slider-design/neumorphic-pure-css-range-slider-design.component';
@@ -13,6 +14,7 @@ import { RangeSliderEqualizerComponent } from './range-slider-equalizer/range-sl
     NeumorphicPureCssRangeSliderDesignComponent,
     CustomizedRangeSliderComponent,
     DynamicGridBackgroundThroughRangeSliderComponent,
+    CssSliderIndicatorComponent,
   ],
   templateUrl: './css-range-slider-examples.component.html',
   styleUrl: './css-range-slider-examples.component.scss',
