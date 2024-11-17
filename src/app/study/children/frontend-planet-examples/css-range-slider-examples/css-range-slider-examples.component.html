@@ -1,0 +1,150 @@
+<h1>CSS Range Slider 例集</h1>
+<pre>
+  CSS Range Slider の例が乗ってるよ。
+  <a href="https://www.frontendplanet.com/css-range-slider-examples/">https://www.frontendplanet.com/css-range-slider-examples/</a>
+  メインの目的はCSS, HTMLの勉強なので全部やってるわけじゃないよ。
+  大変だったので、途中まで。そのうちやるかも？
+</pre>
+
+<h2>Range slider equalizer</h2>
+<pre>
+  メモ
+  詰まったとこ：
+    最初うまく表示できなかった。
+    具体的にはグレーの背景が緑の枠線より下に飛び出てた。
+    あと、縦のバーの表示も□が小さかったり歪だったりしてた。
+    前者について、margin-block-start(end)がブラウザのデフォルト設定にあってこれかと思った。
+    けど、pタブだけ？で今回はpreタブなので違った。
+    結局、緑の枠線にpreタブ使ってたのが原因だった。divタブに変えたら直った。
+    後者について、原因はbox-sizingがborder-boxだったことであった。
+    content-boxに変えたら直った。
+  HTML：
+    fieldsetタグ：formタグみたいなやつ。フォームをまとめることができる。
+    legendタグ：fieldsetタグ内で使用し、キャプション(タイトル？題名？ラベル？)を書く。
+    labelタグ：
+      orient, type属性：独自の属性。inputタグと合わせたのかな？
+      for属性：inputタグのidと同じにすることで両者を紐づけることができる。
+      before, after属性：独自の属性。疑似クラスで表示させるのに使ってる。
+    inputタグ：
+      orient属性：Firefox でのみ使用可能な属性らしい。回転させるときに使うっぽい。
+  CSS：
+    fieldset：transitionでhover時にじんわり枠線が変わるようになってる。
+    legend：text-shadowでおしゃれな感じにしてる。
+    label[type="range"]：
+      軸線：
+        線はborderで描いてる。回転に対応できるように、不要な箇所の色にはtransparent(透明)を使っている。
+        目盛りは背景色で書いている。background-positionを変えて回転に対応している。
+        linear-gradientはこれじゃなきゃbackground-imageに使えなかっただけだと思う。
+      目盛りの値：
+        0はHTMLべた書きの値。疑似クラス:first-letterを使ってサイズを設定している。
+        それ以外はbefore, after属性の値。疑似クラス::before,::afterを使ってサイズ指定と位置指定をしている。
+        また、値はcontentで設定している。
+    input[type="range"]：
+      回転の仕方：transform: rotate(270deg);で実現している。
+      配置：
+        回転しても中心の位置は変わらないので、横にスカスカになる。
+        そのため、マイナスのmarginで横幅を詰めている。
+      外枠：transitionでじんわり外枠が出るようになっている。
+      目盛り：
+        疑似クラス::-webkit-slider-thumbとかの非標準機能を使っている。
+        box-shadowで上下にグラデーションの□を作り、overflow: hidden;で隠している。
+      cursor:cursorプロパティで操作時のカーソルの形を変えている。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-range-slider-equalizer></app-range-slider-equalizer>
+</div>
+
+<h2>Neumorphic pure CSS range slider design</h2>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：
+    url("data:image/png;base64,xxx"):base64形式でエンコードしたpng画像を読み込む。xxxが画像データになる。通信が発生しないから高速とか。
+    input[type="range"]：
+      box-shadowで影と光沢を付けることで立体感を出している。
+      疑似クラス::beforeで目盛りを表示している。
+      outline: 0;だから表示されないが、値を設定すれば外枠が表示される。
+      borderと似てるが、いくつか違いがある。
+        ①outlineは、上下左右を個別に設定できない。
+        ②outlineは、boxサイズが変わることはない。
+    こちらも、疑似クラス::-webkit-slider-thumb,::-webkit-slider-runnable-trackを使って見た目を変えている。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-neumorphic-pure-css-range-slider-design></app-neumorphic-pure-css-range-slider-design>
+</div>
+
+<h2>Customized range slider</h2>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：こちらも、疑似クラス::-webkit-slider-thumb,::-webkit-slider-runnable-trackを使って見た目を変えている。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-customized-range-slider></app-customized-range-slider>
+</div>
+
+<h2>Dynamic grid background through range slider</h2>
+<pre>
+  メモ
+  詰まったとこ：JSを動かすのが大変だった。{{
+    "import {DOCUMENT} from '@angular/common';"
+  }}をngOnInit()内で使うことで、ほぼほぼそのまま使えた。
+  HTML：
+    aタグ：target="_new"属性で新しいタブでリンクを開く。"_blank"と似ているが、こちらは2回目以降新しいタブが開くことはない。
+    outputタグ：計算結果等の表示に使う。for,form属性で他のタグとの紐づけを行う。name属性で名前を付ける。form.elementsで使用できる。
+    formタグ：oninputで内部のinputタグのvalue値が変わったら動く。そしてoutputタグのvalue値にremを追加する。
+  CSS：
+    :root：
+      今回は使ってないが、疑似クラス:rootでルート要素(通常はHTMLタグ)にカスタムプロパティ--grid-size: 1rem;を設定する。
+      そして、この要素を変数のように扱い、設定された値を元にグリッドの大きさを変えている。
+    body：
+      グリッドは横線と縦線の別々の背景を組み合わせて作っている。
+      background-imageで背景色→1px後に透明のイメージを作成。最初が横線。次が縦線。
+      background-sizeでグリッドサイズの間隔で繰り返し。最初が横線。次が縦線。
+      グリッドサイズはvar()関数を使ってカスタムプロパティ--grid-sizeの値を取得している。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-dynamic-grid-background-through-range-slider></app-dynamic-grid-background-through-range-slider>
+</div>
+
+<h2>CSS slider indicator</h2>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：
+    .slider：
+      transition：
+        プロパティ名を省略したらすべての変化に適用される。
+        ease-in-outはイメージング関数。最初早く最後遅くなる。
+      :active：
+        2つのセレクターを結合する次兄弟結合子を使用している。
+        これで#slider-valueのプロパティを変更し、操作時のみ値が表示される。
+    #slider-value：
+      元の状態はtransform: scale(0, 0)でサイズを0、opacity: 0;で徹底的に隠されている。
+      位置の調整はtranslateX(-50%);とposition: relative;で行っている。
+      translateX(-50%);でsliderと重なるようにしている。
+      そして、sliderの値がleftプロパティに入り、それによって左右に移動する。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-css-slider-indicator></app-css-slider-indicator>
+</div>
+
+<h2>Knob-shaped range slider</h2>
+<pre>
+  メモ
+  HTML：特になし。
+  CSS：すごすぎたので後回し。
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-knob-shaped-range-slider></app-knob-shaped-range-slider>
+</div>
+
+<h2>Unicycle range slider</h2>
+<pre>
+  メモ
+  HTML：すごすぎたので後回し。
+  CSS：すごすぎたので後回し。font-sizeで全体の大きさが変わるっぽい？
+</pre>
+<div class="playfield playfield--dhisplay-l-cmp">
+  <app-unicycle-range-slider></app-unicycle-range-slider>
+</div>

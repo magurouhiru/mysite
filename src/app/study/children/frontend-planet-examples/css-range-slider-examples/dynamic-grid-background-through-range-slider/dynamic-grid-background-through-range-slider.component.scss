@@ -1,0 +1,82 @@
+// :root→#dgbtrs-root
+#dgbtrs-root {
+  --grid-size: 1rem;
+  height: 100%; //add
+}
+
+$baseHue: 190;
+$gridColor: hsla($baseHue, 100%, 50%, 0.5);
+// $gridColor: rgba(#00d4ff, 0.5);
+
+%center_stack {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+// body→#dgbtrs-body
+#dgbtrs-body {
+  @extend %center_stack;
+  font-family: "PT Mono", monospace;
+  text-shadow: #fff 1px 1px;
+  // grid styles: //
+  //min-height: 100vh; // delete
+  height: 100%; //add
+  background: #fff;
+  background-position: center;
+  background-image: linear-gradient(0deg, $gridColor 0%, transparent 1px),
+    linear-gradient(90deg, $gridColor 0%, transparent 1px);
+  background-size: 100% 1rem; // fallback
+  background-size:
+    100% var(--grid-size),
+    var(--grid-size) 100%;
+  transition: background-size 0.25s;
+}
+
+a {
+  color: hsl($baseHue, 100%, 33%);
+  transition: all 0.25s;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    text-shadow: none;
+    background: #fff;
+    box-shadow: #fff 0 0 0 3px;
+    text-decoration-color: hsl($baseHue, 100%, 55%);
+    text-decoration-color: hsla($baseHue, 100%, 55%, 0.5);
+    color: hsl($baseHue, 100%, 20%);
+  }
+}
+
+h1 {
+  // 23 chars
+  font-size: 49/23 * 1rem;
+  margin: 0 0 0.3em;
+}
+p {
+  // 49 chars
+  margin: 0;
+}
+
+form {
+  @extend %center_stack;
+  margin-top: 3rem;
+}
+label {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #666;
+}
+output {
+  color: #666;
+}
+input[type="range"] {
+  margin: 0.5rem auto;
+  font-size: 1.075rem;
+  width: 49ch;
+
+  &:after {
+    content: value;
+  }
+}

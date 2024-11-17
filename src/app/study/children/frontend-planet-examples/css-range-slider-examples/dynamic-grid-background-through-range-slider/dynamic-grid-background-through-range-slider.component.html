@@ -1,0 +1,29 @@
+<div id="dgbtrs-root">
+  <div id="dgbtrs-body">
+    <h1>Dynamic Grid Background</h1>
+    <p>
+      caniuse support:
+      <a href="https://caniuse.com/#search=custom%20properties" target="_new">
+        custom properties
+      </a>
+      ,&nbsp;<!-- add -->
+      <a href="https://caniuse.com/#search=output%20element" target="_new">
+        output element
+      </a>
+    </p>
+
+    <form oninput="result.value=range.value + 'rem'">
+      <label for="range"> Grid Size Slider </label>
+      <input
+        type="range"
+        name="range"
+        id="range"
+        min="0.25"
+        max="5"
+        step="0.25"
+        value="1.0"
+      />
+      <output name="result">1.0</output>
+    </form>
+  </div>
+</div>

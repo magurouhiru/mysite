@@ -31,6 +31,10 @@
     width: 800px;
     min-height: 400px;
   }
+  &--dhisplay-l-cmp {
+    width: 800px;
+    height: 400px;
+  }
 }
 :host ::ng-deep .playBox {
   border: 2px;
