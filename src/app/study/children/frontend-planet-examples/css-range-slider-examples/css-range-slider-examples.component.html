@@ -87,11 +87,20 @@
   メモ
   詰まったとこ：JSを動かすのが大変だった。{{
     "import {DOCUMENT} from '@angular/common';"
-  }}をngAfterViewInit()内で使うことで、ほぼほぼそのまま使えた。
+  }}をngOnInit()内で使うことで、ほぼほぼそのまま使えた。
   HTML：
     aタグ：target="_new"属性で新しいタブでリンクを開く。"_blank"と似ているが、こちらは2回目以降新しいタブが開くことはない。
     outputタグ：計算結果等の表示に使う。for,form属性で他のタグとの紐づけを行う。name属性で名前を付ける。form.elementsで使用できる。
+    formタグ：oninputで内部のinputタグのvalue値が変わったら動く。そしてoutputタグのvalue値にremを追加する。
   CSS：
+    :root：
+      今回は使ってないが、疑似クラス:rootでルート要素(通常はHTMLタグ)にカスタムプロパティ--grid-size: 1rem;を設定する。
+      そして、この要素を変数のように扱い、設定された値を元にグリッドの大きさを変えている。
+    body：
+      グリッドは横線と縦線の別々の背景を組み合わせて作っている。
+      background-imageで背景色→1px後に透明のイメージを作成。最初が横線。次が縦線。
+      background-sizeでグリッドサイズの間隔で繰り返し。最初が横線。次が縦線。
+      グリッドサイズはvar()関数を使ってカスタムプロパティ--grid-sizeの値を取得している。
 </pre>
 <div class="playfield playfield--dhisplay-l-cmp">
   <app-dynamic-grid-background-through-range-slider></app-dynamic-grid-background-through-range-slider>

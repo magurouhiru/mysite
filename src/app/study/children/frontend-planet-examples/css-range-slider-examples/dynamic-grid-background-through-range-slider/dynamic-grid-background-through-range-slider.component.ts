@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dynamic-grid-background-through-range-slider',
@@ -9,10 +9,10 @@ import { AfterViewInit, Component, inject } from '@angular/core';
   styleUrl: './dynamic-grid-background-through-range-slider.component.scss',
 })
 export class DynamicGridBackgroundThroughRangeSliderComponent
-  implements AfterViewInit
+  implements OnInit
 {
   document = inject(DOCUMENT);
-  ngAfterViewInit() {
+  ngOnInit() {
     this.document.getElementById('range')?.addEventListener('change', (e) => {
       const target = e.target as Target;
       this.document
