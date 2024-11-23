@@ -3,10 +3,12 @@ import { RouterLink } from '@angular/router';
 
 import { CardModule } from 'primeng/card';
 
+import { HomeButtonComponent } from '../shared/home-button/home-button.component';
+
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, CardModule],
+  imports: [RouterLink, CardModule, HomeButtonComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

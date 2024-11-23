@@ -1,0 +1,9 @@
+<div class="theme-picker-body">
+  <p-menu #menu [model]="themes" [popup]="true" />
+  <p-button
+    (onClick)="menu.toggle($event)"
+    icon="pi pi-palette icon-size"
+    size="small"
+    [styleClass]="'theme-picker-button'"
+  />
+</div>

@@ -1,75 +1,28 @@
-@layer default {
-  * {
-    padding: 0;
-    margin: 0;
-  }
+.main {
+  background-color: #f3f4f6;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 0.5rem;
 }
 
-.header {
-  height: 64px;
-  background-color: white;
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  z-index: 10;
-  padding: 12px;
-  &--article {
-    border-color: #a78bfa;
-  }
-  &--study {
-    border-color: #2dd4bf;
-  }
-}
-.header__nav {
+.content-wrap {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.header__a {
-  text-decoration-line: none;
+  justify-content: space-around;
+  gap: 1.5rem;
 }
 
-.header__home {
-  height: 40px;
-  width: 128px;
-  color: white;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
-  border-radius: 8px;
-  font-size: 1.5rem;
-  &--article {
-    background-color: #a78bfa;
-  }
-  &--study {
-    background-color: #2dd4bf;
-  }
-  &--home {
-    margin-left: 12px;
-  }
+.content {
+  flex: 1 1 0;
 }
 
-.header__icons {
-  list-style-type: none;
-  align-self: flex-end;
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+a {
+  text-decoration: none;
 }
 
-.header__icon {
-  font-size: 1.5rem;
-  &--home {
-    padding-right: 3px;
-  }
-  &--article {
-    color: #a78bfa;
-  }
-  &--study {
-    color: #2dd4bf;
-  }
+:host ::ng-deep .card {
+  padding: 0.5rem;
 }
 
-.bg {
-  width: 100%;
-  height: 100%;
+.message {
+  margin: 0.5rem 0;
 }

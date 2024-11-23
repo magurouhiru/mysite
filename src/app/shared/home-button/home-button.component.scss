@@ -1,0 +1,20 @@
+button {
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  border-style: none;
+  height: 2.5rem;
+  padding: 0.5rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 0.2rem;
+}
+
+.flex-theme {
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
+}

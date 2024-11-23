@@ -1,16 +1,15 @@
 @layer default {
   * {
-    padding: 0;
-    margin: 0;
+    --main-color: var(--primary-color);
+    --main-light-color: color-mix(in srgb, var(--main-color), white);
+    --main-dark-color: color-mix(in srgb, var(--main-color) 95%, black);
+    --main-super-dark-color: color-mix(in srgb, var(--main-color) 90%, black);
   }
-}
-:host ::ng-deep img {
-  max-width: 100%;
 }
 :host ::ng-deep .playfield {
   border: 2px;
   border-style: solid;
-  border-color: #2dd4bf;
+  border-color: var(--main-light-color);
   margin: 0 6px 6px 0;
   padding: 2px;
   font-size: 1rem;
@@ -39,23 +38,56 @@
 :host ::ng-deep .playBox {
   border: 2px;
   border-style: solid;
-  border-color: #115e59; /* すごく濃い緑 */
+  border-color: var(--main-super-dark-color); /* すごく濃い */
   margin: 2px;
   padding: 2px;
   font-size: 1rem;
   line-height: 1rem;
   &--1 {
-    background-color: #99f6e4; /* 薄い緑 */
+    background-color: var(--main-light-color); /* 薄い */
   }
   &--2 {
-    background-color: #2dd4bf; /* 緑 */
+    background-color: var(--main-color); /* 普通 */
     color: white;
   }
   &--3 {
     color: white;
-    background-color: #0d9488; /* 濃い緑 */
+    background-color: var(--main-dark-color); /* 濃い */
   }
   &--inlin-block {
     display: inline-block;
   }
+}
+:host ::ng-deep .buttons {
+  margin: 2px;
+  padding: 2px;
+  max-width: 90vw;
+  border: 2px solid var(--main-dark-color);
+}
+
+.header {
+  padding: 0.5rem;
+  border-bottom: 0.1rem solid var(--main-super-dark-color);
+}
+.header__nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header__others {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  font-size: 24px;
+}
+.header__others-1 {
+  margin: 0 0.2rem;
+}
+.header__icon {
+  font-size: 1em;
+  color: var(--main-color);
+}
+
+.study-content {
+  padding: 1rem;
 }

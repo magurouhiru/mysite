@@ -1,26 +1,19 @@
-<div class="min-h-screen min-w-screen flex flex-col justify-between">
-  <div class="grow flex">
-    <div class="w-screen">
+<main>
+  <div class="content-wrap">
+    <div class="content">
       <router-outlet />
     </div>
   </div>
-  <footer class="w-full bg-gray-600 no-underline decoration-white">
-    <div class="text-white p-3">
-      <div>
-        <a [routerLink]="'/'">
-          <div class="pi pi-home">home</div>
-        </a>
-      </div>
-      <div>
-        <a [routerLink]="'/article'">
-          <div class="pi pi-pen-to-square">article</div>
-        </a>
-      </div>
-      <div>
-        <a [routerLink]="'/study'">
-          <div class="pi pi-graduation-cap">study</div>
-        </a>
-      </div>
-    </div>
+  <footer>
+    <ul>
+      @for (content of Object.values(contents); track content.label) {
+        <li>
+          <a [routerLink]="content.link"
+            ><span [class]="content.icon" style="margin-right: 0.15rem"></span
+            >{{ content.label }}</a
+          >
+        </li>
+      }
+    </ul>
   </footer>
-</div>
+</main>
