@@ -3,6 +3,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { TreeTableModule } from 'primeng/treetable';
 
+import { changeStyle } from '../shared/change-style';
+
 @Component({
   selector: 'app-study-base',
   standalone: true,
@@ -10,4 +12,8 @@ import { TreeTableModule } from 'primeng/treetable';
   templateUrl: './study-base.component.html',
   styleUrl: './study-base.component.scss',
 })
-export class StudyBaseComponent {}
+export class StudyBaseComponent {
+  constructor() {
+    changeStyle();
+  }
+}

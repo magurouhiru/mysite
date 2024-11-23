@@ -34,7 +34,16 @@
                 "input": "article"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              {
+                "input":"src/styles.scss"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-blue/theme.css",
+                "bundleName": "lara-light-blue"
+              }
+            ],
             "scripts": []
           },
           "configurations": {
