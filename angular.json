@@ -34,7 +34,31 @@
                 "input": "article"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              {
+                "input":"src/styles.scss"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/no-theme/theme.css",
+                "bundleName": "no-theme"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-blue/theme.css",
+                "bundleName": "lara-light-blue"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-purple/theme.css",
+                "bundleName": "lara-light-purple"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-green/theme.css",
+                "bundleName": "lara-light-green"
+              }
+            ],
             "scripts": []
           },
           "configurations": {

@@ -19,7 +19,7 @@ export class ArticleListComponent {
   readonly articleIndex$ = this.#articleService.getArticleIdList();
 
   readonly articles$ = this.articleIndex$.pipe(
-    map((index) => index.slice(-16).reverse()),
+    map((index) => index.slice(-20).reverse()),
     switchMap((index) =>
       combineLatest(
         index.map((articleId) => this.#articleService.getArticle(articleId)),

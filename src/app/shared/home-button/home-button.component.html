@@ -1,0 +1,9 @@
+@if (flexTheme()) {
+  <button [routerLink]="content().link" class="flex-theme">
+    <span [class]="content().icon + ' icon'"></span>{{ content().label }}
+  </button>
+} @else {
+  <button [routerLink]="content().link" [style]="styleButton()">
+    <span [class]="content().icon + ' icon'"></span>{{ content().label }}
+  </button>
+}

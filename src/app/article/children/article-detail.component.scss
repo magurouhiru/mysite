@@ -4,7 +4,7 @@
 :host ::ng-deep pre {
   overflow-x: auto;
   color: white;
-  background-color: #2e1065;
+  background-color: var(--main-super-dark-color);
   padding: 12px;
   font-family: "JetBrains Mono";
   border-radius: 6px;
@@ -14,15 +14,15 @@
 }
 :host ::ng-deep table {
   border-collapse: collapse;
-  border: 2px solid #2e1065;
+  border: 2px solid var(--main-super-dark-color);
 }
 
 :host ::ng-deep th {
-  border: 1px solid #2e1065;
+  border: 1px solid var(--main-super-dark-color);
   padding: 6px;
 }
 :host ::ng-deep td {
-  border: 1px solid #2e1065;
+  border: 1px solid var(--main-super-dark-color);
   padding: 6px;
 }
 
@@ -30,6 +30,6 @@
   &__meta {
     border-width: 0 0 1px 0;
     border-style: solid;
-    border-color: #a78bfa;
+    border-color: var(--main-light-color);
   }
 }

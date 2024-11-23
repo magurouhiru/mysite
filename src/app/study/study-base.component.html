@@ -1,25 +1,29 @@
 <div class="bg">
-  <header class="header header--study">
+  <header class="header">
     <nav class="header__nav">
-      <a class="header__a" [routerLink]="'/study'">
-        <div class="header__home header__home--study">
-          <span
-            class="pi pi-graduation-cap header__icon header__icon--home"
-          ></span>
-          <span>study</span>
+      <div class="header__home-button">
+        <app-home-button [contentLabel]="'study'"></app-home-button>
+      </div>
+      <div class="header__others">
+        <div class="header__others-1">
+          <app-theme-picker
+            [defaultTheme]="'lara_light_green'"
+          ></app-theme-picker>
         </div>
-      </a>
-      <div class="header__icons">
-        <a href="https://github.com/magurouhiru/mysite">
-          <div class="pi pi-github header__icon header__icon--study"></div>
-        </a>
-        <a href="https://twitter.com/magurouhiru7">
-          <div class="pi pi-twitter header__icon header__icon--study"></div>
-        </a>
+        <div class="header__others-1">
+          <a href="https://github.com/magurouhiru/mysite">
+            <div class="pi pi-github header__icon"></div>
+          </a>
+        </div>
+        <div class="header__others-1">
+          <a href="https://twitter.com/magurouhiru7">
+            <div class="pi pi-twitter header__icon"></div>
+          </a>
+        </div>
       </div>
     </nav>
   </header>
-  <div class="p-3">
+  <div class="study-content">
     <router-outlet />
   </div>
 </div>

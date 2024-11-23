@@ -1,40 +1,36 @@
-<div class="bg-gray-100 min-h-full min-w-full p-3">
+<div class="main">
   <h1>mysite へようこそ</h1>
   <h2>コンテンツはこちら</h2>
-  <div class="flex justify-around gap-6">
-    <div class="flex-1">
-      <a class="no-underline" [routerLink]="'/article'">
-        <p-card styleClass="pt-3 basis-1/2">
+  <div class="content-wrap">
+    <div class="content">
+      <a [routerLink]="'/article'">
+        <p-card styleClass="card">
           <ng-template pTemplate="header">
-            <div class="header__home--home">
-              <div class="header__home header__home--article">
-                <span
-                  class="pi pi-pen-to-square header__icon header__icon--home"
-                >
-                </span>
-                <span>article</span>
-              </div>
+            <div class="home-button">
+              <app-home-button
+                [contentLabel]="'article'"
+                [flexTheme]="false"
+              ></app-home-button>
             </div>
           </ng-template>
-          私がこれまでに書いた記事が掲載されています。
+          <p class="message">私がこれまでに書いた記事が掲載されています。</p>
         </p-card>
       </a>
     </div>
-    <div class="flex-1">
-      <a class="no-underline" [routerLink]="'/study'">
-        <p-card styleClass="pt-3">
+    <div class="content">
+      <a [routerLink]="'/study'">
+        <p-card styleClass="card">
           <ng-template pTemplate="header">
-            <div class="header__home--home">
-              <div class="header__home header__home--study">
-                <span
-                  class="pi pi-graduation-cap header__icon header__icon--home"
-                >
-                </span>
-                <span>study</span>
-              </div>
+            <div class="home-button">
+              <app-home-button
+                [contentLabel]="'study'"
+                [flexTheme]="false"
+              ></app-home-button>
             </div>
           </ng-template>
-          私がこれまで作成したHTML, CSS 等のデモとメモが掲載されています。
+          <p class="message">
+            私がこれまで作成したHTML, CSS 等のデモとメモが掲載されています。
+          </p>
         </p-card>
       </a>
     </div>
