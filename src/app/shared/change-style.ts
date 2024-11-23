@@ -10,7 +10,10 @@ export interface Theme {
   };
 }
 
-export type ThemeName = 'lara_light_blue' | 'lara_light_green';
+export type ThemeName =
+  | 'lara_light_blue'
+  | 'lara_light_green'
+  | 'lara_light_purple';
 
 export const Themes: Record<ThemeName, Theme> = {
   lara_light_blue: {
@@ -24,6 +27,13 @@ export const Themes: Record<ThemeName, Theme> = {
     label: 'lara-light-green',
     colors: {
       primary_color: '#10b981',
+      primary_color_text: '#ffffff',
+    },
+  },
+  lara_light_purple: {
+    label: 'lara-light-purple',
+    colors: {
+      primary_color: '#8B5CF6',
       primary_color_text: '#ffffff',
     },
   },

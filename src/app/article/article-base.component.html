@@ -1,27 +1,31 @@
 <div class="bg">
-  <header class="header header--article">
+  <header class="header">
     <nav class="header__nav">
-      <a class="header__a" [routerLink]="'/article'">
-        <div class="header__home header__home--article">
-          <span
-            class="pi pi-pen-to-square header__icon header__icon--home"
-          ></span>
-          <span>article</span>
-        </div>
-      </a>
+      <div class="header__home-button">
+        <app-home-button [contentLabel]="'article'"></app-home-button>
+      </div>
       <p-button styleClass="header__search" (onClick)="showDialog()">
         <div class="header__search-text-wrap">
-          <span class="pi pi-search header__search-text"></span>
+          <span class="pi pi-search header__search-icon"></span>
           <span>検索</span>
         </div>
       </p-button>
-      <div class="header__icons">
-        <a href="https://github.com/magurouhiru/mysite">
-          <div class="pi pi-github header__icon header__icon--article"></div>
-        </a>
-        <a href="https://twitter.com/magurouhiru7">
-          <div class="pi pi-twitter header__icon header__icon--article"></div>
-        </a>
+      <div class="header__others">
+        <div class="header__others-1">
+          <app-theme-picker
+            [defaultTheme]="'lara_light_purple'"
+          ></app-theme-picker>
+        </div>
+        <div class="header__others-1">
+          <a href="https://github.com/magurouhiru/mysite">
+            <div class="pi pi-github header__icon"></div>
+          </a>
+        </div>
+        <div class="header__others-1">
+          <a href="https://twitter.com/magurouhiru7">
+            <div class="pi pi-twitter header__icon"></div>
+          </a>
+        </div>
       </div>
     </nav>
   </header>

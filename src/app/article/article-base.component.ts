@@ -13,6 +13,9 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MarkdownComponent } from 'ngx-markdown';
 
+import { HomeButtonComponent } from '../shared/home-button/home-button.component';
+import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
+
 @Component({
   selector: 'app-article-base',
   standalone: true,
@@ -27,6 +30,8 @@ import { MarkdownComponent } from 'ngx-markdown';
     AutoFocusModule,
     FormsModule,
     RouterLink,
+    HomeButtonComponent,
+    ThemePickerComponent,
   ],
   templateUrl: './article-base.component.html',
   styleUrl: './article-base.component.scss',

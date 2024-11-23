@@ -1,6 +1,6 @@
 @if (articles$ | async; as articles) {
   @for (article of articles; track article) {
-    <div class="mb-3">
+    <div class="wrap">
       <a class="item__a" [routerLink]="'/article/' + article.meta.id">
         <div>
           <p-card [header]="article.title">

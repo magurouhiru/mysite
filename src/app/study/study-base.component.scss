@@ -3,7 +3,7 @@
     --main-color: var(--primary-color);
     --main-light-color: color-mix(in srgb, var(--main-color), white);
     --main-dark-color: color-mix(in srgb, var(--main-color) 95%, black);
-    --main-super-dark-color: color-mix(in srgb, var(--main-color) 90%, black);
+    --main-super-dark-color: color-mix(in srgb, var(--main-color), black);
   }
 }
 :host ::ng-deep .playfield {
@@ -67,7 +67,7 @@
 
 .header {
   padding: 0.5rem;
-  border-bottom: 0.1rem solid var(--main-super-dark-color);
+  border-bottom: 0.1rem solid var(--main-dark-color);
 }
 .header__nav {
   display: flex;

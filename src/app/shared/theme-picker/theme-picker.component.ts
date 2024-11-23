@@ -1,10 +1,10 @@
-import { Component, effect, input } from '@angular/core';
+import { Component, effect, input, OnDestroy } from '@angular/core';
 
 import { MenuItem, MenuItemCommandEvent } from 'primeng/api';
 import { Button } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
 
-import { changeStyle, Themes } from '../change-style';
+import { changeStyle, ThemeName, Themes } from '../change-style';
 
 @Component({
   selector: 'app-theme-picker',
@@ -13,13 +13,19 @@ import { changeStyle, Themes } from '../change-style';
   templateUrl: './theme-picker.component.html',
   styleUrl: './theme-picker.component.scss',
 })
-export class ThemePickerComponent {
+export class ThemePickerComponent implements OnDestroy {
   themes: MenuItem[] = [
     {
       label: 'Select Theme',
       items: [
         {
           label: Themes.lara_light_blue.label,
+          command(event: MenuItemCommandEvent) {
+            changeStyle(event.item?.label);
+          },
+        },
+        {
+          label: Themes.lara_light_purple.label,
           command(event: MenuItemCommandEvent) {
             changeStyle(event.item?.label);
           },
@@ -33,10 +39,13 @@ export class ThemePickerComponent {
       ],
     },
   ];
-  defaultTheme = input.required<string>();
+  defaultTheme = input.required<ThemeName>();
   constructor() {
     effect(() => {
-      changeStyle(this.defaultTheme());
+      changeStyle(Themes[this.defaultTheme()].label);
     });
+  }
+  ngOnDestroy() {
+    changeStyle(Themes.lara_light_blue.label);
   }
 }

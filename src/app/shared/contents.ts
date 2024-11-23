@@ -16,7 +16,7 @@ export const Contents: Record<
     label: 'article',
     icon: 'pi pi-pen-to-square',
     link: '/article',
-    theme: Themes.lara_light_blue,
+    theme: Themes.lara_light_purple,
   },
   study: {
     label: 'study',

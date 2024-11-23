@@ -20,9 +20,11 @@ a {
 }
 
 :host ::ng-deep .card {
-  padding: 0.5rem;
 }
 
 .message {
-  margin: 0.5rem 0;
+}
+
+.home-button {
+  padding: 0.5rem;
 }
