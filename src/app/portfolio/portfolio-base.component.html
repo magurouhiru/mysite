@@ -1,2 +1,7 @@
-<p>portfolio-base works!</p>
-<router-outlet></router-outlet>
+<app-theme-picker hidden [defaultTheme]="'lara_light_amber'"></app-theme-picker>
+<div class="portfolio-wrapper">
+  <div class="portfolio-content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="portfolio-end">ポートフォリオはここまでです。</div>
+</div>
