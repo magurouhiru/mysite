@@ -36,6 +36,12 @@ export class ThemePickerComponent implements OnDestroy {
             changeStyle(event.item?.label);
           },
         },
+        {
+          label: Themes.lara_light_amber.label,
+          command(event: MenuItemCommandEvent) {
+            changeStyle(event.item?.label);
+          },
+        },
       ],
     },
   ];

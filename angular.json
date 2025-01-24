@@ -57,6 +57,11 @@
                 "inject": false,
                 "input": "src/themes/lara-light-green/theme.css",
                 "bundleName": "lara-light-green"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-amber/theme.css",
+                "bundleName": "lara-light-amber"
               }
             ],
             "scripts": []

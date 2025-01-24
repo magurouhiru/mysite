@@ -34,5 +34,22 @@
         </p-card>
       </a>
     </div>
+    <div class="content">
+      <a [routerLink]="'/portfolio'">
+        <p-card styleClass="card">
+          <ng-template pTemplate="header">
+            <div class="home-button">
+              <app-home-button
+                [contentLabel]="'portfolio'"
+                [flexTheme]="false"
+              ></app-home-button>
+            </div>
+          </ng-template>
+          <p class="message">
+            私がこれまで作成したポートフォリオが掲載されています。
+          </p>
+        </p-card>
+      </a>
+    </div>
   </div>
 </div>
