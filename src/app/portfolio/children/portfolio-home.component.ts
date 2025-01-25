@@ -21,7 +21,7 @@ export class PortfolioHomeComponent {
     {
       label:
         'Codejump:【HTML/CSS コーディング練習】中級編：ブログサイト／2カラム',
-      thumbnail: '/portfolio/code-jump/blog-menu/thumbnail.png',
+      thumbnail: 'portfolio/code-jump/blog-menu/thumbnail.png',
       url: 'https://code-jump.com/blog-menu/',
       link: '/portfolio/code-jump/blog-menu/',
       detail: '',
