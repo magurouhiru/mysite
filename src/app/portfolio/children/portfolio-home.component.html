@@ -1,0 +1,25 @@
+<div class="main">
+  <div class="wrapper">
+    @for (card of cards; track card.link) {
+      <article class="card">
+        <label>
+          <input type="checkbox" hidden />
+          <div class="card__thumbnail-wrapper">
+            <img [ngSrc]="card.thumbnail" fill alt="サムネイル" priority />
+          </div>
+        </label>
+        <div class="card__meta">
+          <a [routerLink]="card.link">成果物</a>
+          <h3>提供元情報</h3>
+          <a href="{{ card.url }}">
+            <p>{{ card.label }}</p>
+          </a>
+          <div class="card__meta-specification">
+            <h3>仕様</h3>
+            <p [innerHTML]="card.specification"></p>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</div>

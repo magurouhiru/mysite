@@ -1,0 +1,9 @@
+<app-theme-picker hidden [defaultTheme]="'lara_light_amber'"></app-theme-picker>
+<div class="portfolio-wrapper">
+  <div class="portfolio-content">
+    <router-outlet></router-outlet>
+  </div>
+  @if (displayEnd()) {
+    <div class="portfolio-end">ポートフォリオはここまでです。</div>
+  }
+</div>

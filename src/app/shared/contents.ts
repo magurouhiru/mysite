@@ -1,6 +1,6 @@
 import { Theme, Themes } from './change-style';
 
-export type ContentName = 'home' | 'article' | 'study';
+export type ContentName = 'home' | 'article' | 'study' | 'portfolio';
 
 export const Contents: Record<
   ContentName,
@@ -23,5 +23,11 @@ export const Contents: Record<
     icon: 'pi pi-graduation-cap',
     link: '/study',
     theme: Themes.lara_light_green,
+  },
+  portfolio: {
+    label: 'portfolio',
+    icon: 'pi pi-briefcase',
+    link: '/portfolio',
+    theme: Themes.lara_light_amber,
   },
 };

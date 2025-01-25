@@ -57,6 +57,11 @@
                 "inject": false,
                 "input": "src/themes/lara-light-green/theme.css",
                 "bundleName": "lara-light-green"
+              },
+              {
+                "inject": false,
+                "input": "src/themes/lara-light-amber/theme.css",
+                "bundleName": "lara-light-amber"
               }
             ],
             "scripts": []
@@ -71,8 +76,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "30kB",
-                  "maximumError": "40kB"
+                  "maximumWarning": "300kB",
+                  "maximumError": "400kB"
                 }
               ],
               "outputHashing": "all"
