@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
+import { concat, filter, map, of, switchMap } from 'rxjs';
 
 import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
 
@@ -10,4 +17,18 @@ import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.compon
   templateUrl: './portfolio-base.component.html',
   styleUrl: './portfolio-base.component.scss',
 })
-export class PortfolioBaseComponent {}
+export class PortfolioBaseComponent {
+  readonly route = inject(ActivatedRoute);
+  readonly router = inject(Router);
+  readonly trigger = concat(
+    of({}),
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)),
+  );
+  readonly displayEnd = toSignal(
+    this.trigger.pipe(
+      switchMap(() => this.route.firstChild?.url ?? of([])),
+      map((url) => url.length > 0),
+    ),
+    { initialValue: false },
+  );
+}

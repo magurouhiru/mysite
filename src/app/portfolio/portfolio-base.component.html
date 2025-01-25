@@ -3,5 +3,7 @@
   <div class="portfolio-content">
     <router-outlet></router-outlet>
   </div>
-  <div class="portfolio-end">ポートフォリオはここまでです。</div>
+  @if (displayEnd()) {
+    <div class="portfolio-end">ポートフォリオはここまでです。</div>
+  }
 </div>

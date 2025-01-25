@@ -8,7 +8,38 @@
   width: 300px;
   background-color: white;
   border-radius: 10px;
-  & p {
-    margin: 0;
+  padding: 10px;
+  transition: 0.2s;
+  & .card__thumbnail-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    & img {
+      object-fit: cover; /* 画像をトリミングしてフィット */
+      object-position: top; /* 画像を上部に配置 */
+    }
+  }
+  & .card__meta {
+    display: none;
+    & .card__meta-specification {
+    }
+  }
+}
+.card:has(input:checked) {
+  height: 800px;
+  width: 800px;
+  overflow-y: scroll;
+  position: absolute;
+  inset: 10px;
+  & .card__thumbnail-wrapper {
+    height: 50%;
+    width: 100%;
+  }
+  & .card__meta {
+    display: block;
+    height: 50%;
+    width: 100%;
+    & .card__meta-specification {
+    }
   }
 }
