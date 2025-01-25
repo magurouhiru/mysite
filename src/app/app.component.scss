@@ -29,17 +29,13 @@ footer {
 }
 
 main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100vh;
+  display: grid;
+  grid-template:
+    "content-wrap" 1fr
+    "footer" auto
+    / 1fr;
 }
 
 .content-wrap {
-  flex-grow: 1;
-  display: flex;
-}
-
-.content {
-  width: 100%;
 }
