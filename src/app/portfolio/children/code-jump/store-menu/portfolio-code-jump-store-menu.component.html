@@ -1,0 +1,92 @@
+@let base = "portfolio/code-jump/store-menu/";
+<div class="body">
+  <header>
+    <nav>
+      <ul class="nav__items">
+        <li><a [routerLink]="[]" fragment="menu">MENU</a></li>
+        <li><a [routerLink]="[]" fragment="about">ABOUT</a></li>
+        <li><a [routerLink]="[]" fragment="location">LOCATION</a></li>
+      </ul>
+    </nav>
+    <div class="title title--logo">
+      <h1><img [ngSrc]="base + 'logo.svg'" fill alt="ロゴ" /></h1>
+    </div>
+  </header>
+  <!--   flex でpcは2カラム、spは1カラムにする。-->
+  <section class="menu" id="menu">
+    <div class="title title--menu">
+      <h2>MENU</h2>
+    </div>
+    <div class="contents-wrapper">
+      <div class="contents contents--menu">
+        <div class="content content--menu content--menu-coffee">
+          <h3>COFFEE</h3>
+          <table>
+            @for (item of menuItems.coffee; track item.id) {
+              <tr>
+                <td class="content--menu__item--name">{{ item.name }}</td>
+                <td class="content--menu__item--price">￥{{ item.price }}</td>
+              </tr>
+            }
+          </table>
+        </div>
+        <div class="content content--menu content--menu-food">
+          <h3>FOOD</h3>
+          <table>
+            @for (item of menuItems.food; track item.id) {
+              <tr>
+                <td class="content--menu__item--name">{{ item.name }}</td>
+                <td class="content--menu__item--price">￥{{ item.price }}</td>
+              </tr>
+            }
+          </table>
+        </div>
+        <div class="content content--menu content--menu-other">
+          <h3>OTHER</h3>
+          <table>
+            @for (item of menuItems.other; track item.id) {
+              <tr>
+                <td class="content--menu__item--name">{{ item.name }}</td>
+                <td class="content--menu__item--price">￥{{ item.price }}</td>
+              </tr>
+            }
+          </table>
+        </div>
+        <div class="border"></div>
+      </div>
+    </div>
+  </section>
+  <section class="about" id="about">
+    <div class="title title--about">
+      <h2>ABOUT</h2>
+    </div>
+    <div class="contents-wrapper">
+      <div class="contents">
+        <div class="content content--about">
+          <h3>COFFEE</h3>
+          <div class="content__body content__body--about">
+            <!-- 大事な文章？ハードコードした方がよいか？ -->
+            @for (item of aboutItems; track item.id) {
+              <p>{{ item.text }}</p>
+            }
+          </div>
+          <button class="read-more">Read More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="location" id="location">
+    <div class="title title--location">
+      <h2>LOCATION</h2>
+    </div>
+    <div class="contents-wrapper">
+      <div class="contents">
+        <div class="content content--location">
+          <h3>OUR STORE</h3>
+          <div class="content__body--location"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>© COFFEE</footer>
+</div>
