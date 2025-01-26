@@ -104,6 +104,7 @@ export class PortfolioHomeComponent {
   ただし、documentを直接操作して遅延ロードさせる方法はあるみたい？
   そもそも高いフォントが指定に含まれている。
   一旦無料のやつ雰囲気が近いやつで代替する。
+  →前回と同じNoto Sansを使う。
 繰り返し要素は@forで書く。
 →menuは@forで書く。
 `,
