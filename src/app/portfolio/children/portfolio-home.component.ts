@@ -15,8 +15,9 @@ export class PortfolioHomeComponent {
     thumbnail: string;
     url: string;
     link: string;
-    detail: string;
     specification: string;
+    plan: string;
+    reflection: string;
   }[] = [
     {
       label:
@@ -24,7 +25,6 @@ export class PortfolioHomeComponent {
       thumbnail: 'portfolio/code-jump/blog-menu/thumbnail.png',
       url: 'https://code-jump.com/blog-menu/',
       link: '/portfolio/code-jump/blog-menu/',
-      detail: '',
       specification:
         '<dl>\n' +
         '        <dt>フォント</dt>\n' +
@@ -53,6 +53,61 @@ export class PortfolioHomeComponent {
         '  About、Menu、Twitterの3つのブロックを横並びに配置します。<br>\n' +
         '  Twitterエリアには、Twitterの埋め込みを行います。\n' +
         '</dd>      </dl>',
+      plan: `なし`,
+      reflection: `
+デザインカンプをよく見て、レイアウトと見出しtagを決めてから作業する。
+画像とフォントは遅延ロードするやり方を調べてから作業する。
+繰り返し要素は@forを使用する。
+`,
+    },
+    {
+      label:
+        'Codejump:【HTML/CSS コーディング練習】中級編：ストアサイト（カフェ）／パララックス',
+      thumbnail: 'portfolio/code-jump/store-menu/thumbnail.png',
+      url: 'https://code-jump.com/store-menu/',
+      link: '/portfolio/code-jump/store-menu/',
+      specification: `<dl>
+        <dt>フォント</dt>
+<dd>下記の順で指定します。<br>Helvetica Neue、Arial、Hiragino Sans、Hiragino Kaku Gothic ProN、Meiryo、sans-serif</dd>
+<dt>コンテンツ幅</dt>
+<dd>
+  コンテンツの最大幅は1000pxで横のパディングは16pxです。<br>
+  メインビジュアルだけ全幅にします。
+</dd>
+<dt>メインビジュアル</dt>
+<dd>
+  全画面表示です。<br>高さはブラウザの高さにあわせて可変です。<br>
+  右上にグローバルナビゲーションと中央にロゴを配置します。<br>
+  メニューとロゴには少し影ができるようにシャドウをかけています。
+</dd>
+<dt>背景画像</dt>
+<dd>MENU、ABOUT、LOCATIONの背景画像は、PC時のみ固定で表示されるように実装します。</dd>
+<dt>ABOUT</dt>
+<dd>ボタンはホバー時に枠線で囲みます。CSSだけで表現していますが、少し難しいので分からなければデモサイトを参考にしてみてください。<br>ボタンのホバーについては、沢山の種類があるのでこの機会に色々調べて試してみてください。</dd>
+<dt>LOCATION</dt>
+<dd>
+  Googleの地図を埋め込んでいます。<br>
+  埋め込んだ後に、グレー表示になるようCSSを設定します。
+</dd><dd>      </dd></dl>`,
+      plan: `
+レイアウトを考える。
+→単純にブロックを連ねる。レスポンシブが必要なMENUとABOUTはflex かcolumns を使用する。
+見出しtagは次の通り。
+→h1:coffee, h2:menu,about,location, h3:coffee,food,other,coffee,our store
+メニューを押したら対象の箇所にスクロールする方法を調べる。
+ 通常なら#を使えばよい認識だが、ハッシュ戦略を使用していてできない懸念がある。
+ ブラウザは#が複数あると、1つ目以外は無視するらしい。ただ{ anchorScrolling: 'enabled' }を設定すればいけるとか？ある程度ページができたら試す。
+ →[routerLink]="[]" fragment="menu" とやればよい。空文字だとだめ。必ず空リストを設定しなきゃ動かない。
+画像とフォントの遅延ロードを実施する。
+ 画像はngSrcを使えばよさそうな気がする。
+ フォントはAngular としては対応していなさそう。
+  ただし、documentを直接操作して遅延ロードさせる方法はあるみたい？
+  そもそも高いフォントが指定に含まれている。
+  一旦無料のやつ雰囲気が近いやつで代替する。
+繰り返し要素は@forで書く。
+→menuは@forで書く。
+`,
+      reflection: ``,
     },
   ];
 }
