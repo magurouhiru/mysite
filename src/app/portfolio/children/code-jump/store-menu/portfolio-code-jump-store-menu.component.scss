@@ -108,7 +108,7 @@ header {
   width: 100%;
   margin-bottom: 10px;
   padding: 20px;
-  background-image: url("/portfolio/code-jump/store-menu/mainvisual.jpg");
+  background-image: url("mainvisual.jpg");
   color: white;
   position: relative;
   & nav {
@@ -136,7 +136,7 @@ header {
 }
 
 .menu {
-  background-image: url("/portfolio/code-jump/store-menu/menu.jpg");
+  background-image: url("menu.jpg");
   & .title--menu {
   }
   & .contents--menu {
@@ -176,7 +176,7 @@ header {
 }
 
 .about {
-  background-image: url("/portfolio/code-jump/store-menu/about.jpg");
+  background-image: url("about.jpg");
   & .title--about {
   }
   & .content__body--about {
@@ -189,7 +189,7 @@ header {
 }
 
 .location {
-  background-image: url("/portfolio/code-jump/store-menu/location.jpg");
+  background-image: url("location.jpg");
   & .title--location {
   }
   & .content__body--location {
@@ -236,14 +236,14 @@ footer {
   .menu {
     background-image: none;
     & .title--menu {
-      background-image: url("/portfolio/code-jump/store-menu/menu.jpg");
+      background-image: url("menu.jpg");
     }
   }
 
   .about {
     background-image: none;
     & .title--about {
-      background-image: url("/portfolio/code-jump/store-menu/about.jpg");
+      background-image: url("about.jpg");
     }
     & .content__body--about {
       grid-template-columns: repeat(1, 1fr);
@@ -254,7 +254,7 @@ footer {
   .location {
     background-image: none;
     & .title--location {
-      background-image: url("/portfolio/code-jump/store-menu/location.jpg");
+      background-image: url("location.jpg");
     }
   }
 }
