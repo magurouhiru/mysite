@@ -21,47 +21,6 @@ export class PortfolioHomeComponent {
   }[] = [
     {
       label:
-        'Codejump:【HTML/CSS コーディング練習】中級編：ブログサイト／2カラム',
-      thumbnail: 'portfolio/code-jump/blog-menu/thumbnail.png',
-      url: 'https://code-jump.com/blog-menu/',
-      link: '/portfolio/code-jump/blog-menu/',
-      specification:
-        '<dl>\n' +
-        '        <dt>フォント</dt>\n' +
-        '<dd>Google Fonts の「Noto Sans」と「Noto Sans JP」を使用します。</dd>\n' +
-        '<dt>コンテンツ幅</dt>\n' +
-        '<dd>\n' +
-        '  コンテンツの最大幅は1200pxで横のパディングは16pxです。<br>\n' +
-        '  グローバルナビゲーションとフッター背景だけ全幅にします。\n' +
-        '</dd>\n' +
-        '<dt>ヘッダー</dt>\n' +
-        '<dd>\n' +
-        '  PC、スマホ時ともに固定します。<br>\n' +
-        '  ロゴの下に全幅のグローバルナビゲーションを配置します。<br>\n' +
-        '  グローバルナビゲーションのメニューは1200pxの中におさめます。\n' +
-        '</dd>\n' +
-        '<dt>ピックアップエリア</dt>\n' +
-        '<dd>ピックアップ記事3つを横並びに配置します。<br>リンクはホバー時に下線が消えます。</dd>\n' +
-        '<dt>メインエリア、サイドバー</dt>\n' +
-        '<dd>\n' +
-        '  メインエリアとサイドバーを横並びに配置します。<br>\n' +
-        '  それぞれのコンテンツの横幅は、レスポンシブ時に可変になるところがポイントです。<br>\n' +
-        '  メインエリア、サイドバーともに記事の抜粋が多いので、articleタグを使う練習をしてみましょう。\n' +
-        '</dd>\n' +
-        '<dt>フッター</dt>\n' +
-        '<dd>\n' +
-        '  About、Menu、Twitterの3つのブロックを横並びに配置します。<br>\n' +
-        '  Twitterエリアには、Twitterの埋め込みを行います。\n' +
-        '</dd>      </dl>',
-      plan: `なし`,
-      reflection: `
-デザインカンプをよく見て、レイアウトと見出しtagを決めてから作業する。
-画像とフォントは遅延ロードするやり方を調べてから作業する。
-繰り返し要素は@forを使用する。
-`,
-    },
-    {
-      label:
         'Codejump:【HTML/CSS コーディング練習】中級編：ストアサイト（カフェ）／パララックス',
       thumbnail: 'portfolio/code-jump/store-menu/thumbnail.png',
       url: 'https://code-jump.com/store-menu/',
@@ -109,6 +68,47 @@ export class PortfolioHomeComponent {
 →menuは@forで書く。
 `,
       reflection: ``,
+    },
+    {
+      label:
+        'Codejump:【HTML/CSS コーディング練習】中級編：ブログサイト／2カラム',
+      thumbnail: 'portfolio/code-jump/blog-menu/thumbnail.png',
+      url: 'https://code-jump.com/blog-menu/',
+      link: '/portfolio/code-jump/blog-menu/',
+      specification:
+        '<dl>\n' +
+        '        <dt>フォント</dt>\n' +
+        '<dd>Google Fonts の「Noto Sans」と「Noto Sans JP」を使用します。</dd>\n' +
+        '<dt>コンテンツ幅</dt>\n' +
+        '<dd>\n' +
+        '  コンテンツの最大幅は1200pxで横のパディングは16pxです。<br>\n' +
+        '  グローバルナビゲーションとフッター背景だけ全幅にします。\n' +
+        '</dd>\n' +
+        '<dt>ヘッダー</dt>\n' +
+        '<dd>\n' +
+        '  PC、スマホ時ともに固定します。<br>\n' +
+        '  ロゴの下に全幅のグローバルナビゲーションを配置します。<br>\n' +
+        '  グローバルナビゲーションのメニューは1200pxの中におさめます。\n' +
+        '</dd>\n' +
+        '<dt>ピックアップエリア</dt>\n' +
+        '<dd>ピックアップ記事3つを横並びに配置します。<br>リンクはホバー時に下線が消えます。</dd>\n' +
+        '<dt>メインエリア、サイドバー</dt>\n' +
+        '<dd>\n' +
+        '  メインエリアとサイドバーを横並びに配置します。<br>\n' +
+        '  それぞれのコンテンツの横幅は、レスポンシブ時に可変になるところがポイントです。<br>\n' +
+        '  メインエリア、サイドバーともに記事の抜粋が多いので、articleタグを使う練習をしてみましょう。\n' +
+        '</dd>\n' +
+        '<dt>フッター</dt>\n' +
+        '<dd>\n' +
+        '  About、Menu、Twitterの3つのブロックを横並びに配置します。<br>\n' +
+        '  Twitterエリアには、Twitterの埋め込みを行います。\n' +
+        '</dd>      </dl>',
+      plan: `なし`,
+      reflection: `
+デザインカンプをよく見て、レイアウトと見出しtagを決めてから作業する。
+画像とフォントは遅延ロードするやり方を調べてから作業する。
+繰り返し要素は@forを使用する。
+`,
     },
   ];
 }
