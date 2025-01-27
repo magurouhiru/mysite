@@ -46,14 +46,13 @@
     width: 100%;
     position: relative;
     & img {
+      border-radius: 5px;
       object-fit: cover; /* 画像をトリミングしてフィット */
       object-position: top; /* 画像を上部に配置 */
     }
   }
   & .card__meta {
     display: none;
-    & .card__meta-specification {
-    }
   }
 }
 
@@ -66,16 +65,12 @@
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  margin-inside: auto;
   & .card__thumbnail-wrapper {
     height: 50%;
     width: 100%;
   }
   & .card__meta {
     display: block;
-    height: 50%;
     width: 100%;
-    & .card__meta-specification {
-    }
   }
 }
