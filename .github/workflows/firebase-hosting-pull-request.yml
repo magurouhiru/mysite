@@ -18,6 +18,8 @@ jobs:
       - name: Update submodules
         id: update
         run: git submodule update --remote --recursive
+      - name: write env
+        run: echo "${{ secrets.FIREBASECONFIG }}" >> src/environments/environment.ts
       - run: npm ci
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
