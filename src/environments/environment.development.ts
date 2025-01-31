@@ -2,12 +2,10 @@ export const environment = {
   articleRootUrl: 'http://localhost:4200/',
 };
 
-export const firebaseConfig = {
-  apiKey: 'AIzaSyBc_6UfsWXcK9cCFAqn4oXHq3q3avnKtV4',
-  authDomain: 'mysite-firebase-40a5f.firebaseapp.com',
-  projectId: 'mysite-firebase-40a5f',
-  storageBucket: 'mysite-firebase-40a5f.firebasestorage.app',
-  messagingSenderId: '47317749756',
-  appId: '1:47317749756:web:021d7c32ac9e85bbc8ec79',
-  measurementId: 'G-PDTXEBBPR3',
-};
+export const FIREBASECONFIG_APIKEY="FIREBASECONFIG_APIKEY"
+export const FIREBASECONFIG_AUTHDOMAIN="FIREBASECONFIG_AUTHDOMAIN"
+export const FIREBASECONFIG_PROJECTID="FIREBASECONFIG_PROJECTID"
+export const FIREBASECONFIG_STORAGEBUCKET="FIREBASECONFIG_STORAGEBUCKET"
+export const FIREBASECONFIG_MESSAGINGSENDERID="FIREBASECONFIG_MESSAGINGSENDERID"
+export const FIREBASECONFIG_APPID="FIREBASECONFIG_APPID"
+export const FIREBASECONFIG_MEASUREMENTID="FIREBASECONFIG_MEASUREMENTID"

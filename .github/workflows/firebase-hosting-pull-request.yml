@@ -19,6 +19,7 @@ jobs:
         id: update
         run: git submodule update --remote --recursive
       - run: npm ci
+      - run: npm run tool-create-environment.ts
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
