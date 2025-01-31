@@ -16,5 +16,5 @@ export class AppComponent {
   title = 'mysite';
   contents = Contents;
   protected readonly Object = Object;
-  _analytics = inject(Analytics);
+  a = inject(Analytics);
 }
