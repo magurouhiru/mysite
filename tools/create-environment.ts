@@ -23,5 +23,5 @@ const strs = envs.map((env) => format(env))
 c.push(...strs)
 
 import {writeFile} from 'node:fs/promises'
-console.log(c.join("\n"))
+
 writeFile("src/environments/environment.ts",c.join("\n"));

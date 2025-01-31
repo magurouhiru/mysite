@@ -30,7 +30,6 @@ jobs:
           FIREBASECONFIG_MESSAGINGSENDERID: ${{ secrets.FIREBASECONFIG_MESSAGINGSENDERID }}
           FIREBASECONFIG_PROJECTID: ${{ secrets.FIREBASECONFIG_PROJECTID }}
           FIREBASECONFIG_STORAGEBUCKET: ${{ secrets.FIREBASECONFIG_STORAGEBUCKET }}
-      - run: cat src/environments/environment.ts
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
