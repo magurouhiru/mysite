@@ -13,7 +13,8 @@
     "prettier": "prettier -c src/",
     "prettier_fix": "prettier --write src/",
     "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts",
-    "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts"
+    "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts",
+    "tool-create-environment.ts": "tsx ./tools/create-environment.ts"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +22,7 @@
     "@angular/common": "^18.2.0",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
+    "@angular/fire": "^18.0.0",
     "@angular/forms": "^18.2.0",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
@@ -42,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^8.4.0",
     "angular-eslint": "18.3.0",
     "autoprefixer": "^10.4.20",
+    "dotenv": "^16.4.7",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.3",

@@ -1,3 +1,11 @@
 export const environment = {
-  articleRootUrl: 'https://magurouhiru.github.io/mysite/',
+  articleRootUrl: 'http://localhost:4200/',
 };
+
+export const FIREBASECONFIG_APIKEY = 'APIKEY';
+export const FIREBASECONFIG_AUTHDOMAIN = 'AUTHDOMAIN';
+export const FIREBASECONFIG_PROJECTID = 'PROJECTID';
+export const FIREBASECONFIG_STORAGEBUCKET = 'STORAGEBUCKET';
+export const FIREBASECONFIG_MESSAGINGSENDERID = 'MESSAGINGSENDERID';
+export const FIREBASECONFIG_APPID = 'APPID';
+export const FIREBASECONFIG_MEASUREMENTID = 'MEASUREMENTID';
