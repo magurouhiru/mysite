@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Analytics } from '@angular/fire/analytics';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { Contents } from './shared/contents';
-import { PrimeTemplate } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CardModule, PrimeTemplate],
+  imports: [RouterOutlet, RouterLink, CardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -16,4 +16,5 @@ export class AppComponent {
   title = 'mysite';
   contents = Contents;
   protected readonly Object = Object;
+  _analytics = inject(Analytics);
 }
