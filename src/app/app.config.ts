@@ -14,21 +14,23 @@ import {
   FIREBASECONFIG_MEASUREMENTID,
   FIREBASECONFIG_MESSAGINGSENDERID,
   FIREBASECONFIG_PROJECTID,
-  FIREBASECONFIG_STORAGEBUCKET
+  FIREBASECONFIG_STORAGEBUCKET,
 } from '../environments/environment.development';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideFirebaseApp(() => initializeApp({
-      apiKey:FIREBASECONFIG_APIKEY,
-      authDomain:FIREBASECONFIG_AUTHDOMAIN,
-      projectId:FIREBASECONFIG_PROJECTID,
-      storageBucket: FIREBASECONFIG_STORAGEBUCKET,
-      messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,
-      appId: FIREBASECONFIG_APPID,
-      measurementId: FIREBASECONFIG_MEASUREMENTID,
-    })),
+    provideFirebaseApp(() =>
+      initializeApp({
+        apiKey: FIREBASECONFIG_APIKEY,
+        authDomain: FIREBASECONFIG_AUTHDOMAIN,
+        projectId: FIREBASECONFIG_PROJECTID,
+        storageBucket: FIREBASECONFIG_STORAGEBUCKET,
+        messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,
+        appId: FIREBASECONFIG_APPID,
+        measurementId: FIREBASECONFIG_MEASUREMENTID,
+      }),
+    ),
     provideAnalytics(() => getAnalytics()),
     provideRouter(
       routes,

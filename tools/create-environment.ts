@@ -21,7 +21,6 @@ const c = [
 ]
 const strs = envs.map((env) => format(env))
 c.push(...strs)
-console.log(c.join("\n"))
 
 import {writeFile} from 'node:fs/promises'
 
