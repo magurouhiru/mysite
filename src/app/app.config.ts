@@ -15,7 +15,7 @@ import {
   FIREBASECONFIG_MESSAGINGSENDERID,
   FIREBASECONFIG_PROJECTID,
   FIREBASECONFIG_STORAGEBUCKET,
-} from '../environments/environment.development';
+} from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
