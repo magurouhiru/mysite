@@ -7,4 +7,3 @@ Angular,html,css,RxJS色々実際に触って挙動を確認してます。
 
 https://magurouhiru.github.io/mysite/#/
 
-TODO:firebase に移行中
