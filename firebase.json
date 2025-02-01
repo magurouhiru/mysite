@@ -12,5 +12,15 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "emulators": {
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true,
+      "port": 5001
+    },
+    "singleProjectMode": true
   }
 }
