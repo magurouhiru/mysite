@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Analytics } from '@angular/fire/analytics';
+import {Analytics, ScreenTrackingService, UserTrackingService} from '@angular/fire/analytics';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { Contents } from './shared/contents';
@@ -17,4 +17,6 @@ export class AppComponent {
   contents = Contents;
   protected readonly Object = Object;
   a = inject(Analytics);
+  s = inject(ScreenTrackingService)
+  u = inject(UserTrackingService)
 }
