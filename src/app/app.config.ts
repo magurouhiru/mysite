@@ -20,6 +20,14 @@ import {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+      }),
+    ),
+    provideHttpClient(),
+    provideAnimationsAsync(),
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: FIREBASECONFIG_APIKEY,
@@ -32,13 +40,5 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideAnalytics(() => getAnalytics()),
-    provideRouter(
-      routes,
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-      }),
-    ),
-    provideHttpClient(),
-    provideAnimationsAsync(),
   ],
 };
