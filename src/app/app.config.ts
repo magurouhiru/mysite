@@ -1,6 +1,10 @@
 import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { getAnalytics, provideAnalytics } from '@angular/fire/analytics';
+import {
+  getAnalytics,
+  provideAnalytics,
+  ScreenTrackingService,
+} from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
@@ -40,5 +44,6 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideAnalytics(() => getAnalytics()),
+    ScreenTrackingService,
   ],
 };
