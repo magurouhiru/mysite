@@ -16,7 +16,6 @@ import {
   FIREBASECONFIG_PROJECTID,
   FIREBASECONFIG_STORAGEBUCKET,
 } from '../environments/environment';
-import {getAuth, provideAuth} from "@angular/fire/auth";
 
 export const appConfig: ApplicationConfig = {
   providers: [
