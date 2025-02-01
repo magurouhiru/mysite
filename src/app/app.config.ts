@@ -16,10 +16,19 @@ import {
   FIREBASECONFIG_PROJECTID,
   FIREBASECONFIG_STORAGEBUCKET,
 } from '../environments/environment';
+import {getAuth, provideAuth} from "@angular/fire/auth";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        anchorScrolling: 'enabled',
+      }),
+    ),
+    provideHttpClient(),
+    provideAnimationsAsync(),
     provideFirebaseApp(() =>
       initializeApp({
         apiKey: FIREBASECONFIG_APIKEY,
@@ -32,13 +41,5 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideAnalytics(() => getAnalytics()),
-    provideRouter(
-      routes,
-      withInMemoryScrolling({
-        anchorScrolling: 'enabled',
-      }),
-    ),
-    provideHttpClient(),
-    provideAnimationsAsync(),
   ],
 };
