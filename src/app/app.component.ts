@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { Analytics, ScreenTrackingService } from '@angular/fire/analytics';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { Contents } from './shared/contents';
@@ -11,11 +10,10 @@ import { CardModule } from 'primeng/card';
   imports: [RouterOutlet, RouterLink, CardModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [ScreenTrackingService],
+  providers: [],
 })
 export class AppComponent {
   title = 'mysite';
   contents = Contents;
   protected readonly Object = Object;
-  a = inject(Analytics);
 }
