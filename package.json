@@ -19,7 +19,7 @@
     "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts",
     "tool-create-environment:development": "tsx ./tools/create-environment.ts development",
     "tool-create-environment:production": "tsx ./tools/create-environment.ts production",
-    "firebase_emulators:start": "firebase emulators:start"
+    "firebase_emulators:start": "firebase emulators:start --import=./data --export-on-exit"
   },
   "private": true,
   "dependencies": {

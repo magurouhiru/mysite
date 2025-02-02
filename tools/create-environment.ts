@@ -22,6 +22,7 @@ switch (arg) {
     targetFile = "environment.development.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'http://localhost:4200/',`,
+      `useEmulators: true,`,
       `};`,
     ]);
     break;
@@ -29,6 +30,7 @@ switch (arg) {
     targetFile = "environment.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
+      `useEmulators: false,`,
       `};`,
     ]);
     break;
