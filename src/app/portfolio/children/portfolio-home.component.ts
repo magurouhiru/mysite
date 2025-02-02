@@ -1,6 +1,9 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { RouterLink } from '@angular/router';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-portfolio-home',
@@ -10,22 +13,37 @@ import { RouterLink } from '@angular/router';
   styleUrl: './portfolio-home.component.scss',
 })
 export class PortfolioHomeComponent {
-  readonly cards: {
-    label: string;
-    thumbnail: string;
-    url: string;
-    link: string;
-    specification: string;
-    plan: string;
-    reflection: string;
-  }[] = [
-    {
-      label:
-        'Codejump:【HTML/CSS コーディング練習】中級編：ストアサイト（カフェ）／パララックス',
-      thumbnail: 'portfolio/code-jump/store-menu/thumbnail.png',
-      url: 'https://code-jump.com/store-menu/',
-      link: '/portfolio/code-jump/store-menu/',
-      specification: `<dl>
+  readonly storage = inject(Storage);
+
+  readonly cards = toSignal(
+    forkJoin({
+      code_jump__store_menu: getDownloadURL(
+        ref(this.storage, 'portfolio/code-jump/store-menu/thumbnail.png'),
+      ),
+      code_jump__blog_menu: getDownloadURL(
+        ref(this.storage, 'portfolio/code-jump/blog-menu/thumbnail.png'),
+      ),
+    }).pipe(
+      map(
+        (
+          res,
+        ): {
+          label: string;
+          thumbnail: string;
+          url: string;
+          link: string;
+          specification: string;
+          plan: string;
+          reflection: string;
+        }[] => {
+          return [
+            {
+              label:
+                'Codejump:【HTML/CSS コーディング練習】中級編：ストアサイト（カフェ）／パララックス',
+              thumbnail: res.code_jump__store_menu,
+              url: 'https://code-jump.com/store-menu/',
+              link: '/portfolio/code-jump/store-menu/',
+              specification: `<dl>
         <dt>フォント</dt>
 <dd>下記の順で指定します。<br>Helvetica Neue、Arial、Hiragino Sans、Hiragino Kaku Gothic ProN、Meiryo、sans-serif</dd>
 <dt>コンテンツ幅</dt>
@@ -48,7 +66,7 @@ export class PortfolioHomeComponent {
   Googleの地図を埋め込んでいます。<br>
   埋め込んだ後に、グレー表示になるようCSSを設定します。
 </dd><dd>      </dd></dl>`,
-      plan: `
+              plan: `
 レイアウトを考える。
 →単純にブロックを連ねる。レスポンシブが必要なMENUとABOUTはflex かcolumns を使用する。
 見出しtagは次の通り。
@@ -67,7 +85,7 @@ export class PortfolioHomeComponent {
 繰り返し要素は@forで書く。
 →menuは@forで書く。
 `,
-      reflection: `
+              reflection: `
 ある程度は前回の反省を生かせた。
 あと、アンカースクロールを最初に対応したおかげで、開発がやりやすかった。
 これからも、縦長サイトに限らず、最初にアンカースクロールの対応を行いたい。
@@ -78,47 +96,52 @@ export class PortfolioHomeComponent {
 アンカースクロールをなめらかにする方法を調べて対応する。
 それぞれの要素の役割を意識してレイアウトを組む。
 `,
-    },
-    {
-      label:
-        'Codejump:【HTML/CSS コーディング練習】中級編：ブログサイト／2カラム',
-      thumbnail: 'portfolio/code-jump/blog-menu/thumbnail.png',
-      url: 'https://code-jump.com/blog-menu/',
-      link: '/portfolio/code-jump/blog-menu/',
-      specification:
-        '<dl>\n' +
-        '        <dt>フォント</dt>\n' +
-        '<dd>Google Fonts の「Noto Sans」と「Noto Sans JP」を使用します。</dd>\n' +
-        '<dt>コンテンツ幅</dt>\n' +
-        '<dd>\n' +
-        '  コンテンツの最大幅は1200pxで横のパディングは16pxです。<br>\n' +
-        '  グローバルナビゲーションとフッター背景だけ全幅にします。\n' +
-        '</dd>\n' +
-        '<dt>ヘッダー</dt>\n' +
-        '<dd>\n' +
-        '  PC、スマホ時ともに固定します。<br>\n' +
-        '  ロゴの下に全幅のグローバルナビゲーションを配置します。<br>\n' +
-        '  グローバルナビゲーションのメニューは1200pxの中におさめます。\n' +
-        '</dd>\n' +
-        '<dt>ピックアップエリア</dt>\n' +
-        '<dd>ピックアップ記事3つを横並びに配置します。<br>リンクはホバー時に下線が消えます。</dd>\n' +
-        '<dt>メインエリア、サイドバー</dt>\n' +
-        '<dd>\n' +
-        '  メインエリアとサイドバーを横並びに配置します。<br>\n' +
-        '  それぞれのコンテンツの横幅は、レスポンシブ時に可変になるところがポイントです。<br>\n' +
-        '  メインエリア、サイドバーともに記事の抜粋が多いので、articleタグを使う練習をしてみましょう。\n' +
-        '</dd>\n' +
-        '<dt>フッター</dt>\n' +
-        '<dd>\n' +
-        '  About、Menu、Twitterの3つのブロックを横並びに配置します。<br>\n' +
-        '  Twitterエリアには、Twitterの埋め込みを行います。\n' +
-        '</dd>      </dl>',
-      plan: `なし`,
-      reflection: `
+            },
+            {
+              label:
+                'Codejump:【HTML/CSS コーディング練習】中級編：ブログサイト／2カラム',
+              thumbnail: res.code_jump__blog_menu,
+              url: 'https://code-jump.com/blog-menu/',
+              link: '/portfolio/code-jump/blog-menu/',
+              specification:
+                '<dl>\n' +
+                '        <dt>フォント</dt>\n' +
+                '<dd>Google Fonts の「Noto Sans」と「Noto Sans JP」を使用します。</dd>\n' +
+                '<dt>コンテンツ幅</dt>\n' +
+                '<dd>\n' +
+                '  コンテンツの最大幅は1200pxで横のパディングは16pxです。<br>\n' +
+                '  グローバルナビゲーションとフッター背景だけ全幅にします。\n' +
+                '</dd>\n' +
+                '<dt>ヘッダー</dt>\n' +
+                '<dd>\n' +
+                '  PC、スマホ時ともに固定します。<br>\n' +
+                '  ロゴの下に全幅のグローバルナビゲーションを配置します。<br>\n' +
+                '  グローバルナビゲーションのメニューは1200pxの中におさめます。\n' +
+                '</dd>\n' +
+                '<dt>ピックアップエリア</dt>\n' +
+                '<dd>ピックアップ記事3つを横並びに配置します。<br>リンクはホバー時に下線が消えます。</dd>\n' +
+                '<dt>メインエリア、サイドバー</dt>\n' +
+                '<dd>\n' +
+                '  メインエリアとサイドバーを横並びに配置します。<br>\n' +
+                '  それぞれのコンテンツの横幅は、レスポンシブ時に可変になるところがポイントです。<br>\n' +
+                '  メインエリア、サイドバーともに記事の抜粋が多いので、articleタグを使う練習をしてみましょう。\n' +
+                '</dd>\n' +
+                '<dt>フッター</dt>\n' +
+                '<dd>\n' +
+                '  About、Menu、Twitterの3つのブロックを横並びに配置します。<br>\n' +
+                '  Twitterエリアには、Twitterの埋め込みを行います。\n' +
+                '</dd>      </dl>',
+              plan: `なし`,
+              reflection: `
 デザインカンプをよく見て、レイアウトと見出しtagを決めてから作業する。
 画像とフォントは遅延ロードするやり方を調べてから作業する。
 繰り返し要素は@forを使用する。
 `,
-    },
-  ];
+            },
+          ];
+        },
+      ),
+    ),
+    { initialValue: [] },
+  );
 }
