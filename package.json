@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:emulators:start": "run-p watch:env firebase_emulators:start",
+    "start:env": "run-s tool-create-environment:development start",
+    "start:emulators:start": "run-p start:env firebase_emulators:start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "watch:env": "run-s tool-create-environment:development watch",
