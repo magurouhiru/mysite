@@ -3,19 +3,20 @@ import 'dotenv/config'
 const arg = process.argv[2];
 console.log(arg)
 
-let target = "";
-const r = [];
+const targetDirs = ["src","environments"];
+let targetFile = "";
+const r:string[] = [];
 
 switch (arg) {
   case "development":
-    target = "./src/environments/environment.development.ts";
+    targetFile = "environment.development.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'http://localhost:4200/',`,
       `};`,
     ]);
     break;
   case "production":
-    target = "./src/environments/environment.ts";
+    targetFile = "environment.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
       `};`,
@@ -41,6 +42,9 @@ function format(env: string) {
 const strs = envs.map((env) => format(env))
 r.push(...strs)
 
-import {writeFile} from 'node:fs/promises'
+import {writeFile, mkdir} from 'node:fs/promises'
+import {join} from 'node:path'
 
-writeFile(target,r.join("\n"),{flag:"w+"});
+mkdir(join(...targetDirs), {recursive:true}).then(() => {
+  writeFile(join(...targetDirs,targetFile),r.join("\n"))
+})
