@@ -3,7 +3,7 @@
     <input type="radio" name="radio" hidden checked />
   </label>
   <div class="item-container">
-    @for (card of cards; track card.link) {
+    @for (card of cards(); track card.link) {
       <div class="card-wrapper">
         <article class="card">
           <label>
