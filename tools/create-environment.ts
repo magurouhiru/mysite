@@ -43,4 +43,4 @@ r.push(...strs)
 
 import {writeFile} from 'node:fs/promises'
 
-writeFile(target,r.join("\n"));
+writeFile(target,r.join("\n"),{flag:"w+"});
