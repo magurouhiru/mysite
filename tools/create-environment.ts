@@ -5,7 +5,17 @@ console.log(arg)
 
 const targetDirs = ["src","environments"];
 let targetFile = "";
-const r:string[] = [];
+const r = [
+  `export const FIREBASECONFIG = {`,
+    `apiKey: FIREBASECONFIG_APIKEY,`,
+    `authDomain: FIREBASECONFIG_AUTHDOMAIN,`,
+    `projectId: FIREBASECONFIG_PROJECTID,`,
+    `storageBucket: FIREBASECONFIG_STORAGEBUCKET,`,
+    `messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,`,
+    `appId: FIREBASECONFIG_APPID,`,
+    `measurementId: FIREBASECONFIG_MEASUREMENTID,`,
+  `};`,
+];
 
 switch (arg) {
   case "development":
@@ -36,15 +46,15 @@ const envs = [
 ]
 
 function format(env: string) {
- return `export const ${env}='${process.env[env]}';`
+ return `const ${env}='${process.env[env]}';`
 }
 
 const strs = envs.map((env) => format(env))
-r.push(...strs)
+strs.push(...r)
 
 import {writeFile, mkdir} from 'node:fs/promises'
 import {join} from 'node:path'
 
 mkdir(join(...targetDirs), {recursive:true}).then(() => {
-  writeFile(join(...targetDirs,targetFile),r.join("\n"))
+  writeFile(join(...targetDirs,targetFile),strs.join("\n"))
 })
