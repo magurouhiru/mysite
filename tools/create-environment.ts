@@ -8,14 +8,14 @@ const r = [];
 
 switch (arg) {
   case "development":
-    target = "src/environments/environment.development.ts";
+    target = "./src/environments/environment.development.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'http://localhost:4200/',`,
       `};`,
     ]);
     break;
   case "production":
-    target = "src/environments/environment.ts";
+    target = "./src/environments/environment.ts";
     r.push(...[`export const environment = {`,
       `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
       `};`,
