@@ -21,7 +21,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run prettier
-      - run: npm run tool-create-environment.ts
+      - run: npm run tool-create-environment:production
         env:
           FIREBASECONFIG_APIKEY: ${{ secrets.FIREBASECONFIG_APIKEY }}
           FIREBASECONFIG_AUTHDOMAIN: ${{ secrets.FIREBASECONFIG_AUTHDOMAIN }}
