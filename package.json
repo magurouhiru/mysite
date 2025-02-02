@@ -14,7 +14,8 @@
     "prettier_fix": "prettier --write src/",
     "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts",
     "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts",
-    "tool-create-environment.ts": "tsx ./tools/create-environment.ts"
+    "tool-create-environment:development": "tsx ./tools/create-environment.ts development",
+    "tool-create-environment:production": "tsx ./tools/create-environment.ts production"
   },
   "private": true,
   "dependencies": {
