@@ -6,6 +6,7 @@ import {
   ScreenTrackingService,
 } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
@@ -27,5 +28,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(FIREBASECONFIG)),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
+    provideStorage(() => getStorage()),
   ],
 };
