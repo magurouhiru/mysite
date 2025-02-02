@@ -19,9 +19,7 @@ jobs:
         id: update
         run: git submodule update --remote --recursive
       - run: npm ci
-      - run: npm run lint
-      - run: npm run prettier
-      - run: npm run tool-create-environment.ts
+      - run: npm run tool-create-environment:production
         env:
           FIREBASECONFIG_APIKEY: ${{ secrets.FIREBASECONFIG_APIKEY }}
           FIREBASECONFIG_AUTHDOMAIN: ${{ secrets.FIREBASECONFIG_AUTHDOMAIN }}
@@ -30,6 +28,8 @@ jobs:
           FIREBASECONFIG_MESSAGINGSENDERID: ${{ secrets.FIREBASECONFIG_MESSAGINGSENDERID }}
           FIREBASECONFIG_APPID: ${{ secrets.FIREBASECONFIG_APPID }}
           FIREBASECONFIG_MEASUREMENTID: ${{ secrets.FIREBASECONFIG_MEASUREMENTID }}
+      - run: npm run lint
+      - run: npm run prettier
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

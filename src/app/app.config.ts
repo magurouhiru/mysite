@@ -11,15 +11,7 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 
-import {
-  FIREBASECONFIG_APIKEY,
-  FIREBASECONFIG_APPID,
-  FIREBASECONFIG_AUTHDOMAIN,
-  FIREBASECONFIG_MEASUREMENTID,
-  FIREBASECONFIG_MESSAGINGSENDERID,
-  FIREBASECONFIG_PROJECTID,
-  FIREBASECONFIG_STORAGEBUCKET,
-} from '../environments/environment';
+import { FIREBASECONFIG } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,17 +24,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideHttpClient(),
     provideAnimationsAsync(),
-    provideFirebaseApp(() =>
-      initializeApp({
-        apiKey: FIREBASECONFIG_APIKEY,
-        authDomain: FIREBASECONFIG_AUTHDOMAIN,
-        projectId: FIREBASECONFIG_PROJECTID,
-        storageBucket: FIREBASECONFIG_STORAGEBUCKET,
-        messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,
-        appId: FIREBASECONFIG_APPID,
-        measurementId: FIREBASECONFIG_MEASUREMENTID,
-      }),
-    ),
+    provideFirebaseApp(() => initializeApp(FIREBASECONFIG)),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
   ],

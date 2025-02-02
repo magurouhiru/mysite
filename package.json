@@ -4,8 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:env": "run-s tool-create-environment:development start",
+    "start:emulators:start": "run-p start:env firebase_emulators:start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "watch:env": "run-s tool-create-environment:development watch",
     "test": "ng test --no-watch --no-progress --browsers=ChromeHeadless",
     "lint&prettier": "run-s lint_fix prettier_fix",
     "lint": "ng lint",
@@ -14,7 +17,9 @@
     "prettier_fix": "prettier --write src/",
     "tool-button-etc": "tsx ./tools/study-tool-button-etc.ts",
     "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts",
-    "tool-create-environment.ts": "tsx ./tools/create-environment.ts"
+    "tool-create-environment:development": "tsx ./tools/create-environment.ts development",
+    "tool-create-environment:production": "tsx ./tools/create-environment.ts production",
+    "firebase_emulators:start": "firebase emulators:start"
   },
   "private": true,
   "dependencies": {

@@ -1,5 +1,40 @@
 import 'dotenv/config'
 
+const arg = process.argv[2];
+console.log(arg)
+
+const targetDirs = ["src","environments"];
+let targetFile = "";
+const r = [
+  `export const FIREBASECONFIG = {`,
+    `apiKey: FIREBASECONFIG_APIKEY,`,
+    `authDomain: FIREBASECONFIG_AUTHDOMAIN,`,
+    `projectId: FIREBASECONFIG_PROJECTID,`,
+    `storageBucket: FIREBASECONFIG_STORAGEBUCKET,`,
+    `messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,`,
+    `appId: FIREBASECONFIG_APPID,`,
+    `measurementId: FIREBASECONFIG_MEASUREMENTID,`,
+  `};`,
+];
+
+switch (arg) {
+  case "development":
+    targetFile = "environment.development.ts";
+    r.push(...[`export const environment = {`,
+      `articleRootUrl: 'http://localhost:4200/',`,
+      `};`,
+    ]);
+    break;
+  case "production":
+    targetFile = "environment.ts";
+    r.push(...[`export const environment = {`,
+      `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
+      `};`,
+    ]);
+    break;
+}
+
+
 const envs = [
   "FIREBASECONFIG_APIKEY",
   "FIREBASECONFIG_AUTHDOMAIN",
@@ -11,17 +46,15 @@ const envs = [
 ]
 
 function format(env: string) {
- return `export const ${env}='${process.env[env]}';`
+ return `const ${env}='${process.env[env]}';`
 }
 
-const c = [
-  `export const environment = {`,
-  `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
-  `};`
-]
 const strs = envs.map((env) => format(env))
-c.push(...strs)
+strs.push(...r)
 
-import {writeFile} from 'node:fs/promises'
+import {writeFile, mkdir} from 'node:fs/promises'
+import {join} from 'node:path'
 
-writeFile("src/environments/environment.ts",c.join("\n"));
+mkdir(join(...targetDirs), {recursive:true}).then(() => {
+  writeFile(join(...targetDirs,targetFile),strs.join("\n"))
+})

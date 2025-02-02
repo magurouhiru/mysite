@@ -43,3 +43,9 @@ Thumbs.db
 
 # firebase
 .firebase
+firebase-debug.log
+
+# keys
+src/environments/environment.development.ts
+src/environments/environment.ts
+.env
