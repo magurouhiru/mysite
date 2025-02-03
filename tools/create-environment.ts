@@ -3,37 +3,9 @@ import 'dotenv/config'
 const arg = process.argv[2];
 console.log(arg)
 
-const targetDirs = ["src","environments"];
-let targetFile = "";
-const r = [
-  `export const FIREBASECONFIG = {`,
-    `apiKey: FIREBASECONFIG_APIKEY,`,
-    `authDomain: FIREBASECONFIG_AUTHDOMAIN,`,
-    `projectId: FIREBASECONFIG_PROJECTID,`,
-    `storageBucket: FIREBASECONFIG_STORAGEBUCKET,`,
-    `messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,`,
-    `appId: FIREBASECONFIG_APPID,`,
-    `measurementId: FIREBASECONFIG_MEASUREMENTID,`,
-  `};`,
-];
-
-switch (arg) {
-  case "development":
-    targetFile = "environment.development.ts";
-    r.push(...[`export const environment = {`,
-      `articleRootUrl: 'http://localhost:4200/',`,
-      `};`,
-    ]);
-    break;
-  case "production":
-    targetFile = "environment.ts";
-    r.push(...[`export const environment = {`,
-      `articleRootUrl: 'https://magurouhiru.github.io/mysite/',`,
-      `};`,
-    ]);
-    break;
+function format(env: string) {
+  return `const ${env}='${process.env[env]}';`
 }
-
 
 const envs = [
   "FIREBASECONFIG_APIKEY",
@@ -45,12 +17,51 @@ const envs = [
   "FIREBASECONFIG_MEASUREMENTID",
 ]
 
-function format(env: string) {
- return `const ${env}='${process.env[env]}';`
+const targetDirs = ["src","environments"];
+let targetFile = "";
+let pre = `
+export const FIREBASECONFIG = {
+  apiKey: FIREBASECONFIG_APIKEY,
+  authDomain: FIREBASECONFIG_AUTHDOMAIN,
+  projectId: FIREBASECONFIG_PROJECTID,
+  storageBucket: FIREBASECONFIG_STORAGEBUCKET,
+  messagingSenderId: FIREBASECONFIG_MESSAGINGSENDERID,
+  appId: FIREBASECONFIG_APPID,
+  measurementId: FIREBASECONFIG_MEASUREMENTID,
+};
+`
+
+switch (arg) {
+  case "development":
+    targetFile = "environment.development.ts";
+    pre = pre + `
+import {connectStorageEmulator, getStorage} from "@angular/fire/storage";
+
+export const environment = {
+  articleRootUrl: 'http://localhost:4200/',
+  storage: () => {
+    const storage = getStorage();
+    connectStorageEmulator(storage, 'localhost', 9199);
+    return storage;
+  },
+};
+`
+    break;
+  case "production":
+    targetFile = "environment.ts";
+    pre = pre + `
+import {getStorage} from "@angular/fire/storage";
+
+export const environment = {
+  articleRootUrl: 'http://localhost:4200/',
+  storage: getStorage,
+};
+`
+    break;
 }
 
 const strs = envs.map((env) => format(env))
-strs.push(...r)
+strs.push(pre)
 
 import {writeFile, mkdir} from 'node:fs/promises'
 import {join} from 'node:path'

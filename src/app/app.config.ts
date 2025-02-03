@@ -6,17 +6,13 @@ import {
   ScreenTrackingService,
 } from '@angular/fire/analytics';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import {
-  connectStorageEmulator,
-  getStorage,
-  provideStorage,
-} from '@angular/fire/storage';
+import { provideStorage } from '@angular/fire/storage';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 
-import { FIREBASECONFIG } from '../environments/environment';
+import { environment, FIREBASECONFIG } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,10 +28,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(FIREBASECONFIG)),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
-    provideStorage(() => {
-      const storage = getStorage();
-      connectStorageEmulator(storage, 'localhost', 9199);
-      return storage;
-    }),
+    provideStorage(() => environment.storage()),
   ],
 };
