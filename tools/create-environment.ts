@@ -61,7 +61,7 @@ import {getStorage} from "@angular/fire/storage";
 
 export const environment = {
   articleRootUrl: 'http://localhost:4200/',
-  firestore: getFirestore,
+  firestore: (() => getFirestore("mysite")),
   storage: getStorage,
 };
 `
