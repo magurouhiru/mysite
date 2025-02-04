@@ -21,6 +21,12 @@ export class PortfolioCodeJumpBlogMenuComponent {
   readonly main$ = collectionData(
     collection(this.firestore, 'portfolio/code-jump_blog-menu/main'),
   );
+  readonly author$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/author'),
+  );
+  readonly ranking$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/ranking'),
+  );
   readonly #base_url = 'portfolio/code-jump/blog-menu/';
   readonly urls$ = forkJoin({
     pickup1: from(

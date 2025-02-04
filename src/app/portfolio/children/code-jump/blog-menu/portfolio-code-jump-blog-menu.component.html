@@ -116,45 +116,49 @@
         }
       </section>
       <section class="aside">
-        <div class="aside__author">
-          <div class="aside__author-item">
-            <img [src]="urls.author" alt="" />
+        @if (author$ | async; as author) {
+          <div class="aside__author">
+            <div class="aside__author-item">
+              <img [src]="urls.author" alt="" />
+            </div>
+            <div class="aside__author-item">
+              <h2>{{ author[0]["name"] }}</h2>
+            </div>
+            <div class="aside__author-item">
+              <p>
+                {{ author[0]["body"] }}
+              </p>
+            </div>
           </div>
-          <div class="aside__author-item">
-            <h2>Name Name</h2>
-          </div>
-          <div class="aside__author-item">
-            <p>
-              プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </div>
-        </div>
+        }
         <div class="aside__ranking">
-          <div class="aside__ranking-title"><h2>Ranking</h2></div>
-          <div class="aside__ranking-card">
-            <div class="aside__ranking-item">
-              <img [src]="urls.ranking1" alt="" />
+          @if (ranking$ | async; as ranking) {
+            <div class="aside__ranking-title"><h2>Ranking</h2></div>
+            <div class="aside__ranking-card">
+              <div class="aside__ranking-item">
+                <img [src]="urls.ranking1" alt="" />
+              </div>
+              <div class="aside__ranking-item">
+                <h4>{{ ranking[0]["title"] }}</h4>
+              </div>
             </div>
-            <div class="aside__ranking-item">
-              <h4>タイトルテキストテキストテキストテキストテキストテキスト</h4>
+            <div class="aside__ranking-card">
+              <div class="aside__ranking-item">
+                <img [src]="urls.ranking2" alt="" />
+              </div>
+              <div class="aside__ranking-item">
+                <h4>{{ ranking[1]["title"] }}</h4>
+              </div>
             </div>
-          </div>
-          <div class="aside__ranking-card">
-            <div class="aside__ranking-item">
-              <img [src]="urls.ranking2" alt="" />
+            <div class="aside__ranking-card">
+              <div class="aside__ranking-item">
+                <img [src]="urls.ranking3" alt="" />
+              </div>
+              <div class="aside__ranking-item">
+                <h4>{{ ranking[2]["title"] }}</h4>
+              </div>
             </div>
-            <div class="aside__ranking-item">
-              <h4>タイトルテキストテキストテキストテキストテキストテキスト</h4>
-            </div>
-          </div>
-          <div class="aside__ranking-card">
-            <div class="aside__ranking-item">
-              <img [src]="urls.ranking3" alt="" />
-            </div>
-            <div class="aside__ranking-item">
-              <h4>タイトルテキストテキストテキストテキストテキストテキスト</h4>
-            </div>
-          </div>
+          }
         </div>
         <div class="aside__archive">
           <div class="aside__archive-title">
