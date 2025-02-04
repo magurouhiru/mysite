@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { collection, collectionData, Firestore } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { forkJoin, from } from 'rxjs';
 
@@ -11,8 +12,15 @@ import { forkJoin, from } from 'rxjs';
   styleUrl: './portfolio-code-jump-blog-menu.component.scss',
 })
 export class PortfolioCodeJumpBlogMenuComponent {
+  readonly firestore = inject(Firestore);
   readonly storage = inject(Storage);
 
+  readonly pickup$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/pickup'),
+  );
+  readonly main$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/main'),
+  );
   readonly #base_url = 'portfolio/code-jump/blog-menu/';
   readonly urls$ = forkJoin({
     pickup1: from(

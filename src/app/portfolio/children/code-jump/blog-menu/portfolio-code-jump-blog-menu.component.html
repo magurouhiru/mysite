@@ -21,95 +21,99 @@
     </header>
     <div class="contents">
       <section class="pickup">
-        <article class="pickup__card">
-          <img [src]="urls.pickup1" alt="" />
-          <div class="pickup__card-title">
-            <h3>
-              タイトルテキストテキストテキストテキストテキストテキストテキスト
-            </h3>
-          </div>
-          <div class="pickup__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
-        <article class="pickup__card">
-          <img [src]="urls.pickup2" alt="" />
-          <div class="pickup__card-title">
-            <h3>
-              タイトルテキストテキストテキストテキストテキストテキストテキスト
-            </h3>
-          </div>
-          <div class="pickup__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
-        <article class="pickup__card">
-          <img [src]="urls.pickup3" alt="" />
-          <div class="pickup__card-title">
-            <h3>
-              タイトルテキストテキストテキストテキストテキストテキストテキスト
-            </h3>
-          </div>
-          <div class="pickup__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
+        @if (pickup$ | async; as pickup) {
+          <article class="pickup__card">
+            <img [src]="urls.pickup1" alt="" />
+            <div class="pickup__card-title">
+              <h3>
+                {{ pickup[0]["title"] }}
+              </h3>
+            </div>
+            <div class="pickup__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+          <article class="pickup__card">
+            <img [src]="urls.pickup2" alt="" />
+            <div class="pickup__card-title">
+              <h3>
+                {{ pickup[1]["title"] }}
+              </h3>
+            </div>
+            <div class="pickup__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+          <article class="pickup__card">
+            <img [src]="urls.pickup3" alt="" />
+            <div class="pickup__card-title">
+              <h3>
+                {{ pickup[2]["title"] }}
+              </h3>
+            </div>
+            <div class="pickup__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+        }
       </section>
       <section class="main">
-        <article class="main__card">
-          <div class="main__card-title">
-            <h2>タイトルテキストテキストテキストテキストテキスト</h2>
-          </div>
-          <div class="main__card-meta">
-            <span>2020/01/01</span>
-            <span>カテゴリ1</span>
-          </div>
-          <img [src]="urls.main1" alt="" />
-          <div class="main__card-body">
-            <p>
-              本文テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </div>
-          <div class="main__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
-        <article class="main__card">
-          <div class="main__card-title">
-            <h2>タイトルテキストテキストテキストテキストテキスト</h2>
-          </div>
-          <div class="main__card-meta">
-            <span>2020/01/01</span>
-            <span>カテゴリ1</span>
-          </div>
-          <img [src]="urls.main2" alt="" />
-          <div class="main__card-body">
-            <p>
-              本文テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </div>
-          <div class="main__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
-        <article class="main__card">
-          <div class="main__card-title">
-            <h2>タイトルテキストテキストテキストテキストテキスト</h2>
-          </div>
-          <div class="main__card-meta">
-            <span>2020/01/01</span>
-            <span>カテゴリ1</span>
-          </div>
-          <img [src]="urls.main3" alt="" />
-          <div class="main__card-body">
-            <p>
-              本文テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-            </p>
-          </div>
-          <div class="main__card-link">
-            <a href="{{ link_url }}" class="read-more">READ MORE</a>
-          </div>
-        </article>
+        @if (main$ | async; as main) {
+          <article class="main__card">
+            <div class="main__card-title">
+              <h2>{{ main[0]["title"] }}</h2>
+            </div>
+            <div class="main__card-meta">
+              <span>{{ main[0]["date"] }}</span>
+              <span>{{ main[0]["tag"] }}</span>
+            </div>
+            <img [src]="urls.main1" alt="" />
+            <div class="main__card-body">
+              <p>
+                {{ main[0]["body"] }}
+              </p>
+            </div>
+            <div class="main__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+          <article class="main__card">
+            <div class="main__card-title">
+              <h2>{{ main[1]["title"] }}</h2>
+            </div>
+            <div class="main__card-meta">
+              <span>{{ main[1]["date"] }}</span>
+              <span>{{ main[1]["tag"] }}</span>
+            </div>
+            <img [src]="urls.main2" alt="" />
+            <div class="main__card-body">
+              <p>
+                {{ main[1]["body"] }}
+              </p>
+            </div>
+            <div class="main__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+          <article class="main__card">
+            <div class="main__card-title">
+              <h2>{{ main[2]["title"] }}</h2>
+            </div>
+            <div class="main__card-meta">
+              <span>{{ main[2]["date"] }}</span>
+              <span>{{ main[2]["tag"] }}</span>
+            </div>
+            <img [src]="urls.main3" alt="" />
+            <div class="main__card-body">
+              <p>
+                {{ main[2]["body"] }}
+              </p>
+            </div>
+            <div class="main__card-link">
+              <a href="{{ link_url }}" class="read-more">READ MORE</a>
+            </div>
+          </article>
+        }
       </section>
       <section class="aside">
         <div class="aside__author">

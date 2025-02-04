@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Firestore } from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { RouterLink } from '@angular/router';
 import { forkJoin, map } from 'rxjs';
@@ -13,6 +14,7 @@ import { forkJoin, map } from 'rxjs';
   styleUrl: './portfolio-home.component.scss',
 })
 export class PortfolioHomeComponent {
+  readonly firestore = inject(Firestore);
   readonly storage = inject(Storage);
 
   readonly cards = toSignal(
