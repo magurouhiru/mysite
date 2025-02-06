@@ -9,7 +9,6 @@ import {
   QueryDocumentSnapshot,
 } from '@angular/fire/firestore';
 import { RouterLink } from '@angular/router';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-portfolio-code-jump-store-menu',
@@ -25,7 +24,7 @@ export class PortfolioCodeJumpStoreMenuComponent {
     'portfolio/code-jump_store-menu/menu_item_coffee',
   ).withConverter(menuItemConverter);
   readonly menuItemCoffee = toSignal(
-    from(collectionData<MenuItem>(this.#menuItemCofeeRef)),
+    collectionData<MenuItem>(this.#menuItemCofeeRef),
     { initialValue: [] },
   );
   readonly #menuItemFoodRef = collection(
@@ -33,7 +32,7 @@ export class PortfolioCodeJumpStoreMenuComponent {
     'portfolio/code-jump_store-menu/menu_item_food',
   ).withConverter(menuItemConverter);
   readonly menuItemFood = toSignal(
-    from(collectionData<MenuItem>(this.#menuItemFoodRef)),
+    collectionData<MenuItem>(this.#menuItemFoodRef),
     { initialValue: [] },
   );
   readonly #menuItemOtherRef = collection(
@@ -41,7 +40,7 @@ export class PortfolioCodeJumpStoreMenuComponent {
     'portfolio/code-jump_store-menu/menu_item_other',
   ).withConverter(menuItemConverter);
   readonly menuItemOther = toSignal(
-    from(collectionData<MenuItem>(this.#menuItemOtherRef)),
+    collectionData<MenuItem>(this.#menuItemOtherRef),
     { initialValue: [] },
   );
 
@@ -49,10 +48,9 @@ export class PortfolioCodeJumpStoreMenuComponent {
     this.#store,
     'portfolio/code-jump_store-menu/about_item',
   ).withConverter(aboutItemConverter);
-  readonly aboutItem = toSignal(
-    from(collectionData<AboutItem>(this.#aboutItemRef)),
-    { initialValue: [] },
-  );
+  readonly aboutItem = toSignal(collectionData<AboutItem>(this.#aboutItemRef), {
+    initialValue: [],
+  });
 }
 interface MenuItem {
   id: number;
