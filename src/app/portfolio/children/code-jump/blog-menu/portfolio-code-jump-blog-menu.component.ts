@@ -1,6 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { collection, collectionData, Firestore } from '@angular/fire/firestore';
+import {
+  collection,
+  collectionData,
+  Firestore,
+  FirestoreDataConverter,
+  QueryDocumentSnapshot,
+} from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { forkJoin, from } from 'rxjs';
 
@@ -16,7 +22,10 @@ export class PortfolioCodeJumpBlogMenuComponent {
   readonly storage = inject(Storage);
 
   readonly pickup$ = collectionData(
-    collection(this.firestore, 'portfolio/code-jump_blog-menu/pickup'),
+    collection(
+      this.firestore,
+      'portfolio/code-jump_blog-menu/pickup',
+    ).withConverter(pickupConverter),
   );
   readonly main$ = collectionData(
     collection(this.firestore, 'portfolio/code-jump_blog-menu/main'),
@@ -61,3 +70,20 @@ export class PortfolioCodeJumpBlogMenuComponent {
     ),
   });
 }
+
+// class Pickup {
+//   constructor(readonly title:string) {
+//   }
+// }
+interface Pickup {
+  title: string;
+}
+const pickupConverter: FirestoreDataConverter<Pickup, Pickup> = {
+  toFirestore(pickup: Pickup) {
+    return { title: pickup.title };
+  },
+  fromFirestore(snapshot: QueryDocumentSnapshot<Pickup, Pickup>) {
+    const data = snapshot.data();
+    return data;
+  },
+};
