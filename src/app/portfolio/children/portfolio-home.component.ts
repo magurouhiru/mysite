@@ -37,7 +37,7 @@ export class PortfolioHomeComponent {
           );
           console.log(info.create_at);
         });
-        console.log(Timestamp.now())
+        console.log(Timestamp.now());
         return infos.sort(
           (a, b) => b.create_at.toMillis() - a.create_at.toMillis(),
         );
