@@ -72,12 +72,12 @@ export class PortfolioCodeJumpBlogMenuComponent {
   });
 }
 
-class Pickup {
-  constructor(readonly title: string) {}
-}
-// interface Pickup {
-//   title: string;
+// class Pickup {
+//   constructor(readonly title: string) {}
 // }
+interface Pickup {
+  title: string;
+}
 const pickupConverter: FirestoreDataConverter<Pickup, Pickup> = {
   toFirestore(pickup: Pickup) {
     return { title: pickup.title };
