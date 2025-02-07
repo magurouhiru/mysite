@@ -3,24 +3,29 @@
     <input type="radio" name="radio" hidden checked />
   </label>
   <div class="item-container">
-    @for (card of cards(); track card.link) {
+    @for (
+      portfolioInfo of portfolioInfos();
+      track portfolioInfo.portfolio_link
+    ) {
       <div class="card-wrapper">
         <article class="card">
           <label>
             <input type="radio" name="radio" hidden />
             <div class="card__thumbnail-wrapper">
-              <img [ngSrc]="card.thumbnail" fill alt="サムネイル" priority />
+              @if (portfolioInfo.thumbnail_url | async; as thumbnail_url) {
+                <img [ngSrc]="thumbnail_url" fill alt="サムネイル" priority />
+              } @else {}
             </div>
           </label>
           <div class="card__meta">
-            <a [routerLink]="card.link">成果物はこちら</a>
+            <a [routerLink]="portfolioInfo.portfolio_link">成果物はこちら</a>
             <h3>提供元情報</h3>
-            <a href="{{ card.url }}">
-              <p>{{ card.label }}</p>
+            <a href="{{ portfolioInfo.reference_url }}">
+              <p>{{ portfolioInfo.label }}</p>
             </a>
             <div class="card__meta-specification">
               <h3>仕様</h3>
-              <p [innerHTML]="card.specification"></p>
+              <p [innerHTML]="portfolioInfo.specification"></p>
             </div>
           </div>
         </article>

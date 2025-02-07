@@ -22,7 +22,7 @@
         <div class="content content--menu content--menu-coffee">
           <h3>COFFEE</h3>
           <table>
-            @for (item of menuItems.coffee; track item.id) {
+            @for (item of menuItemCoffee(); track item.id) {
               <tr>
                 <td class="content--menu__item--name">{{ item.name }}</td>
                 <td class="content--menu__item--price">￥{{ item.price }}</td>
@@ -33,7 +33,7 @@
         <div class="content content--menu content--menu-food">
           <h3>FOOD</h3>
           <table>
-            @for (item of menuItems.food; track item.id) {
+            @for (item of menuItemFood(); track item.id) {
               <tr>
                 <td class="content--menu__item--name">{{ item.name }}</td>
                 <td class="content--menu__item--price">￥{{ item.price }}</td>
@@ -44,7 +44,7 @@
         <div class="content content--menu content--menu-other">
           <h3>OTHER</h3>
           <table>
-            @for (item of menuItems.other; track item.id) {
+            @for (item of menuItemOther(); track item.id) {
               <tr>
                 <td class="content--menu__item--name">{{ item.name }}</td>
                 <td class="content--menu__item--price">￥{{ item.price }}</td>
@@ -66,7 +66,7 @@
           <h3>COFFEE</h3>
           <div class="content__body content__body--about">
             <!-- 大事な文章？ハードコードした方がよいか？ -->
-            @for (item of aboutItems; track item.id) {
+            @for (item of aboutItem(); track item.id) {
               <p>{{ item.text }}</p>
             }
           </div>

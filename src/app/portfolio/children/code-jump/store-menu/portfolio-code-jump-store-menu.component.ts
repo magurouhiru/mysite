@@ -1,5 +1,13 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  collection,
+  collectionData,
+  Firestore,
+  FirestoreDataConverter,
+  QueryDocumentSnapshot,
+} from '@angular/fire/firestore';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -10,58 +18,65 @@ import { RouterLink } from '@angular/router';
   styleUrl: './portfolio-code-jump-store-menu.component.scss',
 })
 export class PortfolioCodeJumpStoreMenuComponent {
-  readonly menuItems: {
-    coffee: MenuItem[];
-    food: MenuItem[];
-    other: MenuItem[];
-  } = {
-    coffee: [
-      { id: 0, name: 'XXXXXXXX', price: 500 },
-      { id: 1, name: 'XXXXXXXX', price: 500 },
-      { id: 2, name: 'XXXXXXXX', price: 500 },
-      { id: 3, name: 'XXXXXXXX', price: 500 },
-      { id: 4, name: 'XXXXXXXX', price: 500 },
-      { id: 5, name: 'XXXXXXXX', price: 500 },
-      { id: 6, name: 'XXXXXXXX', price: 500 },
-      { id: 7, name: 'XXXXXXXX', price: 500 },
-      { id: 8, name: 'XXXXXXXX', price: 500 },
-      { id: 9, name: 'XXXXXXXX', price: 500 },
-    ],
-    food: [
-      { id: 0, name: 'XXXXXXXX', price: 500 },
-      { id: 1, name: 'XXXXXXXX', price: 500 },
-      { id: 2, name: 'XXXXXXXX', price: 500 },
-      { id: 3, name: 'XXXXXXXX', price: 500 },
-    ],
-    other: [
-      { id: 0, name: 'XXXXXXXX', price: 500 },
-      { id: 1, name: 'XXXXXXXX', price: 500 },
-      { id: 2, name: 'XXXXXXXX', price: 500 },
-      { id: 3, name: 'XXXXXXXX', price: 500 },
-    ],
-  };
+  readonly #store = inject(Firestore);
+  readonly #menuItemCofeeRef = collection(
+    this.#store,
+    'portfolio/code-jump_store-menu/menu_item_coffee',
+  ).withConverter(menuItemConverter);
+  readonly menuItemCoffee = toSignal(
+    collectionData<MenuItem>(this.#menuItemCofeeRef),
+    { initialValue: [] },
+  );
+  readonly #menuItemFoodRef = collection(
+    this.#store,
+    'portfolio/code-jump_store-menu/menu_item_food',
+  ).withConverter(menuItemConverter);
+  readonly menuItemFood = toSignal(
+    collectionData<MenuItem>(this.#menuItemFoodRef),
+    { initialValue: [] },
+  );
+  readonly #menuItemOtherRef = collection(
+    this.#store,
+    'portfolio/code-jump_store-menu/menu_item_other',
+  ).withConverter(menuItemConverter);
+  readonly menuItemOther = toSignal(
+    collectionData<MenuItem>(this.#menuItemOtherRef),
+    { initialValue: [] },
+  );
 
-  readonly aboutItems: { id: number; text: string }[] = [
-    {
-      id: 0,
-      text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-    },
-    {
-      id: 1,
-      text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-    },
-    {
-      id: 2,
-      text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-    },
-    {
-      id: 3,
-      text: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト',
-    },
-  ];
+  readonly #aboutItemRef = collection(
+    this.#store,
+    'portfolio/code-jump_store-menu/about_item',
+  ).withConverter(aboutItemConverter);
+  readonly aboutItem = toSignal(collectionData<AboutItem>(this.#aboutItemRef), {
+    initialValue: [],
+  });
 }
 interface MenuItem {
   id: number;
   name: string;
   price: number;
 }
+
+const menuItemConverter: FirestoreDataConverter<MenuItem, MenuItem> = {
+  toFirestore(menuItem: MenuItem) {
+    return menuItem;
+  },
+  fromFirestore(snapshot: QueryDocumentSnapshot<MenuItem, MenuItem>) {
+    return snapshot.data();
+  },
+};
+
+interface AboutItem {
+  id: number;
+  text: string;
+}
+
+const aboutItemConverter: FirestoreDataConverter<AboutItem, AboutItem> = {
+  toFirestore(aboutItem: AboutItem) {
+    return aboutItem;
+  },
+  fromFirestore(snapshot: QueryDocumentSnapshot<AboutItem, AboutItem>) {
+    return snapshot.data();
+  },
+};

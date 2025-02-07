@@ -1,5 +1,12 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import {
+  collection,
+  collectionData,
+  Firestore,
+  QueryDocumentSnapshot,
+  FirestoreDataConverter,
+} from '@angular/fire/firestore';
 import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { forkJoin, from } from 'rxjs';
 
@@ -11,8 +18,25 @@ import { forkJoin, from } from 'rxjs';
   styleUrl: './portfolio-code-jump-blog-menu.component.scss',
 })
 export class PortfolioCodeJumpBlogMenuComponent {
+  readonly firestore = inject(Firestore);
   readonly storage = inject(Storage);
 
+  readonly pickup$ = collectionData(
+    collection(
+      this.firestore,
+      'portfolio/code-jump_blog-menu/pickup',
+      // ),
+    ).withConverter(pickupConverter),
+  );
+  readonly main$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/main'),
+  );
+  readonly author$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/author'),
+  );
+  readonly ranking$ = collectionData(
+    collection(this.firestore, 'portfolio/code-jump_blog-menu/ranking'),
+  );
   readonly #base_url = 'portfolio/code-jump/blog-menu/';
   readonly urls$ = forkJoin({
     pickup1: from(
@@ -47,3 +71,19 @@ export class PortfolioCodeJumpBlogMenuComponent {
     ),
   });
 }
+
+// class Pickup {
+//   constructor(readonly title: string) {}
+// }
+interface Pickup {
+  title: string;
+}
+const pickupConverter: FirestoreDataConverter<Pickup, Pickup> = {
+  toFirestore(pickup: Pickup) {
+    return { title: pickup.title };
+  },
+  fromFirestore(snapshot: QueryDocumentSnapshot<Pickup, Pickup>) {
+    const data = snapshot.data();
+    return data;
+  },
+};
