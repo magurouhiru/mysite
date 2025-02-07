@@ -14,6 +14,7 @@ import { RxjsXxxMapComponent } from './children/rxjs-xxx-map/rxjs-xxx-map.compon
 import { UnsubscribeComponent } from './children/unsubscribe/unsubscribe.component';
 import { StudyBaseComponent } from './study-base.component';
 import { StudyConfig } from './study-config';
+import {AngularfireFirestoreComponent} from "./children/angularfire-firestore/angularfire-firestore.component";
 
 export const studyRoutes: Route = {
   path: 'study',
@@ -68,6 +69,10 @@ export const studyRoutes: Route = {
           component: CssRangeSliderExamplesComponent,
         },
       ],
+    },
+    {
+      path: 'angularfire-firestore',
+      component: AngularfireFirestoreComponent,
     },
     {
       path: ':studyId',
