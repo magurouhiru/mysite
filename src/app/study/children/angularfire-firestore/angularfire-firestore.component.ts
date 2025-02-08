@@ -10,14 +10,20 @@ import {
   setDoc,
   updateDoc,
   getDoc,
+  getDocs,
+  addDoc,
+  Timestamp,
+  FieldValue,
+  serverTimestamp,
 } from '@angular/fire/firestore';
 
 import { Button } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-angularfire-firestore',
   standalone: true,
-  imports: [Button],
+  imports: [Button, TableModule],
   templateUrl: './angularfire-firestore.component.html',
   styleUrl: './angularfire-firestore.component.scss',
 })
@@ -65,6 +71,32 @@ export class AngularfireFirestoreComponent {
     deleteDoc(this.sample1Doc);
   }
   protected readonly JSON = JSON;
+
+  // sample2 ref
+  sample2Collection = collection(
+    this.store,
+    '/study/angularfire-firestore/sample_collection_2',
+  ).withConverter(sample2Converter);
+  sample2Docs = signal<Sample2App[]>([]);
+  getSample2Docs() {
+    getDocs(this.sample2Collection).then((docs) =>
+      this.sample2Docs.set(docs.docs.map((doc) => doc.data())),
+    );
+  }
+  addSample2Doc() {
+    addDoc(this.sample2Collection, { data1: 'addSample2Doc' } as Sample2App);
+  }
+  deleteSample2Doc(id: string) {
+    deleteDoc(doc(this.sample2Collection, id));
+  }
+  deleteSample2Docs() {
+    getDocs(this.sample2Collection).then((docs) =>
+      docs.docs.forEach((doc) => deleteDoc(doc.ref)),
+    );
+  }
+  format(t: Timestamp) {
+    return t.toDate();
+  }
 }
 
 interface Sample1 {
@@ -78,5 +110,34 @@ const sample1Converter: FirestoreDataConverter<Sample1, Sample1> = {
   },
   fromFirestore(snapshot: QueryDocumentSnapshot<Sample1, Sample1>): Sample1 {
     return snapshot.data();
+  },
+};
+
+interface Sample2 {
+  data1: string;
+}
+
+interface Sample2App extends Sample2 {
+  id: string;
+  created_at: Timestamp;
+  created_at2: Date;
+}
+
+interface Sample2Db extends Sample2 {
+  created_at: FieldValue;
+}
+
+const sample2Converter: FirestoreDataConverter<Sample2App, Sample2Db> = {
+  toFirestore(
+    modelObject: WithFieldValue<Sample2App>,
+  ): WithFieldValue<Sample2Db> {
+    return { ...modelObject, created_at: serverTimestamp() };
+  },
+  fromFirestore(
+    snapshot: QueryDocumentSnapshot<Sample2App, Sample2Db>,
+  ): Sample2App {
+    console.log(snapshot);
+    console.log(snapshot.ref);
+    return { ...snapshot.data(), id: snapshot.id };
   },
 };

@@ -55,9 +55,38 @@
 <h2>collection</h2>
 <pre>
   collection の操作のメインと思われる物は以下。
+  getDocs():指定したcollection のdocument を一覧取得する。
+  addDoc():指定したcollection にdocument を追加する。
+  collection を単体で作成・削除することはできない。
+  作成するには、collection 内にdocument を作成する必要がある。
+  削除するには、collection の親document を削除する必要がある。
+  なお、その時に親document に他にもcollection やdata があると、一緒に消える。
+  また、collection 作成後に子document をすべて削除してもcollection は残る。
 </pre>
-
-<div class="playfield playfield--dhisplay-m">
-
+<p-table [value]="sample2Docs()">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>data1</th>
+      <th>created_at</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-doc>
+    <tr>
+      <td>{{ doc.id }}</td>
+      <td>{{ doc.data1 }}</td>
+      <td>{{ format(doc.created_at) }}</td>
+      <td>
+        <p-button (onClick)="deleteSample2Doc(doc.id)"
+          >deleteSample2Doc()</p-button
+        >
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="buttons">
+  <p-button (onClick)="getSample2Docs()">getSample2Docs()</p-button>
+  <p-button (onClick)="addSample2Doc()">addSample2Doc()</p-button>
+  <p-button (onClick)="deleteSample2Docs()">deleteSample2Docs()</p-button>
 </div>
-<div class="buttons"></div>
