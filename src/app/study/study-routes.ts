@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+import { AngularfireFirestoreComponent } from './children/angularfire-firestore/angularfire-firestore.component';
 import { BoxModelComponent } from './children/box-model/box-model.component';
 import { ColdHotObservableComponent } from './children/cold-hot-observable/cold-hot-observable.component';
 import { StudyDetailComponent } from './children/detail/study-detail.component';
@@ -68,6 +69,10 @@ export const studyRoutes: Route = {
           component: CssRangeSliderExamplesComponent,
         },
       ],
+    },
+    {
+      path: 'angularfire-firestore',
+      component: AngularfireFirestoreComponent,
     },
     {
       path: ':studyId',

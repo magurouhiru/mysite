@@ -1,0 +1,149 @@
+<h1>Angularfire Firestore</h1>
+<pre>
+  Firestore はFirebase で使えるサービスの1つ。
+  NoSQL のDB。
+  要素は３つ。collectionとdocumentとdata。
+    collection: documentの集まり。
+    document:   collectionとdataの集まり。
+    data:       文字列や数値などの値。
+</pre>
+<h2>document</h2>
+<pre>
+  document とその配下のdata の操作のメインと思われる物は以下。
+  getDoc():指定のdocument を取得する。
+  setDoc():オプションで動きが変わる。
+  <table>
+    <tr><th rowspan="2" colspan="2"></th><th colspan="2">挙動</th></tr>
+    <tr><th>document がある時</th><th>document がない時</th></tr>
+    <tr><th colspan="2">デフォルト</th><td colspan="2">merge:false と同じ。</td></tr>
+    <tr><th rowspan="2">merge</th><th>true</th><td>リクエストしたdataで作成。</td><td>リクエストしたdataのみ書換。(一部更新)</td></tr>
+    <tr><th>false</th><td>リクエストしたdataで作成。</td><td>リクエストしたdataに書換。(全部更新)</td></tr>
+    <tr><th colspan="2">mergeFields</th><td colspan="2">リクエストしたdataの内、指定したdataのみ作成・書換。(一部更新)</td></tr>
+  </table>
+  updateDoc():指定のdocument がある時は、merge:true と同じ。なければエラー。
+  deleteDoc():指定のdocument を削除する。
+</pre>
+
+<div class="playfield playfield--dhisplay-m">
+  sample1DocData:{{ JSON.stringify(this.sample1DocData()) }}
+</div>
+<div class="buttons">
+  <div class="buttons">
+    <p-button (onClick)="getSample1Doc()">getSample1Doc()</p-button>
+    <div class="buttons">
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc1_1()">setSample1Doc1_1()</p-button>
+        <p-button (onClick)="setSample1Doc1_2()">setSample1Doc1_2()</p-button>
+      </div>
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc2_1()">setSample1Doc2_1()</p-button>
+        <p-button (onClick)="setSample1Doc2_2()">setSample1Doc2_2()</p-button>
+      </div>
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc3_1()">setSample1Doc3_1()</p-button>
+      </div>
+    </div>
+    <div class="buttons">
+      <p-button (onClick)="updateSample1Doc()">updateSample1Doc()</p-button>
+    </div>
+    <div class="buttons">
+      <p-button (onClick)="deleteSample1Doc()">deleteSample1Doc()</p-button>
+    </div>
+  </div>
+</div>
+
+<h2>collection</h2>
+<pre>
+  collection の操作のメインと思われる物は以下。
+  getDocs():指定したcollection のdocument を一覧取得する。
+  addDoc():指定したcollection にdocument を追加する。
+  collection を単体で作成・削除することはできない。
+  作成するには、collection 内にdocument を作成する必要がある。
+  削除するには、collection の親document を削除する必要がある。
+  なお、その時に親document に他にもcollection やdata があると、一緒に消える。
+  また、collection 作成後に子document をすべて削除してもcollection は残る。
+</pre>
+<p-table [value]="sample2Docs()">
+  <ng-template pTemplate="caption"> sample2Docs </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>data1</th>
+      <th>created_at</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-doc>
+    <tr>
+      <td>{{ doc.id }}</td>
+      <td>{{ doc.data1 }}</td>
+      <td>{{ format(doc.created_at) }}</td>
+      <td>
+        <p-button (onClick)="deleteSample2Doc(doc.id)"
+          >deleteSample2Doc()</p-button
+        >
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<div class="buttons">
+  <p-button (onClick)="getSample2Docs()">getSample2Docs()</p-button>
+  <p-button (onClick)="addSample2Doc()">addSample2Doc()</p-button>
+  <p-button (onClick)="deleteSample2Docs()">deleteSample2Docs()</p-button>
+</div>
+
+<h2>FirestoreDataConverter</h2>
+<pre>
+  angularfire (正確にはその中で呼び出しているfirebase-js-sdk)は型変換をサポートしている。
+  これでdocument 取得時に型を指定できる。
+  加えて、アプリとDB(正確にはDBへ送信するとき) の型が違う場合もその際を吸収してくれる。
+
+  例えば、document 作成日をdata として持ちたいが、アプリではなくサーバーで設定したいときである。
+  まず、AppModelType にはTimestamp DbModelType にはFieldValue を指定する。
+  次に、serverTimestamp() を設定し、Firebase へ送信する。
+  ただし、これだとそのアプリ以外からのリクエストで想定外の値が入る可能性があるので、ルール設定した方がよい。
+  加えて、たまにTypeError が発生することがある。
+  プリミティブでないものだと、型変換が最初できていないことがある印象。
+
+  また、↑のcollection ではdocument のid の埋め込みもしている。
+  こうすることで、特定のdocument の削除をやりやすくしている。
+</pre>
+
+<h2>firestore とfirestore/lite</h2>
+<pre>
+  オフライン機能等の有無。
+</pre>
+
+<h2>rxfire</h2>
+<pre>
+  RxJS でfirebase-js-sdk をラッピングしたもの。
+  Angular と相性がいい。
+  DB に変更があったら自動で反映させたりできる。
+</pre>
+<div class="playfield playfield--dhisplay-m">
+  sample1DocDataRx:{{ JSON.stringify(this.sample1DocDataRx()) }}
+</div>
+
+<p-table [value]="sample2DocsDataRx()">
+  <ng-template pTemplate="caption"> sample2DocsDataRx </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>data1</th>
+      <th>created_at</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-doc>
+    <tr>
+      <td>{{ doc.id }}</td>
+      <td>{{ doc.data1 }}</td>
+      <td>{{ format(doc.created_at) }}</td>
+      <td>
+        <p-button (onClick)="deleteSample2Doc(doc.id)">
+          deleteSample2Doc()
+        </p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
