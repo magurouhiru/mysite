@@ -102,6 +102,8 @@
   まず、AppModelType にはTimestamp DbModelType にはFieldValue を指定する。
   次に、serverTimestamp() を設定し、Firebase へ送信する。
   ただし、これだとそのアプリ以外からのリクエストで想定外の値が入る可能性があるので、ルール設定した方がよい。
+  加えて、たまにTypeError が発生することがある。
+  プリミティブでないものだと、型変換が最初できていないことがある印象。
 
   また、↑のcollection ではdocument のid の埋め込みもしている。
   こうすることで、特定のdocument の削除をやりやすくしている。
