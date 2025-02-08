@@ -15,10 +15,12 @@ import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { RouterLink } from '@angular/router';
 import { from, map, Observable } from 'rxjs';
 
+import { MarkdownComponent } from 'ngx-markdown';
+
 @Component({
   selector: 'app-portfolio-home',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage, AsyncPipe],
+  imports: [RouterLink, NgOptimizedImage, AsyncPipe, MarkdownComponent],
   templateUrl: './portfolio-home.component.html',
   styleUrl: './portfolio-home.component.scss',
 })

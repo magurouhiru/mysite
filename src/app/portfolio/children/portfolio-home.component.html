@@ -27,6 +27,18 @@
               <h3>仕様</h3>
               <p [innerHTML]="portfolioInfo.specification"></p>
             </div>
+            <label class="read-more">
+              <p class="read-more__message">read more</p>
+              <div class="read-more__body">
+                <h3>コンセプト</h3>
+                <div markdown [data]="portfolioInfo.concept"></div>
+                <h3>プラン</h3>
+                <div markdown [data]="portfolioInfo.plan"></div>
+                <h3>振り返り</h3>
+                <div markdown [data]="portfolioInfo.reflection"></div>
+              </div>
+              <input type="radio" name="radio" hidden />
+            </label>
           </div>
         </article>
       </div>
