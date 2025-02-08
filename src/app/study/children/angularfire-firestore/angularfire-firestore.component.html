@@ -64,6 +64,7 @@
   また、collection 作成後に子document をすべて削除してもcollection は残る。
 </pre>
 <p-table [value]="sample2Docs()">
+  <ng-template pTemplate="caption"> sample2Docs </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th>id</th>
@@ -90,3 +91,57 @@
   <p-button (onClick)="addSample2Doc()">addSample2Doc()</p-button>
   <p-button (onClick)="deleteSample2Docs()">deleteSample2Docs()</p-button>
 </div>
+
+<h2>FirestoreDataConverter</h2>
+<pre>
+  angularfire (正確にはその中で呼び出しているfirebase-js-sdk)は型変換をサポートしている。
+  これでdocument 取得時に型を指定できる。
+  加えて、アプリとDB(正確にはDBへ送信するとき) の型が違う場合もその際を吸収してくれる。
+
+  例えば、document 作成日をdata として持ちたいが、アプリではなくサーバーで設定したいときである。
+  まず、AppModelType にはTimestamp DbModelType にはFieldValue を指定する。
+  次に、serverTimestamp() を設定し、Firebase へ送信する。
+  ただし、これだとそのアプリ以外からのリクエストで想定外の値が入る可能性があるので、ルール設定した方がよい。
+
+  また、↑のcollection ではdocument のid の埋め込みもしている。
+  こうすることで、特定のdocument の削除をやりやすくしている。
+</pre>
+
+<h2>firestore とfirestore/lite</h2>
+<pre>
+  オフライン機能等の有無。
+</pre>
+
+<h2>rxfire</h2>
+<pre>
+  RxJS でfirebase-js-sdk をラッピングしたもの。
+  Angular と相性がいい。
+  DB に変更があったら自動で反映させたりできる。
+</pre>
+<div class="playfield playfield--dhisplay-m">
+  sample1DocDataRx:{{ JSON.stringify(this.sample1DocDataRx()) }}
+</div>
+
+<p-table [value]="sample2DocsDataRx()">
+  <ng-template pTemplate="caption"> sample2DocsDataRx </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>id</th>
+      <th>data1</th>
+      <th>created_at</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-doc>
+    <tr>
+      <td>{{ doc.id }}</td>
+      <td>{{ doc.data1 }}</td>
+      <td>{{ format(doc.created_at) }}</td>
+      <td>
+        <p-button (onClick)="deleteSample2Doc(doc.id)">
+          deleteSample2Doc()
+        </p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

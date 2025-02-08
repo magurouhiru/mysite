@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   WithFieldValue,
   Firestore,
@@ -15,6 +16,8 @@ import {
   Timestamp,
   FieldValue,
   serverTimestamp,
+  docData,
+  collectionData,
 } from '@angular/fire/firestore';
 
 import { Button } from 'primeng/button';
@@ -39,6 +42,7 @@ export class AngularfireFirestoreComponent {
 
   // doc
   sample1DocData = signal<Sample1 | undefined>(undefined);
+  sample1DocDataRx = toSignal(docData(this.sample1Doc));
   getSample1Doc() {
     getDoc(this.sample1Doc).then((doc) => this.sample1DocData.set(doc.data()));
   }
@@ -78,6 +82,9 @@ export class AngularfireFirestoreComponent {
     '/study/angularfire-firestore/sample_collection_2',
   ).withConverter(sample2Converter);
   sample2Docs = signal<Sample2App[]>([]);
+  sample2DocsDataRx = toSignal(collectionData(this.sample2Collection), {
+    initialValue: [],
+  });
   getSample2Docs() {
     getDocs(this.sample2Collection).then((docs) =>
       this.sample2Docs.set(docs.docs.map((doc) => doc.data())),
@@ -120,7 +127,6 @@ interface Sample2 {
 interface Sample2App extends Sample2 {
   id: string;
   created_at: Timestamp;
-  created_at2: Date;
 }
 
 interface Sample2Db extends Sample2 {
@@ -136,8 +142,6 @@ const sample2Converter: FirestoreDataConverter<Sample2App, Sample2Db> = {
   fromFirestore(
     snapshot: QueryDocumentSnapshot<Sample2App, Sample2Db>,
   ): Sample2App {
-    console.log(snapshot);
-    console.log(snapshot.ref);
     return { ...snapshot.data(), id: snapshot.id };
   },
 };
