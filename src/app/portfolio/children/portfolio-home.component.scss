@@ -74,3 +74,18 @@
     width: 100%;
   }
 }
+
+.read-more {
+  .read-more__body {
+    display: none;
+  }
+}
+
+.read-more:has(input:checked) {
+  .read-more__message {
+    display: none;
+  }
+  .read-more__body {
+    display: block;
+  }
+}
