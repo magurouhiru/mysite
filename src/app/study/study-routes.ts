@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+import { AngularfireFirestoreComponent } from './children/angularfire-firestore/angularfire-firestore.component';
 import { BoxModelComponent } from './children/box-model/box-model.component';
 import { ColdHotObservableComponent } from './children/cold-hot-observable/cold-hot-observable.component';
 import { StudyDetailComponent } from './children/detail/study-detail.component';
@@ -14,7 +15,6 @@ import { RxjsXxxMapComponent } from './children/rxjs-xxx-map/rxjs-xxx-map.compon
 import { UnsubscribeComponent } from './children/unsubscribe/unsubscribe.component';
 import { StudyBaseComponent } from './study-base.component';
 import { StudyConfig } from './study-config';
-import {AngularfireFirestoreComponent} from "./children/angularfire-firestore/angularfire-firestore.component";
 
 export const studyRoutes: Route = {
   path: 'study',

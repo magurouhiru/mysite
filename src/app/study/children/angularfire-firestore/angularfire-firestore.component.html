@@ -1,1 +1,63 @@
-<p>angularfire-firestore works!</p>
+<h1>Angularfire Firestore</h1>
+<pre>
+  Firestore はFirebase で使えるサービスの1つ。
+  NoSQL のDB。
+  要素は３つ。collectionとdocumentとdata。
+    collection: documentの集まり。
+    document:   collectionとdataの集まり。
+    data:       文字列や数値などの値。
+</pre>
+<h2>document</h2>
+<pre>
+  document とその配下のdata の操作のメインと思われる物は以下。
+  getDoc():指定のdocument を取得する。
+  setDoc():オプションで動きが変わる。
+  <table>
+    <tr><th rowspan="2" colspan="2"></th><th colspan="2">挙動</th></tr>
+    <tr><th>document がある時</th><th>document がない時</th></tr>
+    <tr><th colspan="2">デフォルト</th><td colspan="2">merge:false と同じ。</td></tr>
+    <tr><th rowspan="2">merge</th><th>true</th><td>リクエストしたdataで作成。</td><td>リクエストしたdataのみ書換。(一部更新)</td></tr>
+    <tr><th>false</th><td>リクエストしたdataで作成。</td><td>リクエストしたdataに書換。(全部更新)</td></tr>
+    <tr><th colspan="2">mergeFields</th><td colspan="2">リクエストしたdataの内、指定したdataのみ作成・書換。(一部更新)</td></tr>
+  </table>
+  updateDoc():指定のdocument がある時は、merge:true と同じ。なければエラー。
+  deleteDoc():指定のdocument を削除する。
+</pre>
+
+<div class="playfield playfield--dhisplay-m">
+  sample1DocData:{{ JSON.stringify(this.sample1DocData()) }}
+</div>
+<div class="buttons">
+  <div class="buttons">
+    <p-button (onClick)="getSample1Doc()">getSample1Doc()</p-button>
+    <div class="buttons">
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc1_1()">setSample1Doc1_1()</p-button>
+        <p-button (onClick)="setSample1Doc1_2()">setSample1Doc1_2()</p-button>
+      </div>
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc2_1()">setSample1Doc2_1()</p-button>
+        <p-button (onClick)="setSample1Doc2_2()">setSample1Doc2_2()</p-button>
+      </div>
+      <div class="buttons">
+        <p-button (onClick)="setSample1Doc3_1()">setSample1Doc3_1()</p-button>
+      </div>
+    </div>
+    <div class="buttons">
+      <p-button (onClick)="updateSample1Doc()">updateSample1Doc()</p-button>
+    </div>
+    <div class="buttons">
+      <p-button (onClick)="deleteSample1Doc()">deleteSample1Doc()</p-button>
+    </div>
+  </div>
+</div>
+
+<h2>collection</h2>
+<pre>
+  collection の操作のメインと思われる物は以下。
+</pre>
+
+<div class="playfield playfield--dhisplay-m">
+
+</div>
+<div class="buttons"></div>
