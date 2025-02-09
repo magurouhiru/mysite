@@ -10,8 +10,8 @@ import {
   QueryDocumentSnapshot,
   WithFieldValue,
 } from '@angular/fire/firestore';
-import { ref, Storage } from '@angular/fire/storage';
-import { map, of } from 'rxjs';
+import {getDownloadURL, ref, Storage} from '@angular/fire/storage';
+import {concat, forkJoin, from, map, of, switchMap, tap} from 'rxjs';
 
 import { Article, ArticleApp, ArticleDb, SearchedArticle } from './article';
 
@@ -39,6 +39,30 @@ export class ArticleService {
       map((articleApp) =>
         toArticle(articleApp ?? (null as unknown as ArticleApp)),
       ),
+      switchMap((article) => {
+        const noImg = {...article};
+        const re = new RegExp(/!\[img\.png\]\([a-zA-Z0-9/-]+\.png\)/,"g")
+        noImg.body = noImg.body.replaceAll(re, "");
+
+        const imgUrls = article.body.match(re);
+        if(imgUrls){
+          const rePre = new RegExp(/!\[img\.png\]\([a-zA-Z0-9-]+/,"g")
+          const replaced = forkJoin(
+            imgUrls.map((imgUrl)=>{
+              const path = imgUrl.replace(rePre,"").replace("/","").replace(")","")
+              return from(getDownloadURL(ref(this.#imgRef,articleId+"/"+path))).pipe(map((replaceUrl) => {
+                return {
+                  imgUrl, replaceUrl: "![img.png]("+replaceUrl+")"
+                }}));
+            })).pipe(map((v)=>{
+              v.forEach(({imgUrl,replaceUrl})=>article.body = article.body.replace(imgUrl,replaceUrl));
+              return article;
+          }))
+        return concat(of(noImg),replaced)
+        } else {
+        return concat(of(noImg))
+        }
+      }),
     );
   }
 
@@ -46,8 +70,9 @@ export class ArticleService {
     return of<SearchedArticle[]>([]);
   }
 
-  addArticle(articleApp: ArticleApp) {
-    addDoc(this.#articleRef, articleApp);
+  addArticle(articleApp: ArticleApp, imgs?: File[]) {
+    addDoc(this.#articleRef, articleApp).then((v)=>{
+    });
   }
 }
 
