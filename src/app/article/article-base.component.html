@@ -4,7 +4,7 @@
       <div class="header__home-button">
         <app-home-button [contentLabel]="'article'"></app-home-button>
       </div>
-      <p-button styleClass="header__search" (onClick)="showDialog()">
+      <p-button styleClass="header__search" (onClick)="showDialog()" hidden>
         <div class="header__search-text-wrap">
           <span class="pi pi-search header__search-icon"></span>
           <span>検索</span>
