@@ -12,22 +12,28 @@
         ></textarea>
       </p-accordionTab>
       <p-accordionTab header="送信内容">
-        <form [formGroup]="toFirebase">
+        <form [formGroup]="toFirebase" (submit)="submit()">
           @let meta = toFirebase.controls.meta.controls;
-          <h3>title</h3>
-          <input type="text" pInputText readonly [formControl]="meta.title" />
           <h3>author</h3>
           <input type="text" pInputText readonly [formControl]="meta.author" />
           <h3>date</h3>
           <input type="text" pInputText readonly [formControl]="meta.date" />
           <h3>tags</h3>
           <input type="text" pInputText readonly [formControl]="meta.tags" />
+          <h3>title</h3>
+          <input
+            type="text"
+            pInputText
+            readonly
+            [formControl]="toFirebase.controls.title"
+          />
           <h3>body</h3>
           <div
             markdown
             rows="100"
             [data]="toFirebase.controls.body.getRawValue()"
           ></div>
+          <p-button type="submit" label="submit"></p-button>
         </form>
       </p-accordionTab>
     </p-accordion>

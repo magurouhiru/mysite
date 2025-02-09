@@ -39,7 +39,6 @@ import {connectFirestoreEmulator, getFirestore} from "@angular/fire/firestore";
 import {connectStorageEmulator, getStorage} from "@angular/fire/storage";
 
 export const environment = {
-  articleRootUrl: 'http://localhost:4200/',
   firestore: () => {
     const firestore = getFirestore();
     connectFirestoreEmulator(firestore, 'localhost', 8080);
@@ -60,7 +59,6 @@ import {getFirestore} from "@angular/fire/firestore";
 import {getStorage} from "@angular/fire/storage";
 
 export const environment = {
-  articleRootUrl: 'http://localhost:4200/',
   firestore: (() => getFirestore("mysite")),
   storage: getStorage,
 };

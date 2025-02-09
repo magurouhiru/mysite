@@ -4,14 +4,20 @@ import {
   NonNullableFormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AccordionModule } from 'primeng/accordion';
+import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MarkdownComponent } from 'ngx-markdown';
 
+import { ArticleApp } from '../article';
+import { ArticleService } from '../article.service';
+
 import { parse } from 'date-fns';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-add-article',
@@ -24,20 +30,23 @@ import { parse } from 'date-fns';
     FormsModule,
     InputTextareaModule,
     MarkdownComponent,
+    Button,
   ],
   templateUrl: './add-article.component.html',
   styleUrl: './add-article.component.scss',
 })
 export class AddArticleComponent {
+  service = inject(ArticleService);
   fb = inject(NonNullableFormBuilder);
+  router = inject(Router);
   input = this.fb.control('');
   toFirebase = this.fb.group({
     meta: this.fb.group({
-      title: this.fb.control(''),
       author: this.fb.control(''),
-      date: this.fb.control<Date | null>(null),
+      date: this.fb.control<Date>(null as unknown as Date),
       tags: this.fb.control<string[]>([]),
     }),
+    title: this.fb.control(''),
     body: this.fb.control(''),
   });
 
@@ -47,10 +56,27 @@ export class AddArticleComponent {
     const rawTitle = raws.shift() ?? '';
     const date = parse(rawMeta.date, 'yyyy/MM/dd', new Date());
     const meta = this.toFirebase.controls.meta.controls;
-    meta.title.setValue(rawTitle.replaceAll('#', '').trim());
     meta.author.setValue(rawMeta.author);
     meta.date.setValue(date);
     meta.tags.setValue(rawMeta.tags as string[]);
+    this.toFirebase.controls.title.setValue(
+      rawTitle.replaceAll('#', '').trim(),
+    );
     this.toFirebase.controls.body.setValue(raws.join('\n'));
+  }
+
+  submit() {
+    const v = this.toFirebase.getRawValue();
+    const a = {
+      meta: {
+        author: v.meta.author,
+        date: Timestamp.fromDate(v.meta.date),
+        tags: v.meta.tags,
+      },
+      title: v.title,
+      body: v.body,
+    } as ArticleApp;
+    this.service.addArticle(a);
+    this.router.navigate(['article']);
   }
 }
