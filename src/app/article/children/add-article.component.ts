@@ -48,6 +48,7 @@ export class AddArticleComponent {
     }),
     title: this.fb.control(''),
     body: this.fb.control(''),
+    imgs: this.fb.control<File[]>([]),
   });
 
   setToFirebase() {
@@ -65,6 +66,13 @@ export class AddArticleComponent {
     this.toFirebase.controls.body.setValue(raws.join('\n'));
   }
 
+  // eslint-disable-next-line
+  setImgs(e: any) {
+    if (e.target?.files) {
+      this.toFirebase.controls.imgs.setValue(Object.values(e.target?.files));
+    }
+  }
+
   submit() {
     const v = this.toFirebase.getRawValue();
     const a = {
@@ -76,7 +84,7 @@ export class AddArticleComponent {
       title: v.title,
       body: v.body,
     } as ArticleApp;
-    this.service.addArticle(a);
+    this.service.addArticle(a, v.imgs);
     this.router.navigate(['article']);
   }
 }

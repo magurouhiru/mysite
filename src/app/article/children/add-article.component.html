@@ -33,6 +33,8 @@
             rows="100"
             [data]="toFirebase.controls.body.getRawValue()"
           ></div>
+          <h3>imgs</h3>
+          <input type="file" multiple (change)="setImgs($event)" />
           <p-button type="submit" label="submit"></p-button>
         </form>
       </p-accordionTab>
