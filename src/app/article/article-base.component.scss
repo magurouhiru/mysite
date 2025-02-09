@@ -62,9 +62,10 @@
   flex-direction: column;
   align-items: center;
   &__body {
-    max-width: 1000px;
+    width: min(100%, 1000px);
     padding: 12px;
     margin: 0 auto;
+    display: grid;
   }
 }
 
