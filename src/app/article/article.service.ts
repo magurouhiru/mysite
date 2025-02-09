@@ -20,6 +20,8 @@ import { concat, forkJoin, from, map, of, switchMap } from 'rxjs';
 
 import { Article, ArticleApp, ArticleDb, SearchedArticle } from './article';
 
+import { compareDesc } from 'date-fns';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -35,6 +37,9 @@ export class ArticleService {
     return collectionData(this.#articleRef).pipe(
       map((articleApps) =>
         articleApps.map((articleApp) => toArticle(articleApp)),
+      ),
+      map((articles) =>
+        articles.sort((a, b) => compareDesc(a.meta.date, b.meta.date)),
       ),
     );
   }
