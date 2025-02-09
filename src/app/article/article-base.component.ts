@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -55,4 +55,6 @@ export class ArticleBaseComponent {
     this.visible = false;
     this.#router.navigateByUrl(`/article/${id}`);
   }
+
+  isAdmin = signal(true);
 }

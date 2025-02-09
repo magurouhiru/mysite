@@ -91,3 +91,14 @@
   color: #ec4899;
   background-color: white;
 }
+
+:host ::ng-deep .add-document-button {
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1em;
+}
+
+:host ::ng-deep .icon-size {
+  font-size: 0.8em;
+}
