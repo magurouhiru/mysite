@@ -1,5 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Auth, authState } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -11,10 +13,11 @@ import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { MarkdownComponent } from 'ngx-markdown';
 
 import { HomeButtonComponent } from '../shared/home-button/home-button.component';
 import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
+
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 @Component({
   selector: 'app-article-base',
@@ -23,7 +26,6 @@ import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.compon
     RouterOutlet,
     AsyncPipe,
     CardModule,
-    MarkdownComponent,
     Button,
     DialogModule,
     InputTextModule,
@@ -37,6 +39,7 @@ import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.compon
   styleUrl: './article-base.component.scss',
 })
 export class ArticleBaseComponent {
+  auth = inject(Auth);
   readonly #service = inject(ArticleService);
   readonly #router = inject(Router);
 
@@ -56,5 +59,10 @@ export class ArticleBaseComponent {
     this.#router.navigateByUrl(`/article/${id}`);
   }
 
+  readonly #authState = toSignal(authState(this.auth));
+  e = effect(() => console.log(this.#authState));
   isAdmin = signal(true);
+  loginWithGoogle() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
+  }
 }
