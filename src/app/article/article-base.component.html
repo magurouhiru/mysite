@@ -11,8 +11,7 @@
         </div>
       </p-button>
       <div class="header__others">
-        <p-button label="login" (onClick)="loginWithGoogle()"></p-button>
-        @if (isAdmin()) {
+        @if (isLogin()) {
           <div class="header__others-1">
             <p-button
               icon="pi pi-file-plus icon-size"

@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Auth, authState } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
@@ -16,8 +16,6 @@ import { InputTextModule } from 'primeng/inputtext';
 
 import { HomeButtonComponent } from '../shared/home-button/home-button.component';
 import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
-
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 @Component({
   selector: 'app-article-base',
@@ -60,9 +58,5 @@ export class ArticleBaseComponent {
   }
 
   readonly #authState = toSignal(authState(this.auth));
-  e = effect(() => console.log(this.#authState));
-  isAdmin = signal(true);
-  loginWithGoogle() {
-    return signInWithPopup(this.auth, new GoogleAuthProvider());
-  }
+  isLogin = computed(() => !!this.#authState());
 }

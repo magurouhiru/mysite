@@ -24,6 +24,7 @@ li {
 }
 
 footer {
+  position: relative;
   background-color: #4b5563;
   padding: 0.75rem;
 }
@@ -38,4 +39,12 @@ main {
 }
 
 .content-wrap {
+}
+
+.login {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: transparent;
 }
