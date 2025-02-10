@@ -1,0 +1,20 @@
+<form (submit)="submit()" [formGroup]="fg">
+  <p>label</p>
+  <input type="text" pInputText formControlName="label" />
+  <p>thumbnail_path</p>
+  <input type="text" pInputText formControlName="thumbnail_path" />
+  <p>reference_url</p>
+  <input type="text" pInputText formControlName="reference_url" />
+  <p>portfolio_link</p>
+  <input type="text" pInputText formControlName="portfolio_link" />
+  <p>specification</p>
+  <textarea pInputTextarea formControlName="specification"></textarea>
+  <p>concept</p>
+  <textarea pInputTextarea formControlName="concept"></textarea>
+  <p>plan</p>
+  <textarea pInputTextarea formControlName="plan"></textarea>
+  <p>reflection</p>
+  <textarea pInputTextarea formControlName="reflection"></textarea>
+  <p>submit</p>
+  <p-button type="submit" label="submit"></p-button>
+</form>

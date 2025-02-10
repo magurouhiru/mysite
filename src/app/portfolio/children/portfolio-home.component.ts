@@ -1,6 +1,7 @@
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Auth, authState } from '@angular/fire/auth';
 import {
   FieldValue,
   Timestamp,
@@ -45,6 +46,10 @@ export class PortfolioHomeComponent {
       }),
     ),
   );
+
+  auth = inject(Auth);
+  readonly #authState = toSignal(authState(this.auth));
+  isLogin = computed(() => !!this.#authState());
 }
 
 interface PortfolioInfoBody {
@@ -58,7 +63,7 @@ interface PortfolioInfoBody {
   reflection: string;
 }
 
-interface PortfolioInfoApp extends PortfolioInfoBody {
+export interface PortfolioInfoApp extends PortfolioInfoBody {
   created_at: Timestamp;
   thumbnail_url?: Observable<string>;
 }
@@ -67,7 +72,7 @@ interface PortfolioInfoDb extends PortfolioInfoBody {
   created_at: FieldValue;
 }
 
-const portfolioInfoConverter: FirestoreDataConverter<
+export const portfolioInfoConverter: FirestoreDataConverter<
   PortfolioInfoApp,
   PortfolioInfoDb
 > = {

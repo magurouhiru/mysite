@@ -25,7 +25,7 @@
             </a>
             <div class="card__meta-specification">
               <h3>仕様</h3>
-              <p [innerHTML]="portfolioInfo.specification"></p>
+              <p markdown [data]="portfolioInfo.specification"></p>
             </div>
             <label class="read-more">
               <p class="read-more__message">read more</p>
@@ -44,4 +44,7 @@
       </div>
     }
   </div>
+  @if (isLogin()) {
+    <button routerLink="/portfolio/add-card">add card</button>
+  }
 </div>
