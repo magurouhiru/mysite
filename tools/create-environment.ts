@@ -42,7 +42,7 @@ import {connectStorageEmulator, getStorage} from "@angular/fire/storage";
 export const environment = {
   auth: () => {
     const auth = getAuth();
-    connectAuthEmulator(auth, 'localhost:9099');
+    connectAuthEmulator(auth, 'http://localhost:9099');
     return auth;
   },
   firestore: () => {

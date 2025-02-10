@@ -48,6 +48,7 @@ storage.rules
 firestore-debug.log
 firebase-debug.log
 data
+firebase-export-*
 
 # keys
 src/environments/environment.development.ts
