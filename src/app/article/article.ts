@@ -1,11 +1,31 @@
+import { Timestamp } from '@angular/fire/firestore';
+
 export interface Article {
   meta: {
     id: string;
     author: string;
     date: Date;
-    dateString: string;
     tags: string[];
-    mark: string[];
+  };
+  title: string;
+  body: string;
+}
+export interface ArticleApp {
+  id: string;
+  meta: {
+    author: string;
+    date: Timestamp;
+    tags: string[];
+  };
+  title: string;
+  body: string;
+}
+
+export interface ArticleDb {
+  meta: {
+    author: string;
+    date: Timestamp;
+    tags: string[];
   };
   title: string;
   body: string;

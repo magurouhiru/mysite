@@ -1,0 +1,13 @@
+:host ::ng-deep .card {
+  display: block;
+  width: 100%;
+}
+
+:host ::ng-deep textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+:host ::ng-deep input {
+  width: 100%;
+}

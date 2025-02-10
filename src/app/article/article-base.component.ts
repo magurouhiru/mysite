@@ -1,5 +1,7 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Auth, authState } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -11,7 +13,6 @@ import { Button } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
-import { MarkdownComponent } from 'ngx-markdown';
 
 import { HomeButtonComponent } from '../shared/home-button/home-button.component';
 import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.component';
@@ -23,7 +24,6 @@ import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.compon
     RouterOutlet,
     AsyncPipe,
     CardModule,
-    MarkdownComponent,
     Button,
     DialogModule,
     InputTextModule,
@@ -37,6 +37,7 @@ import { ThemePickerComponent } from '../shared/theme-picker/theme-picker.compon
   styleUrl: './article-base.component.scss',
 })
 export class ArticleBaseComponent {
+  auth = inject(Auth);
   readonly #service = inject(ArticleService);
   readonly #router = inject(Router);
 
@@ -55,4 +56,7 @@ export class ArticleBaseComponent {
     this.visible = false;
     this.#router.navigateByUrl(`/article/${id}`);
   }
+
+  readonly #authState = toSignal(authState(this.auth));
+  isLogin = computed(() => !!this.#authState());
 }

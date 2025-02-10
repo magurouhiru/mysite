@@ -1,11 +1,11 @@
 @if (articles$ | async; as articles) {
-  @for (article of articles; track article) {
+  @for (article of articles; track article.meta.id) {
     <div class="wrap">
       <a class="item__a" [routerLink]="'/article/' + article.meta.id">
         <div>
           <p-card [header]="article.title">
             書いた人：{{ article.meta.author }}<br />
-            書いた日：{{ article.meta.dateString }}<br />
+            書いた日：{{ article.meta.date | date: "yyyy/MM/dd" }}<br />
             タグ：{{ article.meta.tags }}<br />
           </p-card>
         </div>

@@ -35,11 +35,16 @@ switch (arg) {
   case "development":
     targetFile = "environment.development.ts";
     pre = pre + `
+import {connectAuthEmulator, getAuth} from "@angular/fire/auth";
 import {connectFirestoreEmulator, getFirestore} from "@angular/fire/firestore";
 import {connectStorageEmulator, getStorage} from "@angular/fire/storage";
 
 export const environment = {
-  articleRootUrl: 'http://localhost:4200/',
+  auth: () => {
+    const auth = getAuth();
+    connectAuthEmulator(auth, 'http://localhost:9099');
+    return auth;
+  },
   firestore: () => {
     const firestore = getFirestore();
     connectFirestoreEmulator(firestore, 'localhost', 8080);
@@ -56,11 +61,12 @@ export const environment = {
   case "production":
     targetFile = "environment.ts";
     pre = pre + `
+import {getAuth} from "@angular/fire/auth";
 import {getFirestore} from "@angular/fire/firestore";
 import {getStorage} from "@angular/fire/storage";
 
 export const environment = {
-  articleRootUrl: 'http://localhost:4200/',
+  auth: getAuth,
   firestore: (() => getFirestore("mysite")),
   storage: getStorage,
 };

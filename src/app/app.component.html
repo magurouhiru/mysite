@@ -13,5 +13,12 @@
         </li>
       }
     </ul>
+    @if (isLogin()) {
+      <button class="login" (click)="logout()">logout</button>
+    } @else {
+      <button class="login" (click)="loginWithGoogle()">login</button>
+    }
   </footer>
 </main>
+
+<p-confirmDialog />

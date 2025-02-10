@@ -3,7 +3,7 @@
     <p-card [header]="article.title">
       <div class="body__meta">
         書いた人：{{ article.meta.author }}<br />
-        書いた日：{{ article.meta.dateString }}<br />
+        書いた日：{{ article.meta.date | date: "yyyy/MM/dd" }}<br />
         タグ：{{ article.meta.tags }}<br />
       </div>
       <div markdown [data]="article.body"></div>

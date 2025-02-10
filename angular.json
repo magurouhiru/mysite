@@ -27,11 +27,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "ignore": ["**/.git", "**/.vscode"],
-                "input": "article"
               }
             ],
             "styles": [
