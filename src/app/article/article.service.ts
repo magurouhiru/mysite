@@ -97,7 +97,6 @@ export class ArticleService {
 
   addArticle(articleApp: ArticleApp, imgs: File[] = []) {
     addDoc(this.#articleRef, articleApp).then((v) => {
-      console.log(imgs);
       imgs.forEach((img) => {
         uploadBytesResumable(ref(this.#imgRef, v.id + '/' + img.name), img);
       });
