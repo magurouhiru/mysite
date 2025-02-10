@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+import { AddCardComponent } from './children/add-card.component';
 import { PortfolioCodeJumpBlogMenuComponent } from './children/code-jump/blog-menu/portfolio-code-jump-blog-menu.component';
 import { PortfolioCodeJumpStoreMenuComponent } from './children/code-jump/store-menu/portfolio-code-jump-store-menu.component';
 import { PortfolioHomeComponent } from './children/portfolio-home.component';
@@ -12,6 +13,7 @@ export const portfolioRoutes: Route = {
   ...PortfolioConfig,
   children: [
     { path: '', component: PortfolioHomeComponent },
+    { path: 'add-card', component: AddCardComponent },
     {
       path: 'code-jump',
       children: [

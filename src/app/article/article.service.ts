@@ -91,7 +91,7 @@ export class ArticleService {
     );
   }
 
-  search(target: string) {
+  search(_target: string) {
     return of<SearchedArticle[]>([]);
   }
 
