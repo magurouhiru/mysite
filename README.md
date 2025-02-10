@@ -1,6 +1,6 @@
 # mysite
 
-学習用のサイト  
+学習兼成果物報告用のサイト  
 - article
   - 私がこれまでに書いた記事が掲載されています。
 - study
@@ -11,7 +11,7 @@
 以下に公開  
 ~~https://magurouhiru.github.io/mysite/#/~~
 
-以下に移動しました。
+以下に移動しました。  
 https://mysite-with-firebase.firebaseapp.com
 
-初めて実行するときは`.env`ファイルを作成し、`npm run tool-create-environment:development`を実行してください。
+Firebase に移動したため、単体では動きません。
