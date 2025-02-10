@@ -1,2 +1,38 @@
-<p>portfolio-code-jump-store2-menu works!</p>
-<router-outlet></router-outlet>
+<div class="body">
+  <div class="header">
+    <div class="item-container item-container--header">
+      <h1>
+        <img
+          ngSrc="/portfolio/code-jump/store2-menu/logo.svg"
+          alt="logo"
+          fill
+        />
+      </h1>
+      <label class="hamburger"><input type="checkbox" hidden /></label>
+      <nav>
+        <ul class="link">
+          <li><a routerLink="products">PRODUCTS</a></li>
+          <li><a routerLink="about">ABOUT</a></li>
+          <li><a routerLink="company">COMPANY</a></li>
+          <li><a routerLink="contact">CONTACT</a></li>
+        </ul>
+      </nav>
+      <div class="over-ray"></div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="item-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="item-container item-container--footer">
+      <div class="link">
+        <p>INSTAGRAM</p>
+        <p>TWITTER</p>
+        <p>FACEBOOK</p>
+      </div>
+      <p class="copyright">© Furniture Design</p>
+    </div>
+  </div>
+</div>
