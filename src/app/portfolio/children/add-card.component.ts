@@ -28,9 +28,9 @@ export class AddCardComponent {
     thumbnail_path: this.fb.control(''),
     reference_url: this.fb.control(''),
     portfolio_link: this.fb.control(''),
+    specification: this.fb.control(''),
     concept: this.fb.control(''),
     plan: this.fb.control(''),
-    specification: this.fb.control(''),
     reflection: this.fb.control(''),
   });
 
