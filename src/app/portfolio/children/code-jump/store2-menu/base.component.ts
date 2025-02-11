@@ -13,6 +13,7 @@ import { concat, filter, map, of } from 'rxjs';
 import { defaultTitel } from './portfolio-code-jump-store2-menu-routes';
 
 import { FaviconService } from '../../../service/favicon.service';
+import { FontService } from '../../../service/font.service';
 
 @Component({
   selector: 'app-base',
@@ -25,6 +26,7 @@ export class BaseComponent implements OnInit, OnDestroy {
   readonly #router = inject(Router);
   readonly #title = inject(Title);
   readonly #favicon = inject(FaviconService);
+  readonly #font = inject(FontService);
   readonly #trigger = concat(
     of({}),
     this.#router.events.pipe(filter((e) => e instanceof NavigationEnd)),
@@ -53,6 +55,7 @@ export class BaseComponent implements OnInit, OnDestroy {
         },
       });
     this.#favicon.serFavicon('/portfolio/code-jump/store2-menu/favicon.ico');
+    this.#font.setNotoSansJP();
   }
   ngOnDestroy() {
     this.#favicon.serFavicon('favicon.ico');
