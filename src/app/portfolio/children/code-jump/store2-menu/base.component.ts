@@ -1,6 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { Auth, authState } from '@angular/fire/auth';
 import { Title } from '@angular/platform-browser';
 import {
   NavigationEnd,
@@ -60,4 +61,9 @@ export class BaseComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.#favicon.serFavicon('favicon.ico');
   }
+
+  // 以下は開発用のロジック
+  readonly auth = inject(Auth);
+  readonly #authState = toSignal(authState(this.auth));
+  isLogin = computed(() => !!this.#authState());
 }

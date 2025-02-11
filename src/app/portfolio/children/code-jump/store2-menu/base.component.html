@@ -20,6 +20,9 @@
           <li><a [routerLink]="baseUrl + 'about'">ABOUT</a></li>
           <li><a [routerLink]="baseUrl + 'company'">COMPANY</a></li>
           <li><a [routerLink]="baseUrl + 'contact'">CONTACT</a></li>
+          @if (isLogin()) {
+            <li><a [routerLink]="baseUrl + 'add-product'">ADD PRODUCT</a></li>
+          }
         </ul>
       </nav>
       <div class="over-ray"></div>
