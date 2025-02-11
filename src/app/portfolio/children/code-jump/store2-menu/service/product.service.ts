@@ -2,12 +2,23 @@ import { inject, Injectable } from '@angular/core';
 import {
   addDoc,
   collection,
+  collectionData,
   Firestore,
   FirestoreDataConverter,
+  limit,
+  orderBy,
+  query,
   QueryDocumentSnapshot,
+  startAt,
   WithFieldValue,
 } from '@angular/fire/firestore';
-import { ref, Storage, uploadBytesResumable } from '@angular/fire/storage';
+import {
+  getDownloadURL,
+  ref,
+  Storage,
+  uploadBytesResumable,
+} from '@angular/fire/storage';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +35,20 @@ export class ProductService {
     this.#storage,
     '/portfolio/code-jump_store2-menu/products',
   );
+
+  getProducts(s = 0, l = 8) {
+    const q = query(
+      this.#storeRef,
+      orderBy('index', 'asc'),
+      startAt(s),
+      limit(l),
+    );
+    return collectionData<Product>(q);
+  }
+  getImg(p: Product) {
+    const r = ref(this.#storageRef, p.id + `/item${p.index}.jpg`);
+    return from(getDownloadURL(r));
+  }
   addProduct(p: Product, imgs: File[]) {
     addDoc(this.#storeRef, p).then((docRef) => {
       imgs.forEach((img) => {
@@ -51,8 +76,9 @@ interface ProductDb {
   index: number;
 }
 
-interface Product extends ProductDb {
+export interface Product extends ProductDb {
   id: string;
+  img_url?: string;
 }
 
 const productConverter: FirestoreDataConverter<Product, ProductDb> = {
