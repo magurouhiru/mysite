@@ -94,6 +94,12 @@
     top: 36px;
     left: -100%;
     transition: left 1s;
+    a {
+      color: white;
+      opacity: 0;
+      font-size: 14px;
+      text-decoration: none;
+    }
   }
   & .link {
     display: flex;
@@ -101,12 +107,6 @@
     gap: 14px;
     list-style: none;
     transition: left 1s;
-  }
-  a {
-    color: white;
-    opacity: 0;
-    font-size: 14px;
-    text-decoration: none;
   }
   & .hamburger:has(input:checked) + nav {
     left: 50px;

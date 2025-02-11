@@ -1,20 +1,25 @@
+@let baseUrl = "/portfolio/code-jump/store2-menu/";
 <div class="body">
   <div class="header">
     <div class="item-container item-container--header">
       <h1>
-        <img
-          ngSrc="/portfolio/code-jump/store2-menu/logo.svg"
-          alt="logo"
-          fill
-        />
+        <a [routerLink]="baseUrl">
+          <img
+            ngSrc="/portfolio/code-jump/store2-menu/logo.svg"
+            alt="logo"
+            fill
+          />
+        </a>
       </h1>
-      <label class="hamburger"><input type="checkbox" hidden /></label>
+      <label class="hamburger"
+        ><input type="checkbox" hidden id="nav-toggle"
+      /></label>
       <nav>
         <ul class="link">
-          <li><a routerLink="products">PRODUCTS</a></li>
-          <li><a routerLink="about">ABOUT</a></li>
-          <li><a routerLink="company">COMPANY</a></li>
-          <li><a routerLink="contact">CONTACT</a></li>
+          <li><a [routerLink]="baseUrl + 'products'">PRODUCTS</a></li>
+          <li><a [routerLink]="baseUrl + 'about'">ABOUT</a></li>
+          <li><a [routerLink]="baseUrl + 'company'">COMPANY</a></li>
+          <li><a [routerLink]="baseUrl + 'contact'">CONTACT</a></li>
         </ul>
       </nav>
       <div class="over-ray"></div>
