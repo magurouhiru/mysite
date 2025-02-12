@@ -46,7 +46,9 @@ export class BaseComponent implements OnInit, OnDestroy {
       )
       .subscribe({
         next: (data) => {
-          this.#title.setTitle(data['title'] ?? defaultTitel);
+          if (data['setTitle']) {
+            this.#title.setTitle(data['title'] ?? defaultTitel);
+          }
           const navToggle = document.getElementById(
             'nav-toggle',
           ) as HTMLInputElement;

@@ -1,5 +1,6 @@
 import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { concat, map, Observable, of } from 'rxjs';
 
 import { Product, ProductService } from '../../service/product.service';
@@ -7,7 +8,7 @@ import { Product, ProductService } from '../../service/product.service';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [NgOptimizedImage, AsyncPipe],
+  imports: [NgOptimizedImage, AsyncPipe, RouterLink],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
