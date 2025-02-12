@@ -11,6 +11,7 @@ import {
   QueryDocumentSnapshot,
   startAt,
   WithFieldValue,
+  getCountFromServer,
 } from '@angular/fire/firestore';
 import {
   getDownloadURL,
@@ -36,6 +37,14 @@ export class ProductService {
     '/portfolio/code-jump_store2-menu/products',
   );
 
+  getCount() {
+    return from(
+      getCountFromServer(this.#storeRef).then((s) => {
+        console.log(s);
+        return s.data().count;
+      }),
+    );
+  }
   getProducts(s = 0, l = 8) {
     const q = query(
       this.#storeRef,

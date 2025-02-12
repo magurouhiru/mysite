@@ -1,1 +1,14 @@
-<p>products works!</p>
+<p class="page-title">Products</p>
+<div class="card-container">
+  @for (product of products(); track product.id) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+</div>
+<div class="pagination">
+  <app-pagination
+    [total]="total()"
+    [startAt]="startAt()"
+    [limit]="limit()"
+    (changePage)="changePage($event)"
+  ></app-pagination>
+</div>

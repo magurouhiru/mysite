@@ -1,0 +1,13 @@
+.container {
+  display: inline-flex;
+  gap: 40px;
+  font-size: 14px;
+  & .page {
+    border: 0;
+    background-color: white;
+    cursor: pointer;
+  }
+  & .page--current {
+    cursor: auto;
+  }
+}
