@@ -1,1 +1,52 @@
-<p>detail works!</p>
+<div class="product">
+  @if (product(); as product) {
+    <h2 class="product__title">{{ product.title }}</h2>
+    <div class="product__body">
+      <div class="product__img">
+        @if (product.img_url) {
+          <img [ngSrc]="product.img_url" alt="product img" fill priority />
+        } @else {
+          <div class="img--dummy">
+            <div class="spin"><i class="pi pi-spin pi-spinner"></i></div>
+          </div>
+        }
+      </div>
+      <div class="product__detail">
+        <p>{{ product.detail1 }}</p>
+        <p>{{ product.detail2 }}</p>
+        <p>{{ "￥" + product.price.toLocaleString() + " +tax" }}</p>
+        <table>
+          <tr>
+            <td>SIZE:</td>
+            <td>
+              {{
+                "W" +
+                  product.size.w +
+                  " × " +
+                  "D" +
+                  product.size.d +
+                  " × " +
+                  "H" +
+                  product.size.h
+              }}
+            </td>
+          </tr>
+          <tr>
+            <td>COLOR:</td>
+            <td>{{ product.color }}</td>
+          </tr>
+          <tr>
+            <td>MATERIAL:</td>
+            <td>{{ product.material }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="button-wrapper">
+  <a routerLink="/portfolio/code-jump/store2-menu/products" class="view-more"
+    >Back To Products</a
+  >
+</div>

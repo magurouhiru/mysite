@@ -12,6 +12,8 @@ import {
   startAt,
   WithFieldValue,
   getCountFromServer,
+  doc,
+  docData,
 } from '@angular/fire/firestore';
 import {
   getDownloadURL,
@@ -38,12 +40,7 @@ export class ProductService {
   );
 
   getCount() {
-    return from(
-      getCountFromServer(this.#storeRef).then((s) => {
-        console.log(s);
-        return s.data().count;
-      }),
-    );
+    return from(getCountFromServer(this.#storeRef).then((s) => s.data().count));
   }
   getProducts(s = 0, l = 8) {
     const q = query(
@@ -57,6 +54,9 @@ export class ProductService {
   getImg(p: Product) {
     const r = ref(this.#storageRef, p.id + `/item${p.index}.jpg`);
     return from(getDownloadURL(r));
+  }
+  getProduct(id: string) {
+    return docData(doc(this.#storeRef, id));
   }
   addProduct(p: Product, imgs: File[]) {
     addDoc(this.#storeRef, p).then((docRef) => {
