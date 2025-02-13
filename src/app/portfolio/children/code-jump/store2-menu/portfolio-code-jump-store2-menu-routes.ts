@@ -4,7 +4,6 @@ import { Route } from '@angular/router';
 import { BaseComponent } from './base.component';
 import { AboutComponent } from './component/about/about.component';
 import { CompanyComponent } from './component/company/company.component';
-import { ContactComponent } from './component/contact/contact.component';
 import { DetailComponent } from './component/detail/detail.component';
 import { HomeComponent } from './component/home/home.component';
 import { ProductsComponent } from './component/products/products.component';
@@ -30,11 +29,6 @@ export const PortfolioCodeJumpStore2MenuRoutes: Route = {
       path: 'company',
       component: CompanyComponent,
       data: { setTitle: true, title: 'Company | ' + defaultTitel },
-    },
-    {
-      path: 'contact',
-      component: ContactComponent,
-      data: { setTitle: true, title: 'Contact | ' + defaultTitel },
     },
     {
       path: 'detail',
