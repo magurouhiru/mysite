@@ -1,0 +1,26 @@
+.company {
+  width: min(600px, 100%);
+  font-size: 14px;
+  & .company__title {
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+  & .company__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  & table {
+    border-spacing: 0;
+  }
+  & td:first-child {
+    width: 180px;
+  }
+  & td {
+    padding: 20px 10px;
+    border-bottom: 1px solid #333333;
+    vertical-align: top;
+  }
+}
