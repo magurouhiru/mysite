@@ -6,11 +6,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { concat, filter, map, of, switchMap } from 'rxjs';
 
 import { Product, ProductService } from '../../service/product.service';
+import { AComponent } from '../../shared/a/a.component';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [NgOptimizedImage, RouterLink],
+  imports: [NgOptimizedImage, RouterLink, AComponent],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
 })

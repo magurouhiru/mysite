@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { concat, map, Observable, of } from 'rxjs';
 
 import { Product, ProductService } from '../../service/product.service';
+import { AComponent } from '../a/a.component';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [NgOptimizedImage, AsyncPipe, RouterLink],
+  imports: [NgOptimizedImage, AsyncPipe, RouterLink, AComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })

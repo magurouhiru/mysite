@@ -3,29 +3,59 @@
   <div class="header">
     <div class="item-container item-container--header">
       <h1>
-        <a [routerLink]="baseUrl">
+        <app-a [link]="baseUrl" label="logo">
           <img
             ngSrc="/portfolio/code-jump/store2-menu/logo.svg"
             alt="logo"
             fill
           />
-        </a>
+        </app-a>
       </h1>
-      <label class="hamburger"
-        ><input type="checkbox" hidden id="nav-toggle"
-      /></label>
-      <nav>
+      <button
+        [class]="'hamburger' + (checked() ? ' hamburger--checked' : '')"
+        (click)="toggleChecked()"
+        aria-label="ハンバーガーメニュー"
+      ></button>
+      <nav [class]="checked() ? 'nav--checked' : ''">
         <ul class="link">
-          <li><a [routerLink]="baseUrl + 'products'">PRODUCTS</a></li>
-          <li><a [routerLink]="baseUrl + 'about'">ABOUT</a></li>
-          <li><a [routerLink]="baseUrl + 'company'">COMPANY</a></li>
-          <li><a href="mailto:sample@example.com">CONTACT</a></li>
+          <li>
+            <app-a
+              [link]="baseUrl + 'products'"
+              label="products"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >PRODUCTS</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              [link]="baseUrl + 'about'"
+              label="about"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >ABOUT</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              [link]="baseUrl + 'company'"
+              label="company"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >COMPANY</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              href="mailto:sample@example.com"
+              label="contact"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >CONTACT</app-a
+            >
+          </li>
           @if (isLogin()) {
             <li><a [routerLink]="baseUrl + 'add-product'">ADD PRODUCT</a></li>
           }
         </ul>
       </nav>
-      <div class="over-ray"></div>
+      <div [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"></div>
     </div>
   </div>
   <div class="main">

@@ -1,0 +1,11 @@
+<ng-template #temp><ng-content></ng-content></ng-template>
+@if (link()) {
+  <a [routerLink]="link()" (click)="onClick()" [class]="class()">
+    <ng-container *ngTemplateOutlet="temp"></ng-container>
+  </a>
+}
+@if (href()) {
+  <a [href]="href()" (click)="onClick()" [class]="class()">
+    <ng-container *ngTemplateOutlet="temp"></ng-container>
+  </a>
+}

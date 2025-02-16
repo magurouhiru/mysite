@@ -64,6 +64,8 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    background-color: transparent;
+    border: 0;
   }
   & .hamburger:before,
   .hamburger:after {
@@ -82,11 +84,11 @@
   & .hamburger:after {
     transform: translateY(calc(-50% + 5px));
   }
-  & .hamburger:has(input:checked):before {
+  & .hamburger--checked:before {
     background-color: white;
     transform: translateY(calc(-50%)) rotate(-45deg);
   }
-  & .hamburger:has(input:checked):after {
+  & .hamburger--checked:after {
     background-color: white;
     transform: translateY(calc(-50%)) rotate(45deg);
   }
@@ -96,7 +98,7 @@
     top: 36px;
     left: -100%;
     transition: left 1s;
-    a {
+    & a {
       color: white;
       opacity: 0;
       font-size: 14px;
@@ -110,7 +112,7 @@
     list-style: none;
     transition: left 1s;
   }
-  & .hamburger:has(input:checked) + nav {
+  & .nav--checked {
     left: 50px;
     & a {
       opacity: 1;
@@ -124,7 +126,7 @@
     inset: 0;
     background-color: #33333380;
   }
-  & .hamburger:has(input:checked) + * + .over-ray {
+  & .over-ray--checked {
     display: block;
   }
 }

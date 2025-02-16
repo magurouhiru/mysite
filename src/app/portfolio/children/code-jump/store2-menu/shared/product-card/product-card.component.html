@@ -1,6 +1,9 @@
 @if (card(); as cardObservable) {
   @if (cardObservable | async; as card) {
-    <a [routerLink]="'/portfolio/code-jump/store2-menu/detail/' + card.id">
+    <app-a
+      [link]="'/portfolio/code-jump/store2-menu/detail/' + card.id"
+      [label]="card.id"
+    >
       <div class="card">
         <div class="card__img">
           @if (card.img_url) {
@@ -16,6 +19,6 @@
           {{ "￥" + card.price.toLocaleString() + " +tax" }}
         </p>
       </div>
-    </a>
+    </app-a>
   }
 }

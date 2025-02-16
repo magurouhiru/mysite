@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, computed, inject, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Auth, authState } from '@angular/fire/auth';
 import { Title } from '@angular/platform-browser';
@@ -12,6 +19,7 @@ import {
 import { concat, filter, map, of } from 'rxjs';
 
 import { defaultTitel } from './portfolio-code-jump-store2-menu-routes';
+import { AComponent } from './shared/a/a.component';
 
 import { FaviconService } from '../../../service/favicon.service';
 import { FontService } from '../../../service/font.service';
@@ -19,7 +27,7 @@ import { FontService } from '../../../service/font.service';
 @Component({
   selector: 'app-base',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, RouterLink],
+  imports: [RouterOutlet, NgOptimizedImage, RouterLink, AComponent],
   templateUrl: './base.component.html',
   styleUrl: './base.component.scss',
 })
@@ -32,7 +40,11 @@ export class BaseComponent implements OnInit, OnDestroy {
     of({}),
     this.#router.events.pipe(filter((e) => e instanceof NavigationEnd)),
   ).pipe(takeUntilDestroyed());
+  readonly checked = signal(false);
 
+  toggleChecked() {
+    this.checked.update((v) => !v);
+  }
   ngOnInit() {
     this.#trigger
       .pipe(
@@ -49,11 +61,8 @@ export class BaseComponent implements OnInit, OnDestroy {
           if (data['setTitle']) {
             this.#title.setTitle(data['title'] ?? defaultTitel);
           }
-          const navToggle = document.getElementById(
-            'nav-toggle',
-          ) as HTMLInputElement;
-          if (navToggle.checked) {
-            navToggle.checked = false;
+          if (this.checked()) {
+            this.checked.set(false);
           }
         },
       });
