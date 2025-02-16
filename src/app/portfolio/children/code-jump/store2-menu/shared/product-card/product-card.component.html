@@ -1,0 +1,24 @@
+@if (card(); as cardObservable) {
+  @if (cardObservable | async; as card) {
+    <app-a
+      [link]="'/portfolio/code-jump/store2-menu/detail/' + card.id"
+      [label]="card.id"
+    >
+      <div class="card">
+        <div class="card__img">
+          @if (card.img_url) {
+            <img [ngSrc]="card.img_url" alt="product img" fill priority />
+          } @else {
+            <div class="dummy-img">
+              <div class="spin"><i class="pi pi-spin pi-spinner"></i></div>
+            </div>
+          }
+        </div>
+        <p class="card__title">{{ card.title }}</p>
+        <p class="card__price">
+          {{ "￥" + card.price.toLocaleString() + " +tax" }}
+        </p>
+      </div>
+    </app-a>
+  }
+}

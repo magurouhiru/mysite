@@ -1,0 +1,16 @@
+.page-title {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(15% + 70px), 1fr));
+  column-gap: 34px;
+  row-gap: 40px;
+}
+.pagination {
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 122px;
+}

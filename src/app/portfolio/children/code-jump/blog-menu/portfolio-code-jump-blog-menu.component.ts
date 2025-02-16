@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   collection,
   collectionData,
@@ -10,6 +10,8 @@ import {
 import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
 import { forkJoin, from } from 'rxjs';
 
+import { FontService } from '../../../service/font.service';
+
 @Component({
   selector: 'app-portfolio-code-jump-blog-menu',
   standalone: true,
@@ -17,7 +19,7 @@ import { forkJoin, from } from 'rxjs';
   templateUrl: './portfolio-code-jump-blog-menu.component.html',
   styleUrl: './portfolio-code-jump-blog-menu.component.scss',
 })
-export class PortfolioCodeJumpBlogMenuComponent {
+export class PortfolioCodeJumpBlogMenuComponent implements OnInit {
   readonly firestore = inject(Firestore);
   readonly storage = inject(Storage);
 
@@ -70,6 +72,11 @@ export class PortfolioCodeJumpBlogMenuComponent {
       getDownloadURL(ref(this.storage, this.#base_url + 'ranking3.jpg')),
     ),
   });
+
+  font = inject(FontService);
+  ngOnInit() {
+    this.font.setNotoSansJP();
+  }
 }
 
 // class Pickup {

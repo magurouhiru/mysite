@@ -1,0 +1,76 @@
+@let baseUrl = "/portfolio/code-jump/store2-menu/";
+<div class="body">
+  <div class="header">
+    <div class="item-container item-container--header">
+      <h1>
+        <app-a [link]="baseUrl" label="logo">
+          <img
+            ngSrc="/portfolio/code-jump/store2-menu/logo.svg"
+            alt="logo"
+            fill
+          />
+        </app-a>
+      </h1>
+      <button
+        [class]="'hamburger' + (checked() ? ' hamburger--checked' : '')"
+        (click)="toggleChecked()"
+        aria-label="ハンバーガーメニュー"
+      ></button>
+      <nav [class]="checked() ? 'nav--checked' : ''">
+        <ul class="link">
+          <li>
+            <app-a
+              [link]="baseUrl + 'products'"
+              label="products"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >PRODUCTS</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              [link]="baseUrl + 'about'"
+              label="about"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >ABOUT</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              [link]="baseUrl + 'company'"
+              label="company"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >COMPANY</app-a
+            >
+          </li>
+          <li>
+            <app-a
+              href="mailto:sample@example.com"
+              label="contact"
+              [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"
+              >CONTACT</app-a
+            >
+          </li>
+          @if (isLogin()) {
+            <li><a [routerLink]="baseUrl + 'add-product'">ADD PRODUCT</a></li>
+          }
+        </ul>
+      </nav>
+      <div [class]="'over-ray' + (checked() ? ' over-ray--checked' : '')"></div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="item-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="item-container item-container--footer">
+      <div class="link">
+        <p>INSTAGRAM</p>
+        <p>TWITTER</p>
+        <p>FACEBOOK</p>
+      </div>
+      <p class="copyright">© Furniture Design</p>
+    </div>
+  </div>
+</div>

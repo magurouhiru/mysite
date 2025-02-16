@@ -19,6 +19,7 @@
     "tool-create-buttons": "tsx ./tools/study-tool-create-buttons.ts",
     "tool-create-environment:development": "tsx ./tools/create-environment.ts development",
     "tool-create-environment:production": "tsx ./tools/create-environment.ts production",
+    "tool-replace-key:production": "tsx ./tools/replace-key.ts production",
     "firebase_emulators:start": "firebase emulators:start --import=./data --export-on-exit"
   },
   "private": true,
@@ -29,6 +30,7 @@
     "@angular/core": "^18.2.0",
     "@angular/fire": "^18.0.0",
     "@angular/forms": "^18.2.0",
+    "@angular/google-maps": "^17.0.0",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",

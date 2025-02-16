@@ -1,0 +1,40 @@
+.company {
+  width: min(600px, 100%);
+  font-size: 14px;
+  padding-bottom: 122px;
+  & .company__title {
+    font-size: 14px;
+    font-weight: normal;
+    padding-top: 40px;
+    padding-bottom: 30px;
+  }
+  & .company__detail {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  & .company__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-bottom: 1px solid #dcdbdb;
+  }
+  & .company__list:last-child {
+    border-bottom: 0;
+  }
+  & .company__h {
+    flex: 150px 1 0;
+    vertical-align: top;
+  }
+  & .company__d {
+    flex: 300px 1 0;
+    margin-bottom: 20px;
+    vertical-align: top;
+  }
+  & .map {
+    padding-top: 20px;
+    width: 100%;
+    height: 300px;
+    filter: grayscale(1);
+  }
+}

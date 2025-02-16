@@ -1,0 +1,9 @@
+<div class="container">
+  @for (i of pages(); track i) {
+    @if (i === currentPage()) {
+      <button class="page page--current">{{ i }}</button>
+    } @else {
+      <button class="page" (click)="selectPage(i)">{{ i }}</button>
+    }
+  }
+</div>
