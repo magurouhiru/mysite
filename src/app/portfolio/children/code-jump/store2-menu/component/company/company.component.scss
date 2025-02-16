@@ -1,6 +1,7 @@
 .company {
   width: min(600px, 100%);
   font-size: 14px;
+  padding-bottom: 122px;
   & .company__title {
     font-size: 14px;
     font-weight: normal;
@@ -22,5 +23,10 @@
     padding: 20px 10px;
     border-bottom: 1px solid #333333;
     vertical-align: top;
+  }
+  & .map {
+    width: 100%;
+    aspect-ratio: 2;
+    filter: grayscale(1);
   }
 }
