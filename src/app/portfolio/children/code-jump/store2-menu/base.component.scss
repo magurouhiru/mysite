@@ -21,7 +21,7 @@
 .body {
   position: relative;
   display: grid;
-  height: 100%;
+  min-height: 100vh;
   grid-template:
     ". . ." 0
     ". h ." 80px
